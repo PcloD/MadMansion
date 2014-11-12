@@ -3,6 +3,10 @@ using System.Collections;
 using InControl;
 
 public class PlayerInputManager : MonoBehaviour {
+	[SerializeField]
+	private GameObject _hunterAssignmentText;
+	[SerializeField]
+	private GameObject _ghostAssignmentText;
 
 	public static PlayerInputManager g;
 
@@ -35,17 +39,25 @@ public class PlayerInputManager : MonoBehaviour {
 		}
 	}
 
+	void Start () {
+		_hunterAssignmentText.SetActive(true);
+		_ghostAssignmentText.SetActive(false);
+	}
+
 	private void SetupController(InputDevice controller) {
 		switch (_selectionStatus) {
 			case PlayerSelectionStatus.AssigningHunter:
 				Debug.Log("Assigning Hunter: " + controller.Name);
 				_hunter = controller;
 				_selectionStatus = PlayerSelectionStatus.AssigningGhost;
+				_hunterAssignmentText.SetActive(false);
+				_ghostAssignmentText.SetActive(true);
 				break;
 			case PlayerSelectionStatus.AssigningGhost:
 				Debug.Log("Assigning Ghost: " + controller.Name);
 				_ghost = controller;
 				_selectionStatus = PlayerSelectionStatus.AllAssigned;
+				_ghostAssignmentText.SetActive(false);
 				break;
 			default:
 				break;

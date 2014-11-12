@@ -58,7 +58,7 @@ public class GhostController : MonoBehaviour {
             }
         }
         if (closest != null) {
-        	Debug.Log("Jumped To " + closest.gameObject.name);
+        	Debug.Log("Jump!");
         	closest.enabled = true;
         	this.enabled = false;
     	} else {
