@@ -21,8 +21,10 @@ public class CharacterMotor : MonoBehaviour {
 	private float _ghostMovementSensitivity = 0.5f;
 
 	private GhostController _ghostController;
+	private HunterController _hunterController;
 
 	private Vector3 _ghostInputVector;
+	private Vector3 _hunterInputVector;
 	private Vector3 _standardInputVector;
 	private Rigidbody _rigidbody;
 	private Transform _transform;
@@ -31,11 +33,18 @@ public class CharacterMotor : MonoBehaviour {
 		get { return _ghostController.enabled; }
 	}
 
+	public bool IsHunter {
+		get { return _hunterController.enabled; }
+	}
+
 	public void AddInputWithPriority (Vector3 input, ControlPriority priority) {
 		input.y = 0f;
 		switch (priority) {
 			case ControlPriority.Ghost:
 				_ghostInputVector = input;
+				break;
+			case ControlPriority.Hunter:
+				_hunterInputVector = input;
 				break;
 			default:
 				_standardInputVector = input;
@@ -46,6 +55,7 @@ public class CharacterMotor : MonoBehaviour {
 	void Awake () {
 		_rigidbody = GetComponent<Rigidbody>();
 		_ghostController = GetComponent<GhostController>();
+		_hunterController = GetComponent<HunterController>();
 		_transform = transform;
 	}
 
@@ -58,10 +68,12 @@ public class CharacterMotor : MonoBehaviour {
 
 	void FixedUpdate () {
 		Vector3 inputVector = _standardInputVector;
-		if (IsPossessed && _ghostInputVector.sqrMagnitude > _ghostMovementSensitivity) {
+		if (IsHunter && (!IsPossessed || _ghostInputVector.sqrMagnitude < _ghostMovementSensitivity)) {
+			inputVector = _hunterInputVector;
+		} else if (IsPossessed) {
 			inputVector = _ghostInputVector;
 		}
-		var relativeVelocity = inputVector * _movementSpeed;
+		var relativeVelocity = inputVector.normalized * _movementSpeed;
 
 		// Calcualte the delta velocity
 		var currRelativeVelocity = rigidbody.velocity;
