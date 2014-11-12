@@ -3,12 +3,16 @@ using System.Collections;
 using InControl;
 
 public class GhostController : MonoBehaviour {
-
 	[SerializeField]
 	private float _possessionRadius = 5f;
+	[SerializeField]
+	private float _hauntDuration = 5f;
 
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
+
+	private Haunt _currentRoomHaunt = null;
+	private bool _canHaunt = true;
 
 	void Awake () {
 		Cache();
@@ -62,8 +66,32 @@ public class GhostController : MonoBehaviour {
     	}
 	}
 
-	private void HauntCurrentRoom () {
+	void OnTriggerStay (Collider other) {
+		if (!this.enabled) {
+			return;
+		}
+		Haunt haunt = other.GetComponent<Haunt>();
+		if (haunt != null) {
+			_currentRoomHaunt = haunt;
+		}
+	}
 
+	private IEnumerator StartHaunting (float duration) {
+		Haunt roomHaunt;
+		if (_currentRoomHaunt != null && _canHaunt) {
+			roomHaunt = _currentRoomHaunt;
+		} else {
+			yield break;
+		}
+		roomHaunt.StartHaunting();
+		_canHaunt = false;
+		yield return new WaitForSeconds (duration);
+		roomHaunt.StopHaunting();
+		_canHaunt = true;
+	}
+
+	private void HauntCurrentRoom () {
+		StartCoroutine(StartHaunting(_hauntDuration));
 	}
 
 	private void Cache () {
