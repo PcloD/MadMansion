@@ -9,6 +9,12 @@ public class AssignCharacters : MonoBehaviour {
 	void Update () {
 		if (PlayerInputManager.g.Ghost != null &&
 			PlayerInputManager.g.Hunter != null) {
+			for (int i = 0; i < _players.Length; i++) {
+				NPCController npcController = _players[i].GetComponent<NPCController>();
+				npcController.enabled = true;
+				npcController.InitRoomPattern(RoomManager.g.RandomRoomList(3));
+			}
+
 			int hunterIndex = Random.Range(0,_players.Length);
 			int ghostIndex = Random.Range(0,_players.Length);
 			if (ghostIndex == hunterIndex) {

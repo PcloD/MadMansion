@@ -48,7 +48,8 @@ public class Room : MonoBehaviour {
 	}
 
 	public Vector3 RandomPoint {
-		get { return new Vector3(Random.Range(_collider.bounds.min.x, _collider.bounds.max.x), 0f,
-						         Random.Range(_collider.bounds.min.y, _collider.bounds.max.y)); }
+		get {	float inset = 1f;
+				return new Vector3(Random.Range(_collider.bounds.min.x + inset, _collider.bounds.max.x - inset), 0f,
+						         Random.Range(_collider.bounds.min.z + inset, _collider.bounds.max.z - inset)); }
 	}
 }

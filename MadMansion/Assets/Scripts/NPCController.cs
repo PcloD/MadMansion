@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
+[RequireComponent (typeof(CurrRoomFinder))]
 public class NPCController : MonoBehaviour {
 
 	[SerializeField]
@@ -9,6 +11,10 @@ public class NPCController : MonoBehaviour {
 	private Vector3 _currDest;
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
+	private List<Room> _roomPattern;
+	private int _currRoomIndex = 0;
+	private CurrRoomFinder _currRoomFinder;
+	private List<Vector3> _destList;
 
 	void Awake () {
 		Cache();
@@ -16,6 +22,10 @@ public class NPCController : MonoBehaviour {
 
 	void Start () {
 		StartCoroutine (MovementLoop());
+	}
+
+	public void InitRoomPattern (List<Room> pattern) {
+		_roomPattern = pattern;
 	}
 
 	private IEnumerator MovementLoop () {
@@ -28,7 +38,15 @@ public class NPCController : MonoBehaviour {
 	}
 
 	private void PickDest () {
-		_currDest = new Vector3(Random.Range(-10f,10f), 0f, Random.Range(-6.7f,6.7f)); // TODO: Make pos be in des room
+		if (_destList == null || _destList.Count == 0) {
+			Room nextRoom = _roomPattern[_currRoomIndex];
+			_destList = RoomManager.g.PathBetweenRooms(_currRoomFinder.Room, nextRoom);
+			_currRoomIndex++;
+			_currRoomIndex %= _roomPattern.Count;
+		}
+
+		_currDest = _destList[0];
+		_destList.RemoveAt(0);
 	}
 
 	private IEnumerator ContinuouslySteerToDest () {
@@ -62,10 +80,11 @@ public class NPCController : MonoBehaviour {
 	private void Cache () {
 		_transform = transform;
 		_characterMotor = GetComponent<CharacterMotor>();
+		_currRoomFinder = GetComponent<CurrRoomFinder>();
 	}
 
 	private bool NeedToCache {
-		get { return (_transform == null || _characterMotor == null); }
+		get { return (_transform == null || _characterMotor == null || _currRoomFinder == null); }
 	}
 
 	void OnDrawGizmos () {

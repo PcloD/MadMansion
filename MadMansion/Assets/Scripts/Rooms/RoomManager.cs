@@ -27,6 +27,12 @@ public class RoomManager : MonoBehaviour {
 
 	public List<Vector3> PathBetweenRooms (Room room1, Room room2) {
 		List<Vector3> path = new List<Vector3>();
+
+		if (room1 == room2) {
+			path.Add(room2.RandomPoint);
+			return path;
+		}
+
 		RoomTransition transitionToRoom2 = room1.TransitionToRoom(room2);
 		if (transitionToRoom2 == null) {
 			Debug.LogError("Could not find path from " + room1.gameObject.name + " to " + room2.gameObject.name);
