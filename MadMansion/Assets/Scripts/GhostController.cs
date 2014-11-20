@@ -22,6 +22,10 @@ public class GhostController : MonoBehaviour {
 		HandleInput(PlayerInputManager.g.Ghost);
 	}
 
+	void FixedUpdate () {
+		GhostTracker.g.RecordLocation(_transform.position);
+	}
+
 	private void HandleInput (InputDevice device) {
 		if (device == null) {
 			return;

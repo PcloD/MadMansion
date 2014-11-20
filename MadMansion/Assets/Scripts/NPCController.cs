@@ -41,7 +41,7 @@ public class NPCController : MonoBehaviour {
 		do {
 			Debug.DrawLine(_transform.position, _currDest);
 			inputVector = (_currDest - _transform.position);
-			float completion = inputVector.sqrMagnitude/initialVector.sqrMagnitude;
+			//float completion = inputVector.sqrMagnitude/initialVector.sqrMagnitude;
 			inputVector = Vector3.Lerp(inputVector, inputVector + offsetVector, jitterTimer);
 			jitterTimer += Time.fixedDeltaTime;
 			if (jitterTimer > jitterTimerDuration) {
