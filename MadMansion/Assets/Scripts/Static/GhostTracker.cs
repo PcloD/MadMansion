@@ -9,9 +9,10 @@ public class GhostTracker : MonoBehaviour {
 	private Vector3[] _pastLocations;
 	private int _maxCount = 0;
 	private int _currCount;
+	[SerializeField]
 	private float _timeDelay = 5f;
 
-	private bool _canSeeHistory = false;
+	private bool _canSeeHistory;
 	public bool CanSeeHistory {
 		get { return _canSeeHistory; }
 	}
@@ -24,11 +25,20 @@ public class GhostTracker : MonoBehaviour {
 		}
 	}
 
-	void Start () {
+	void OnValidate () {
+		Reset();
+	}
+
+	void Reset () {
+		_canSeeHistory = false;
 		float dt = Time.fixedDeltaTime;
-		Debug.Log("DT: "+dt);
 		_maxCount = (int)Mathf.Ceil(_timeDelay/dt);
 		_pastLocations = new Vector3[_maxCount];
+
+	}
+
+	void Start () {
+		Reset();
 	}
 
 	public void RecordLocation (Vector3 loc) {

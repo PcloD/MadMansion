@@ -5,14 +5,12 @@ public class SoundManager : MonoBehaviour {
 	public static SoundManager g;
 
 	[SerializeField]
-	private AudioClip _ghostSound;
-
-	private AudioSource _audioSource;
+	private AudioSource _ghostSoundSource;
 
 	void Awake () {
 		if (g == null) {
 			g = this;
-			_audioSource = GetComponent<AudioSource>();
+			_ghostSoundSource = GetComponent<AudioSource>();
 		} else {
 			Destroy(this);
 		}
@@ -20,15 +18,14 @@ public class SoundManager : MonoBehaviour {
 
 
 	public void PlayGhostSound (float volumeScale) {
-		if (!_audioSource.isPlaying) {
-			_audioSource.Play();
-			_audioSource.clip = _ghostSound;
+		if (!_ghostSoundSource.isPlaying) {
+			_ghostSoundSource.Play();
 		}
-		_audioSource.volume = volumeScale;
+		_ghostSoundSource.volume = volumeScale;
 	}
 
 	public void StopGhostSound () {
-		_audioSource.Stop();
+		_ghostSoundSource.Stop();
 	}
 
 }
