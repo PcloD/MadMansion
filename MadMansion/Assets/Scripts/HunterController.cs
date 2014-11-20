@@ -42,7 +42,7 @@ public class HunterController : MonoBehaviour {
 	private void Smell () {
 		if (GhostTracker.g.CanSeeHistory) {
 			Vector3 toOldGhostPos = (_transform.position - GhostTracker.g.HistoricalLocation);
-			float volumeScale = Mathf.Min(toOldGhostPos.magnitude/volumeReduction, 1f);
+			float volumeScale = Mathf.Min(volumeReduction/toOldGhostPos.magnitude, 1f);
 			SoundManager.g.PlayGhostSound(volumeScale);
 		}
 	}

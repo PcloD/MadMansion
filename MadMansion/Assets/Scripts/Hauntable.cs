@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Haunt : MonoBehaviour {
+public class Hauntable : MonoBehaviour {
 
 	private ParticleSystem _hauntParticles;
 

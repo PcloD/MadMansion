@@ -11,7 +11,7 @@ public class GhostController : MonoBehaviour {
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
 
-	private Haunt _currentRoomHaunt = null;
+	private Hauntable _currentRoomHaunt = null;
 	private bool _canHaunt = true;
 
 	void Awake () {
@@ -74,14 +74,14 @@ public class GhostController : MonoBehaviour {
 		if (!this.enabled) {
 			return;
 		}
-		Haunt haunt = other.GetComponent<Haunt>();
+		Hauntable haunt = other.GetComponent<Hauntable>();
 		if (haunt != null) {
 			_currentRoomHaunt = haunt;
 		}
 	}
 
 	private IEnumerator StartHaunting (float duration) {
-		Haunt roomHaunt;
+		Hauntable roomHaunt;
 		if (_currentRoomHaunt != null && _canHaunt) {
 			roomHaunt = _currentRoomHaunt;
 		} else {

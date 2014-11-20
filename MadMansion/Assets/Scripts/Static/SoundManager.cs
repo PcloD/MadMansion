@@ -10,7 +10,6 @@ public class SoundManager : MonoBehaviour {
 	void Awake () {
 		if (g == null) {
 			g = this;
-			_ghostSoundSource = GetComponent<AudioSource>();
 		} else {
 			Destroy(this);
 		}
