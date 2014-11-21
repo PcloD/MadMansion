@@ -41,7 +41,23 @@ public class HauntManager : MonoBehaviour {
 		}
 	}
 
-	public void StartHauntCharge () {
+	void OnEnable ()
+	{
+		Events.g.AddListener<StartGameEvent>(BeginCharging);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void BeginCharging (StartGameEvent e)
+	{
+		// Handle event here
+		StartHauntCharge();
+	}
+
+	private void StartHauntCharge () {
 		_hauntChargeTimer.Start();
 	}
 
@@ -61,6 +77,7 @@ public class HauntManager : MonoBehaviour {
 			_hauntChargeTimer.Stop();
 			_hauntChargeTimer.Reset();
 			_hauntProgressTimer.Start();
+			Events.g.Raise(new HauntEvent(starting: true));
 		}
 	}
 
@@ -74,7 +91,11 @@ public class HauntManager : MonoBehaviour {
 			_hauntProgressTimer.Stop();
 			_hauntProgressTimer.Reset();
 			_hauntCount++;
+			Events.g.Raise(new HauntEvent(starting: false));
 			StartHauntCharge();
+		}
+		if (_hauntCount >= _requiredHauntCount) {
+			Events.g.Raise(new EndGameEvent(Player.GhostPlayer));
 		}
 	}
 

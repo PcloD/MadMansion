@@ -23,13 +23,29 @@ public class CatchManager : MonoBehaviour {
 		}
 	}
 
+	void OnEnable ()
+	{
+		Events.g.AddListener<StartGameEvent>(BeginCharging);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void BeginCharging (StartGameEvent e)
+	{
+		// Handle event here
+		StartCatchCharge();
+	}
+
 	private bool _isCatching = false;
 	public bool IsCatching {
 		get { return _isCatching; }
 		set { _isCatching = value; } // XXX: Tight coupling
 	}
 
-	public void StartCatchCharge () {
+	private void StartCatchCharge () {
 		_catchChargeTimer.Start();
 	}
 

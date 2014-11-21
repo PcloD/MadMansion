@@ -5,11 +5,10 @@ using InControl;
 [RequireComponent (typeof(CharacterMotor))]
 [RequireComponent (typeof(CurrRoomFinder))]
 public class GhostController : MonoBehaviour {
-	[SerializeField]
-	private float _possessionRadius = 5f;
-
+	private InputDevice _device;
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
+	private bool _paused = true;
 
 	[SerializeField]
 	private Renderer _revealedGhostRenderer;
@@ -26,8 +25,40 @@ public class GhostController : MonoBehaviour {
 		Cache();
 	}
 
+	void OnEnable ()
+	{
+		Events.g.AddListener<PauseGameEvent>(PauseInteraction);
+		Events.g.AddListener<ResumeGameEvent>(ResumeInteraction);
+		Events.g.AddListener<ControllerAssignmentEvent>(AssignController);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<PauseGameEvent>(PauseInteraction);
+		Events.g.RemoveListener<ResumeGameEvent>(ResumeInteraction);
+		Events.g.RemoveListener<ControllerAssignmentEvent>(AssignController);
+	}
+
+	private void PauseInteraction (PauseGameEvent e)
+	{
+		_paused = true;
+	}
+
+	private void ResumeInteraction (ResumeGameEvent e)
+	{
+		_paused = false;
+	}
+
+	private void AssignController (ControllerAssignmentEvent e)
+	{
+		if (e.player == Player.GhostPlayer) {
+			_device = e.device;
+		}
+	}
+
 	void Update () {
-		HandleInput(PlayerInputManager.g.Ghost);
+		if (_paused) return;
+		HandleInput();
 		RevealGhost();
 	}
 
@@ -43,15 +74,15 @@ public class GhostController : MonoBehaviour {
 		GhostTracker.g.RecordLocation(_transform.position);
 	}
 
-	private void HandleInput (InputDevice device) {
-		if (device == null) {
+	private void HandleInput () {
+		if (_device == null) {
 			return;
 		}
-		Vector3 inputVector = new Vector3(device.LeftStickX.Value, 0f, device.LeftStickY.Value);
+		Vector3 inputVector = new Vector3(_device.LeftStickX.Value, 0f, _device.LeftStickY.Value);
 		_characterMotor.AddInputWithPriority(inputVector, ControlPriority.Ghost);
 
-		InputControl possessionButton = device.Action1;
-		InputControl hauntButton = device.Action3;
+		InputControl possessionButton = _device.Action1;
+		InputControl hauntButton = _device.Action3;
 		if (possessionButton.WasPressed) {
 			JumpToClosest();
 		}
@@ -82,6 +113,6 @@ public class GhostController : MonoBehaviour {
 			return;
 		}
 		Gizmos.color = Color.cyan;
-		Gizmos.DrawWireSphere (_transform.position, _possessionRadius);
+		Gizmos.DrawWireSphere (_transform.position, 0.1f);
 	}
 }

@@ -45,7 +45,23 @@ public class PossessionManager : MonoBehaviour {
 		}
 	}
 
-	public void StartPossessionCharge () {
+	void OnEnable ()
+	{
+		Events.g.AddListener<StartGameEvent>(BeginCharging);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void BeginCharging (StartGameEvent e)
+	{
+		// Handle event here
+		StartPossessionCharge();
+	}
+
+	private void StartPossessionCharge () {
 		_possessionChargeTimer.Start();
 	}
 

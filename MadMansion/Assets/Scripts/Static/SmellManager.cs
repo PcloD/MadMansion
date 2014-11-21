@@ -36,7 +36,23 @@ public class SmellManager : MonoBehaviour {
 		}
 	}
 
-	public void StartSmellCharge () {
+	void OnEnable ()
+	{
+		Events.g.AddListener<StartGameEvent>(BeginCharging);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void BeginCharging (StartGameEvent e)
+	{
+		// Handle event here
+		StartSmellCharge();
+	}
+
+	private void StartSmellCharge () {
 		_smellChargeTimer.Start();
 	}
 
@@ -48,40 +64,33 @@ public class SmellManager : MonoBehaviour {
 		get { return _smellProgressTimer.IsRunning && (_smellProgressTimer.ElapsedMilliseconds < _maxSmellDuration * 1000f); }
 	}
 
-	private float _volumeReduction = 1f;
-	private CharacterMotor _character = null;
-	public void StartSmellInRoomWithCharacterAndVolumeReduction (Room room, CharacterMotor character, float volumeReduction) {
+	public void StartSmellInRoomWithHunter (Room room, HunterController character) {
 		if (CanSmell && GhostTracker.g.CanSeeHistory && !IsSmelling) {
-			_character = character;
-			_volumeReduction = volumeReduction;
-
 			_smellChargeTimer.Stop();
 			_smellChargeTimer.Reset();
 			_smellProgressTimer.Start();
+
+			Events.g.Raise(new SmellEvent(starting: true, room: room, hunter: character));
 		}
 	}
 
 	public void StopSmelling () {
 		if (_smellProgressTimer.IsRunning) {
-			SoundManager.g.StopGhostSound();
 			_smellProgressTimer.Reset();
 			_smellProgressTimer.Stop();
 			_smellCount++;
+			Events.g.Raise(new SmellEvent(starting: false));
 			StartSmellCharge();
 		}
 	}
 
 	void Update () {
-		UpdateHauntCount();
+		UpdateSmellCount();
 	}
 
-	private void UpdateHauntCount () {
+	private void UpdateSmellCount () {
 		if (_smellProgressTimer.IsRunning && _smellProgressTimer.ElapsedMilliseconds >= _maxSmellDuration * 1000f) {
 			StopSmelling();
-		} else if (_smellProgressTimer.IsRunning) {
-			Vector3 toOldGhostPos = (_character.transform.position - GhostTracker.g.HistoricalLocation);
-			float volumeScale = Mathf.Min(_volumeReduction/toOldGhostPos.magnitude, 1f);
-			SoundManager.g.PlayGhostSound(volumeScale);
 		}
 	}
 

@@ -28,6 +28,7 @@ public class CharacterMotor : MonoBehaviour {
 	private Vector3 _standardInputVector;
 	private Rigidbody _rigidbody;
 	private Transform _transform;
+	private bool _paused = true;
 
 	public bool IsPossessed {
 		get { return _ghostController.enabled; }
@@ -59,7 +60,30 @@ public class CharacterMotor : MonoBehaviour {
 		_transform = transform;
 	}
 
+	void OnEnable ()
+	{
+		Events.g.AddListener<PauseGameEvent>(PauseMovement);
+		Events.g.AddListener<ResumeGameEvent>(ResumeMovement);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<PauseGameEvent>(PauseMovement);
+		Events.g.RemoveListener<ResumeGameEvent>(ResumeMovement);
+	}
+
+	private void PauseMovement (PauseGameEvent e)
+	{
+		_paused = true;
+	}
+
+	private void ResumeMovement (ResumeGameEvent e)
+	{
+		_paused = false;
+	}
+
 	void Update () {
+		if (_paused) return;
 		// Rotate towards velocity vector
 		if (_rigidbody.velocity.sqrMagnitude > _rotationSensitivity) {
 			_transform.forward = Vector3.RotateTowards(_transform.forward, _rigidbody.velocity, Time.deltaTime * (_rotationSpeed * TimeScale), 0.0001f);
@@ -67,6 +91,7 @@ public class CharacterMotor : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (_paused) return;
 		Vector3 inputVector = _standardInputVector;
 		if (IsHunter && (!IsPossessed || _ghostInputVector.sqrMagnitude < _ghostMovementSensitivity)) {
 			inputVector = _hunterInputVector;
