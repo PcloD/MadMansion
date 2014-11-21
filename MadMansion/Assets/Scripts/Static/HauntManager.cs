@@ -115,7 +115,7 @@ public class HauntManager : MonoBehaviour {
 			_hauntChargeTimer.Stop();
 			_hauntChargeTimer.Reset();
 			_hauntProgressTimer.Start();
-			Events.g.Raise(new HauntEvent(starting: true));
+			Events.g.Raise(new HauntEvent(starting: true, duration: _hauntDuration));
 		}
 	}
 
@@ -130,11 +130,12 @@ public class HauntManager : MonoBehaviour {
 			_hauntProgressTimer.Stop();
 			_hauntProgressTimer.Reset();
 			_hauntCount++;
-			Events.g.Raise(new HauntEvent(starting: false));
+			Events.g.Raise(new HauntEvent(starting: false, duration: _hauntDuration));
 			StartHauntCharge();
 		}
 		if (_hauntCount >= _requiredHauntCount) {
 			Events.g.Raise(new EndGameEvent(Player.GhostPlayer));
+			Events.g.Raise(new PauseGameEvent());
 		}
 	}
 

@@ -21,7 +21,12 @@ public class HauntSoundPlayer : MonoBehaviour {
 
 	private void PlayHauntSound (HauntEvent e)
 	{
-		_audioSource.Play();
+		if (e.IsStart) {
+			_audioSource.pitch = _audioSource.clip.length/e.duration;
+			_audioSource.Play();
+		} else {
+			_audioSource.Stop();
+		}
 	}
 
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class HauntEvent : GameEvent {
+	public float duration;
 	private bool _started;
 	public bool IsStart {
 		get { return _started; }
@@ -10,7 +11,8 @@ public class HauntEvent : GameEvent {
 		get { return !_started; }
 	}
 
-	public HauntEvent (bool starting) {
+	public HauntEvent (bool starting, float duration) {
 		_started = starting;
+		this.duration = duration;
 	}
 }
