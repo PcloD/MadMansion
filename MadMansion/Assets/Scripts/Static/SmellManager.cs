@@ -19,7 +19,7 @@ public class SmellManager : MonoBehaviour {
 			return Mathf.Min(1f, _smellChargeTimer.ElapsedMilliseconds/(_smellChargeDuration * 1000f));
 		}
 	}
-	[SerializeField]
+
 	private int _smellCount = 0;
 	public int SmellCount {
 		get { return _smellCount; }

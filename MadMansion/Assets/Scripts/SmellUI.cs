@@ -53,7 +53,7 @@ public class SmellUI : MonoBehaviour {
 	}
 
 	void Update () {
-		UpdatePossessionTimer();
+		UpdateSmellTimer();
 	}
 
 	public float PercentageFilled {
@@ -64,7 +64,7 @@ public class SmellUI : MonoBehaviour {
 		set { _radialTimerRenderer.material.SetColor ("_Color", value); }
 	}
 
-	private void UpdatePossessionTimer () {
+	private void UpdateSmellTimer () {
 		if (SmellManager.g.IsSmelling) {
 			SmellState = SmellState.IsSmelling;
 			PercentageFilled = 1f - SmellManager.g.SmellTimerPercentage;

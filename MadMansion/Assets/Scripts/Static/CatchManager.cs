@@ -7,7 +7,7 @@ public class CatchManager : MonoBehaviour {
 	public static CatchManager g;
 	[SerializeField]
 	private float _catchChargeDuration = 4f;
-	public float PossessionChargePercentage {
+	public float CatchChargePercentage {
 		get {
 			return Mathf.Min(1f, _catchChargeTimer.ElapsedMilliseconds/(_catchChargeDuration * 1000f));
 		}
@@ -21,6 +21,12 @@ public class CatchManager : MonoBehaviour {
 		} else {
 			Destroy(this);
 		}
+	}
+
+	private bool _isCatching = false;
+	public bool IsCatching {
+		get { return _isCatching; }
+		set { _isCatching = value; } // XXX: Tight coupling
 	}
 
 	public void StartCatchCharge () {

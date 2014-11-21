@@ -28,6 +28,7 @@ public class AssignCharacters : MonoBehaviour {
 			HauntManager.g.StartHauntCharge(); // XXX: TODO: Use Message Passing to reduce coupling
 			PossessionManager.g.StartPossessionCharge(); // XXX: TODO: Use Message Passing to reduce coupling
 			SmellManager.g.StartSmellCharge(); // XXX: TODO: Use Message Passing to reduce coupling
+			CatchManager.g.StartCatchCharge(); // XXX: TODO: Use Message Passing to reduce coupling
 		}
 	}
 }

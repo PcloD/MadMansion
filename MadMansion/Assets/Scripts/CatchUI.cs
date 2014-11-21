@@ -2,40 +2,40 @@
 using System.Collections;
 
 public enum CatchState {
-	WaitForPossession,
-	CanPossess,
-	MustPossess
+	WaitForCatch,
+	CanCatch,
+	IsCatching
 }
 
 public class CatchUI : MonoBehaviour {
 
 	[SerializeField]
-	private Sprite _waitForPossessionImage;
+	private Sprite _waitForCatchImage;
 	[SerializeField]
-	private Sprite _canPossessImage;
+	private Sprite _canCatchImage;
 	[SerializeField]
-	private Sprite _mustPossessImage;
+	private Sprite _isCatchingImage;
 	[SerializeField]
 	private Renderer _radialTimerRenderer;
 
 	[SerializeField]
 	private Color _chargingColor;
 	[SerializeField]
-	private Color _mustPossessColor;
+	private Color _isCatchingColor;
 
 	private CatchState _possessionState;
 	public CatchState CatchState {
 		set {
 			_possessionState = value;
 			switch (_possessionState) {
-				case CatchState.CanPossess:
-					_spriteRenderer.sprite = _canPossessImage;
+				case CatchState.CanCatch:
+					_spriteRenderer.sprite = _canCatchImage;
 					break;
-				case CatchState.MustPossess:
-					_spriteRenderer.sprite = _mustPossessImage;
+				case CatchState.IsCatching:
+					_spriteRenderer.sprite = _isCatchingImage;
 					break;
 				default:
-					_spriteRenderer.sprite = _waitForPossessionImage;
+					_spriteRenderer.sprite = _waitForCatchImage;
 					break;
 			}
 		}
@@ -48,12 +48,12 @@ public class CatchUI : MonoBehaviour {
 	}
 
 	void Start () {
-		CatchState = CatchState.WaitForPossession;
+		CatchState = CatchState.WaitForCatch;
 		_radialTimerRenderer.material.SetFloat ("_Cutoff", 0f);
 	}
 
 	void Update () {
-		UpdatePossessionTimer();
+		UpdateCatchTimer();
 	}
 
 	public float PercentageFilled {
@@ -64,17 +64,18 @@ public class CatchUI : MonoBehaviour {
 		set { _radialTimerRenderer.material.SetColor ("_Color", value); }
 	}
 
-	private void UpdatePossessionTimer () {
-		if (PossessionManager.g.MustPossess) {
-			CatchState = CatchState.MustPossess;
-		} else if (PossessionManager.g.CanPossess) {
-			PercentageFilled = PossessionManager.g.PossessionForcedPercentage;
-			CatchState = CatchState.CanPossess;
-			Color = _mustPossessColor;
+	private void UpdateCatchTimer () {
+		if (CatchManager.g.IsCatching) {
+			CatchState = CatchState.IsCatching;
+			PercentageFilled = 1f;
+			Color = _isCatchingColor;
+		} else if (CatchManager.g.CanCatch) {
+			PercentageFilled = 1f;
+			CatchState = CatchState.CanCatch;
 		} else {
 			Color = _chargingColor;
-			PercentageFilled = PossessionManager.g.PossessionChargePercentage;
-			CatchState = CatchState.WaitForPossession;
+			PercentageFilled = CatchManager.g.CatchChargePercentage;
+			CatchState = CatchState.WaitForCatch;
 		}
 	}
 }
