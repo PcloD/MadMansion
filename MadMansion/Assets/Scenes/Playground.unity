@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6638ccafd63a34068984edf8621f038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeReduction: 1
+  _volumeReduction: 2
 --- !u!114 &57268094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +416,10 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 5ce97d0fdd42041bb9b9f51b62304259, type: 3}
+    - target: {fileID: 11400000, guid: 4b509f79329c046a09b1b1f2ec6abe7e, type: 2}
+      propertyPath: _successSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ce97d0fdd42041bb9b9f51b62304259, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b509f79329c046a09b1b1f2ec6abe7e, type: 2}
   m_RootGameObject: {fileID: 898553678}
@@ -449,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838db629aa3e64c4a9ed89cbb76ff1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smellChargeDuration: 10
+  _smellChargeDuration: .5
   _maxSmellDuration: 10
 --- !u!4 &168505220
 Transform:
@@ -758,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6638ccafd63a34068984edf8621f038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeReduction: 1
+  _volumeReduction: 2
 --- !u!114 &244872249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,7 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6638ccafd63a34068984edf8621f038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeReduction: 1
+  _volumeReduction: 2
 --- !u!114 &376098345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6638ccafd63a34068984edf8621f038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeReduction: 1
+  _volumeReduction: 2
 --- !u!114 &384628637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,7 +1560,7 @@ Prefab:
     - target: {fileID: 8200000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 79833e2f7d57a4f0ca2b9827ed191cc8, type: 3}
+      objectReference: {fileID: 8300000, guid: bc69c937abb0847e0b437706dfec8587, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
   m_RootGameObject: {fileID: 1063068546}
@@ -2291,7 +2295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7072455446ca4f4987e39dd834ca318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _successSound: {fileID: 8300000, guid: c940bbf18cb0c4be093298dd6da4c4d3, type: 3}
+  _successSound: {fileID: 8300000, guid: 5ce97d0fdd42041bb9b9f51b62304259, type: 3}
   _failureSound: {fileID: 0}
 --- !u!82 &898553680
 AudioSource:
@@ -2537,7 +2541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6638ccafd63a34068984edf8621f038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeReduction: 1
+  _volumeReduction: 2
 --- !u!114 &923030183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3912,7 +3916,7 @@ AudioSource:
   m_GameObject: {fileID: 1063068546}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 79833e2f7d57a4f0ca2b9827ed191cc8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bc69c937abb0847e0b437706dfec8587, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4401,7 +4405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6638ccafd63a34068984edf8621f038e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeReduction: 1
+  _volumeReduction: 2
 --- !u!114 &1135743743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6056,27 +6060,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400034, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: _volumeReduction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: _volumeReduction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400028, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: _volumeReduction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400026, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: _volumeReduction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400032, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: _volumeReduction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400030, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: _volumeReduction
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
       propertyPath: m_Enabled
@@ -6731,7 +6735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
       propertyPath: _smellChargeDuration
-      value: 10
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
