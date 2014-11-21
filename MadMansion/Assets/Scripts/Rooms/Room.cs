@@ -52,4 +52,25 @@ public class Room : MonoBehaviour {
 				return new Vector3(Random.Range(_collider.bounds.min.x + inset, _collider.bounds.max.x - inset), 0f,
 						         Random.Range(_collider.bounds.min.z + inset, _collider.bounds.max.z - inset)); }
 	}
+
+	public GhostController ClosestGhostToCharacter (CharacterMotor character) {
+        Vector3 characterPos = character.transform.position;
+        GhostController closest = null;
+        float sqrDistToClosest = Mathf.Infinity;
+        foreach (CharacterMotor currNeighbor in _characters) {
+        	if (currNeighbor == character) {
+        		continue;
+        	}
+			Vector3 currNeighborPos = currNeighbor.transform.position;
+			float sqrDistToCurrNeighbor = (currNeighborPos - characterPos).sqrMagnitude;
+			if (closest == null || sqrDistToCurrNeighbor < sqrDistToClosest) {
+            	sqrDistToClosest = sqrDistToCurrNeighbor;
+            	GhostController currNeighborGhostController = currNeighbor.GetComponent<GhostController>();
+            	if (currNeighborGhostController != null) {
+            		closest = currNeighborGhostController.GetComponent<GhostController>();
+            	}
+            }
+        }
+        return closest;
+	}
 }

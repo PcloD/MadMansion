@@ -36,6 +36,10 @@ public class HauntUI : MonoBehaviour {
 	}
 
 	private void UpdateHauntTimer () {
+		if (_displayedHauntCount >= HauntManager.g.RequiredHauntCount) {
+			return;
+		}
+
 		if (HauntManager.g.IsHaunting) {
 			_hauntIcons[_displayedHauntCount].PercentageFilled = 1f - HauntManager.g.HauntTimerPercentage;
 			_hauntIcons[_displayedHauntCount].Color = _hauntingColor;

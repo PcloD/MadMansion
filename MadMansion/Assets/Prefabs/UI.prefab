@@ -27,8 +27,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 212: {fileID: 21200000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: squareButton
+  m_Name: PossessionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,6 +322,24 @@ MonoBehaviour:
   _separation: 3.1500001
   _chargingColor: {r: 0, g: .917241335, b: 1, a: 1}
   _hauntingColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c509d3825964043a93bfac28b3b7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waitForPossessionImage: {fileID: 21300004, guid: 6d5c7e4cdc0664b0086f31a7a1e81d9d,
+    type: 3}
+  _canPossessImage: {fileID: 21300002, guid: 6d5c7e4cdc0664b0086f31a7a1e81d9d, type: 3}
+  _mustPossessImage: {fileID: 21300014, guid: 6d5c7e4cdc0664b0086f31a7a1e81d9d, type: 3}
+  _radialTimerRenderer: {fileID: 2300000}
+  _chargingColor: {r: 0, g: .710344791, b: 1, a: 1}
+  _mustPossessColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
@@ -348,7 +367,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 6d5c7e4cdc0664b0086f31a7a1e81d9d, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 6d5c7e4cdc0664b0086f31a7a1e81d9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200004
 SpriteRenderer:

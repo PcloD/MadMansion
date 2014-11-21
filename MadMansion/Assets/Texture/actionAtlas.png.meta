@@ -9,6 +9,7 @@ TextureImporter:
     21300008: sqButton
     21300010: sqButtonFaded
     21300012: radialTimer
+    21300014: xButtonImportant
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -113,10 +114,20 @@ TextureImporter:
     - name: radialTimer
       rect:
         serializedVersion: 2
-        x: 340
+        x: 100
         y: 75
         width: 357
         height: 357
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: xButtonImportant
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 268
+        width: 225
+        height: 225
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

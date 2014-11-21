@@ -26,6 +26,7 @@ public class AssignCharacters : MonoBehaviour {
 			this.enabled = false;
 
 			HauntManager.g.StartHauntCharge(); // XXX: TODO: Use Message Passing to reduce coupling
+			PossessionManager.g.StartPossessionCharge(); // XXX: TODO: Use Message Passing to reduce coupling
 		}
 	}
 }
