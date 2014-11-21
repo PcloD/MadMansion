@@ -45,7 +45,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0
+        second: .392857134
       data:
         first:
           name: _Shininess
@@ -58,7 +58,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .128460214, g: .691814661, b: .970588207, a: 1}
       data:
         first:
           name: _SpecColor

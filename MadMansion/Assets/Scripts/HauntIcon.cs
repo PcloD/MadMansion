@@ -43,6 +43,10 @@ public class HauntIcon : MonoBehaviour {
 		set { _radialTimerRenderer.material.SetFloat ("_Cutoff", 1f-value); }
 	}
 
+	public Color Color {
+		set { _radialTimerRenderer.material.SetColor ("_Color", value); }
+	}
+
 	private SpriteRenderer _spriteRenderer;
 
 	void Awake () {

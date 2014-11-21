@@ -5,14 +5,11 @@ using InControl;
 public class GhostController : MonoBehaviour {
 	[SerializeField]
 	private float _possessionRadius = 5f;
-	[SerializeField]
-	private float _hauntDuration = 5f;
 
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
 
-	private Hauntable _currentRoomHaunt = null;
-	private bool _canHaunt = true;
+	private CurrRoomFinder _currRoomFinder;
 
 	void Awake () {
 		Cache();
@@ -39,7 +36,7 @@ public class GhostController : MonoBehaviour {
 			JumpToClosest();
 		}
 		if (hauntButton.WasPressed) {
-			HauntCurrentRoom();
+			HauntManager.g.StartHauntInRoom(_currRoomFinder.Room);
 		}
 	}
 
@@ -70,41 +67,14 @@ public class GhostController : MonoBehaviour {
     	}
 	}
 
-	void OnTriggerStay (Collider other) {
-		if (!this.enabled) {
-			return;
-		}
-		Hauntable haunt = other.GetComponent<Hauntable>();
-		if (haunt != null) {
-			_currentRoomHaunt = haunt;
-		}
-	}
-
-	private IEnumerator StartHaunting (float duration) {
-		Hauntable roomHaunt;
-		if (_currentRoomHaunt != null && _canHaunt) {
-			roomHaunt = _currentRoomHaunt;
-		} else {
-			yield break;
-		}
-		roomHaunt.StartHaunting();
-		_canHaunt = false;
-		yield return new WaitForSeconds (duration);
-		roomHaunt.StopHaunting();
-		_canHaunt = true;
-	}
-
-	private void HauntCurrentRoom () {
-		StartCoroutine(StartHaunting(_hauntDuration));
-	}
-
 	private void Cache () {
 		_transform = transform;
 		_characterMotor = GetComponent<CharacterMotor>();
+		_currRoomFinder = GetComponent<CurrRoomFinder>();
 	}
 
 	private bool NeedToCache {
-		get { return (_transform == null || _characterMotor == null); }
+		get { return (_transform == null || _characterMotor == null || _currRoomFinder == null); }
 	}
 
 	void OnDrawGizmos () {

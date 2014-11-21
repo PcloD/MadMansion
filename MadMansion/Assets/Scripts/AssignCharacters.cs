@@ -24,6 +24,8 @@ public class AssignCharacters : MonoBehaviour {
 			_players[ghostIndex].GetComponent<GhostController>().enabled = true;
 
 			this.enabled = false;
+
+			HauntManager.g.StartHauntCharge(); // XXX: TODO: Use Message Passing to reduce coupling
 		}
 	}
 }

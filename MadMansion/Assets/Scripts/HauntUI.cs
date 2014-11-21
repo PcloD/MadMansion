@@ -7,6 +7,10 @@ public class HauntUI : MonoBehaviour {
 	private GameObject _hauntIconPrefab;
 	[SerializeField]
 	private float _separation = 1f;
+	[SerializeField]
+	private Color _chargingColor;
+	[SerializeField]
+	private Color _hauntingColor;
 
 	private Transform _transform;
 
@@ -32,7 +36,19 @@ public class HauntUI : MonoBehaviour {
 	}
 
 	private void UpdateHauntTimer () {
-		_hauntIcons[_displayedHauntCount].PercentageFilled = HauntManager.g.HauntTimerPercentage;
+		if (HauntManager.g.IsHaunting) {
+			_hauntIcons[_displayedHauntCount].PercentageFilled = 1f - HauntManager.g.HauntTimerPercentage;
+			_hauntIcons[_displayedHauntCount].Color = _hauntingColor;
+		} else {
+			_hauntIcons[_displayedHauntCount].PercentageFilled = HauntManager.g.HauntChargePercentage;
+			_hauntIcons[_displayedHauntCount].Color = _chargingColor;
+		}
+
+		if (HauntManager.g.CanHaunt) {
+			_hauntIcons[_displayedHauntCount].HauntState = HauntState.CanHaunt;
+		} else {
+			_hauntIcons[_displayedHauntCount].HauntState = HauntState.WaitForHaunt;
+		}
 	}
 
 	private void UpdateDisplayedHaunts () {
