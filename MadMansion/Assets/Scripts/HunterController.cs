@@ -2,17 +2,21 @@
 using System.Collections;
 using InControl;
 
+[RequireComponent (typeof(CharacterMotor))]
+[RequireComponent (typeof(CurrRoomFinder))]
 public class HunterController : MonoBehaviour {
 
 	[SerializeField]
-	private float volumeReduction;
+	private float _volumeReduction;
 
 	private CharacterMotor _characterMotor;
 	private Transform _transform;
+	private CurrRoomFinder _currRoomFinder;
 
 	void Awake () {
 		_characterMotor = GetComponent<CharacterMotor>();
 		_transform = transform;
+		_currRoomFinder = GetComponent<CurrRoomFinder>();
 	}
 
 	void Update () {
@@ -29,36 +33,23 @@ public class HunterController : MonoBehaviour {
 
 		InputControl smellButton = device.Action1;
 		InputControl catchButton = device.Action4;
-		if (smellButton.IsPressed) {
-			Smell();
-		} else {
-			StopSmelling();
+		if (smellButton.WasPressed) {
+			SmellManager.g.StartSmellInRoomWithCharacterAndVolumeReduction(_currRoomFinder.Room, _characterMotor, _volumeReduction);
+		}
+		if (smellButton.WasReleased) {
+			SmellManager.g.StopSmelling();
 		}
 		if (catchButton.WasPressed) {
 			TryToCatch();
 		}
-		if (catchButton.WasReleased) {
-			StopTryingToCatch();
+	}
+
+	public void TryToCatch () {
+		if (CatchManager.g.CanCatch) {
+			Debug.Log("Trying to catch");
+			TimeManager.g.StartBulletTime();
+		} else {
+			Debug.Log("Can't Catch");
 		}
-	}
-
-	private void Smell () {
-		if (GhostTracker.g.CanSeeHistory) {
-			Vector3 toOldGhostPos = (_transform.position - GhostTracker.g.HistoricalLocation);
-			float volumeScale = Mathf.Min(volumeReduction/toOldGhostPos.magnitude, 1f);
-			SoundManager.g.PlayGhostSound(volumeScale);
-		}
-	}
-
-	private void StopSmelling () {
-		SoundManager.g.StopGhostSound();
-	}
-
-	private void TryToCatch () {
-		TimeManager.g.StartBulletTime();
-	}
-
-	private void StopTryingToCatch () {
-		TimeManager.g.StopBulletTime();
 	}
 }

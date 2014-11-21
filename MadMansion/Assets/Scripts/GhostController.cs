@@ -2,6 +2,8 @@
 using System.Collections;
 using InControl;
 
+[RequireComponent (typeof(CharacterMotor))]
+[RequireComponent (typeof(CurrRoomFinder))]
 public class GhostController : MonoBehaviour {
 	[SerializeField]
 	private float _possessionRadius = 5f;
