@@ -116,11 +116,11 @@ public class PossessionManager : MonoBehaviour {
 			CharacterMotor character = ghost.GetComponent<CharacterMotor>();
 			GhostController closest = room.ClosestGhostToCharacter(character);
 			if (closest == null) {
-				UnityEngine.Debug.Log("Can't Jump!");
+				Events.g.Raise(new PossessionEvent(false));
 				return;
 			}
 
-			UnityEngine.Debug.Log("Jump!");
+			Events.g.Raise(new PossessionEvent(true));
 			closest.enabled = true;
 			ghost.enabled = false;
 
@@ -133,7 +133,7 @@ public class PossessionManager : MonoBehaviour {
 
 			StartPossessionCharge();
 		} else {
-			UnityEngine.Debug.Log("Can't Jump!");
+			Events.g.Raise(new PossessionEvent(false));
 		}
 	}
 
