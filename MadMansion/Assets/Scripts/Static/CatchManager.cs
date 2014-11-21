@@ -14,6 +14,10 @@ public class CatchManager : MonoBehaviour {
 	}
 
 	private Stopwatch _catchChargeTimer = new Stopwatch();
+	private bool _catchChargeTimerPaused = false;
+	private bool _catchChargeTimerIsRunning {
+		get { return _catchChargeTimerPaused || _catchChargeTimer.IsRunning; }
+	}
 
 	void Awake () {
 		if (g == null) {
@@ -26,11 +30,31 @@ public class CatchManager : MonoBehaviour {
 	void OnEnable ()
 	{
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
+		Events.g.AddListener<PauseGameEvent>(PauseTimers);
+		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
 	}
 
 	void OnDisable ()
 	{
+		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
+		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void PauseTimers (PauseGameEvent e)
+	{
+		if (_catchChargeTimer.IsRunning) {
+			_catchChargeTimer.Stop();
+			_catchChargeTimerPaused = true;
+		}
+	}
+
+	private void ResumeTimers (ResumeGameEvent e)
+	{
+		if (_catchChargeTimerPaused) {
+			_catchChargeTimer.Start();
+			_catchChargeTimerPaused = false;
+		}
 	}
 
 	private void BeginCharging (StartGameEvent e)
@@ -50,6 +74,6 @@ public class CatchManager : MonoBehaviour {
 	}
 
 	public bool CanCatch {
-		get { return _catchChargeTimer.IsRunning && (_catchChargeTimer.ElapsedMilliseconds > _catchChargeDuration * 1000f); }
+		get { return _catchChargeTimerIsRunning && (_catchChargeTimer.ElapsedMilliseconds > _catchChargeDuration * 1000f); }
 	}
 }

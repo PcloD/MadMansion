@@ -5,7 +5,6 @@ using InControl;
 [RequireComponent (typeof(CharacterMotor))]
 [RequireComponent (typeof(CurrRoomFinder))]
 public class GhostController : MonoBehaviour {
-	private InputDevice _device;
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
 	private bool _paused = true;
@@ -29,14 +28,12 @@ public class GhostController : MonoBehaviour {
 	{
 		Events.g.AddListener<PauseGameEvent>(PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent>(ResumeInteraction);
-		Events.g.AddListener<ControllerAssignmentEvent>(AssignController);
 	}
 
 	void OnDisable ()
 	{
 		Events.g.RemoveListener<PauseGameEvent>(PauseInteraction);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeInteraction);
-		Events.g.RemoveListener<ControllerAssignmentEvent>(AssignController);
 	}
 
 	private void PauseInteraction (PauseGameEvent e)
@@ -49,16 +46,9 @@ public class GhostController : MonoBehaviour {
 		_paused = false;
 	}
 
-	private void AssignController (ControllerAssignmentEvent e)
-	{
-		if (e.player == Player.GhostPlayer) {
-			_device = e.device;
-		}
-	}
-
 	void Update () {
 		if (_paused) return;
-		HandleInput();
+		HandleInput(PlayerInputManager.g.Ghost);
 		RevealGhost();
 	}
 
@@ -71,18 +61,19 @@ public class GhostController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (_paused) return;
 		GhostTracker.g.RecordLocation(_transform.position);
 	}
 
-	private void HandleInput () {
-		if (_device == null) {
+	private void HandleInput (InputDevice device) {
+		if (device == null) {
 			return;
 		}
-		Vector3 inputVector = new Vector3(_device.LeftStickX.Value, 0f, _device.LeftStickY.Value);
+		Vector3 inputVector = new Vector3(device.LeftStickX.Value, 0f, device.LeftStickY.Value);
 		_characterMotor.AddInputWithPriority(inputVector, ControlPriority.Ghost);
 
-		InputControl possessionButton = _device.Action1;
-		InputControl hauntButton = _device.Action3;
+		InputControl possessionButton = device.Action1;
+		InputControl hauntButton = device.Action3;
 		if (possessionButton.WasPressed) {
 			JumpToClosest();
 		}

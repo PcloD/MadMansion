@@ -12,7 +12,6 @@ public class HunterController : MonoBehaviour {
 		get { return _volumeReduction; }
 	}
 
-	private InputDevice _device;
 	private CharacterMotor _characterMotor;
 	private Transform _transform;
 	private CurrRoomFinder _currRoomFinder;
@@ -22,14 +21,12 @@ public class HunterController : MonoBehaviour {
 	{
 		Events.g.AddListener<PauseGameEvent>(PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent>(ResumeInteraction);
-		Events.g.AddListener<ControllerAssignmentEvent>(AssignController);
 	}
 
 	void OnDisable ()
 	{
 		Events.g.RemoveListener<PauseGameEvent>(PauseInteraction);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeInteraction);
-		Events.g.RemoveListener<ControllerAssignmentEvent>(AssignController);
 	}
 
 	private void PauseInteraction (PauseGameEvent e)
@@ -42,13 +39,6 @@ public class HunterController : MonoBehaviour {
 		_paused = false;
 	}
 
-	private void AssignController (ControllerAssignmentEvent e)
-	{
-		if (e.player == Player.HunterPlayer) {
-			_device = e.device;
-		}
-	}
-
 	void Awake () {
 		_characterMotor = GetComponent<CharacterMotor>();
 		_transform = transform;
@@ -57,18 +47,18 @@ public class HunterController : MonoBehaviour {
 
 	void Update () {
 		if (_paused) return;
-		HandleInput();
+		HandleInput(PlayerInputManager.g.Hunter);
 	}
 
-	private void HandleInput () {
-		if (_device == null) {
+	private void HandleInput (InputDevice device) {
+		if (device == null) {
 			return;
 		}
-			Vector3 inputVector = new Vector3(_device.LeftStickX.Value, 0f, _device.LeftStickY.Value);
+			Vector3 inputVector = new Vector3(device.LeftStickX.Value, 0f, device.LeftStickY.Value);
 			_characterMotor.AddInputWithPriority(inputVector, ControlPriority.Hunter);
 
-		InputControl smellButton = _device.Action1;
-		InputControl catchButton = _device.Action4;
+		InputControl smellButton = device.Action1;
+		InputControl catchButton = device.Action4;
 		if (smellButton.WasPressed) {
 			SmellManager.g.StartSmellInRoomWithHunter(_currRoomFinder.Room, this);
 		}

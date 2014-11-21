@@ -2,14 +2,22 @@
 using System.Collections;
 using InControl;
 
-public class ControllerAssigner : MonoBehaviour {
+public class PlayerInputManager : MonoBehaviour {
+	public static PlayerInputManager g;
+
 	[SerializeField]
 	private GameObject _hunterAssignmentText;
 	[SerializeField]
 	private GameObject _ghostAssignmentText;
 
 	private InputDevice _hunterDevice;
+	public InputDevice Hunter {
+		get { return _hunterDevice; }
+	}
 	private InputDevice _ghostDevice;
+	public InputDevice Ghost {
+		get { return _ghostDevice; }
+	}
 	private bool _firstAssignment = true;
 
 	private enum PlayerSelectionStatus {
@@ -21,8 +29,13 @@ public class ControllerAssigner : MonoBehaviour {
 	private PlayerSelectionStatus _selectionStatus = PlayerSelectionStatus.AssigningHunter;
 
 	void Awake () {
-		InputManager.OnDeviceAttached += inputDevice => ResetControls();
-		InputManager.OnDeviceDetached += inputDevice => ResetControls();
+		if (g == null) {
+			g = this;
+			InputManager.OnDeviceAttached += inputDevice => ResetControls();
+			InputManager.OnDeviceDetached += inputDevice => ResetControls();
+		} else {
+			Destroy(this);
+		}
 	}
 
 	void Start () {
@@ -49,7 +62,6 @@ public class ControllerAssigner : MonoBehaviour {
 					break;
 				case PlayerSelectionStatus.AssigningHunter:
 					Debug.Log("Assigning Hunter: " + currDevice.Name);
-					Events.g.Raise(new ControllerAssignmentEvent(currDevice, Player.HunterPlayer));
 					_hunterDevice = currDevice;
 					_selectionStatus = PlayerSelectionStatus.AssigningGhost;
 					_hunterAssignmentText.SetActive(false);
@@ -57,12 +69,14 @@ public class ControllerAssigner : MonoBehaviour {
 					break;
 				case PlayerSelectionStatus.AssigningGhost:
 					Debug.Log("Assigning Ghost: " + currDevice.Name);
-					Events.g.Raise(new ControllerAssignmentEvent(currDevice, Player.GhostPlayer));
 					_ghostDevice = currDevice;
 					_selectionStatus = PlayerSelectionStatus.AllAssigned;
 					_ghostAssignmentText.SetActive(false);
-					if (_firstAssignment) Events.g.Raise(new StartGameEvent());
 					Events.g.Raise(new ResumeGameEvent());
+					if (_firstAssignment) {
+						Events.g.Raise(new StartGameEvent());
+						_firstAssignment = false;
+					}
 					break;
 				default:
 					break;

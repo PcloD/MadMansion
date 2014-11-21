@@ -35,7 +35,15 @@ public class PossessionManager : MonoBehaviour {
 	}
 
 	private Stopwatch _possessionChargeTimer = new Stopwatch();
+	private bool _possessionChargeTimerPaused = false;
+	private bool _possessionChargeTimerIsRunning {
+		get { return _possessionChargeTimerPaused || _possessionChargeTimer.IsRunning; }
+	}
 	private Stopwatch _possessionForcedTimer = new Stopwatch();
+	private bool _possessionForcedTimerPaused = false;
+	private bool _possessionForcedTimerIsRunning {
+		get { return _possessionForcedTimerPaused || _possessionForcedTimer.IsRunning; }
+	}
 
 	void Awake () {
 		if (g == null) {
@@ -48,16 +56,45 @@ public class PossessionManager : MonoBehaviour {
 	void OnEnable ()
 	{
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
+		Events.g.AddListener<PauseGameEvent>(PauseTimers);
+		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
 	}
 
 	void OnDisable ()
 	{
+		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
+		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void PauseTimers (PauseGameEvent e)
+	{
+		if (_possessionChargeTimer.IsRunning) {
+			_possessionChargeTimer.Stop();
+			_possessionChargeTimerPaused = true;
+		}
+
+		if (_possessionForcedTimer.IsRunning) {
+			_possessionForcedTimer.Stop();
+			_possessionForcedTimerPaused = true;
+		}
+	}
+
+	private void ResumeTimers (ResumeGameEvent e)
+	{
+		if (_possessionChargeTimerPaused) {
+			_possessionChargeTimer.Start();
+			_possessionChargeTimerPaused = false;
+		}
+
+		if (_possessionForcedTimerPaused) {
+			_possessionForcedTimer.Start();
+			_possessionForcedTimerPaused = false;
+		}
 	}
 
 	private void BeginCharging (StartGameEvent e)
 	{
-		// Handle event here
 		StartPossessionCharge();
 	}
 
@@ -66,11 +103,11 @@ public class PossessionManager : MonoBehaviour {
 	}
 
 	public bool CanPossess {
-		get { return _possessionChargeTimer.IsRunning && (_possessionChargeTimer.ElapsedMilliseconds > _possessionChargeDuration * 1000f); }
+		get { return _possessionChargeTimerIsRunning && (_possessionChargeTimer.ElapsedMilliseconds > _possessionChargeDuration * 1000f); }
 	}
 
 	public bool MustPossess {
-		get { return _possessionForcedTimer.IsRunning && (_possessionForcedTimer.ElapsedMilliseconds > _forcedPossessionSecondsAfterCharge * 1000f); }
+		get { return _possessionForcedTimerIsRunning && (_possessionForcedTimer.ElapsedMilliseconds > _forcedPossessionSecondsAfterCharge * 1000f); }
 	}
 
 	public void StartPossessionInRoomForGhost (Room room, GhostController ghost) {
@@ -101,6 +138,7 @@ public class PossessionManager : MonoBehaviour {
 	}
 
 	void Update () {
+		if (_possessionChargeTimerPaused) return;
 		StartForcedTimerOnceCharged();
 	}
 

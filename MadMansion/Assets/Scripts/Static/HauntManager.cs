@@ -30,7 +30,15 @@ public class HauntManager : MonoBehaviour {
 	}
 
 	private Stopwatch _hauntChargeTimer = new Stopwatch();
+	private bool _hauntChargeTimerPaused = false;
+	private bool _hauntChargeTimerIsRunning {
+		get { return _hauntChargeTimerPaused || _hauntChargeTimer.IsRunning; }
+	}
 	private Stopwatch _hauntProgressTimer = new Stopwatch();
+	private bool _hauntProgressTimerPaused = false;
+	private bool _hauntProgressTimerIsRunning {
+		get { return _hauntProgressTimerPaused || _hauntProgressTimer.IsRunning; }
+	}
 	private Hauntable _activeHauntable = null;
 
 	void Awake () {
@@ -44,11 +52,41 @@ public class HauntManager : MonoBehaviour {
 	void OnEnable ()
 	{
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
+		Events.g.AddListener<PauseGameEvent>(PauseTimers);
+		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
 	}
 
 	void OnDisable ()
 	{
+		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
+		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void PauseTimers (PauseGameEvent e)
+	{
+		if (_hauntChargeTimer.IsRunning) {
+			_hauntChargeTimer.Stop();
+			_hauntChargeTimerPaused = true;
+		}
+
+		if (_hauntProgressTimer.IsRunning) {
+			_hauntProgressTimer.Stop();
+			_hauntProgressTimerPaused = true;
+		}
+	}
+
+	private void ResumeTimers (ResumeGameEvent e)
+	{
+		if (_hauntChargeTimerPaused) {
+			_hauntChargeTimer.Start();
+			_hauntChargeTimerPaused = false;
+		}
+
+		if (_hauntProgressTimerPaused) {
+			_hauntProgressTimer.Start();
+			_hauntProgressTimerPaused = false;
+		}
 	}
 
 	private void BeginCharging (StartGameEvent e)
@@ -62,11 +100,11 @@ public class HauntManager : MonoBehaviour {
 	}
 
 	public bool CanHaunt {
-		get { return _hauntChargeTimer.IsRunning && (_hauntChargeTimer.ElapsedMilliseconds > _hauntChargeDuration * 1000f); }
+		get { return _hauntChargeTimerIsRunning && (_hauntChargeTimer.ElapsedMilliseconds > _hauntChargeDuration * 1000f); }
 	}
 
 	public bool IsHaunting {
-		get { return _hauntProgressTimer.IsRunning && (_hauntProgressTimer.ElapsedMilliseconds < _hauntDuration * 1000f); }
+		get { return _hauntProgressTimerIsRunning && (_hauntProgressTimer.ElapsedMilliseconds < _hauntDuration * 1000f); }
 	}
 
 	public void StartHauntInRoom (Room room) {
@@ -82,6 +120,7 @@ public class HauntManager : MonoBehaviour {
 	}
 
 	void Update () {
+		if (_hauntProgressTimerPaused) return;
 		UpdateHauntCount();
 	}
 

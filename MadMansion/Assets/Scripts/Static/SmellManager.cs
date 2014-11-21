@@ -26,7 +26,15 @@ public class SmellManager : MonoBehaviour {
 	}
 
 	private Stopwatch _smellChargeTimer = new Stopwatch();
+	private bool _smellChargeTimerPaused = false;
+	private bool _smellChargeTimerIsRunning {
+		get { return _smellChargeTimerPaused || _smellChargeTimer.IsRunning; }
+	}
 	private Stopwatch _smellProgressTimer = new Stopwatch();
+	private bool _smellProgressTimerPaused = false;
+	private bool _smellProgressTimerIsRunning {
+		get { return _smellProgressTimerPaused || _smellProgressTimer.IsRunning; }
+	}
 
 	void Awake () {
 		if (g == null) {
@@ -39,11 +47,41 @@ public class SmellManager : MonoBehaviour {
 	void OnEnable ()
 	{
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
+		Events.g.AddListener<PauseGameEvent>(PauseTimers);
+		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
 	}
 
 	void OnDisable ()
 	{
+		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
+		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+	}
+
+	private void PauseTimers (PauseGameEvent e)
+	{
+		if (_smellChargeTimer.IsRunning) {
+			_smellChargeTimer.Stop();
+			_smellChargeTimerPaused = true;
+		}
+
+		if (_smellProgressTimer.IsRunning) {
+			_smellProgressTimer.Stop();
+			_smellProgressTimerPaused = true;
+		}
+	}
+
+	private void ResumeTimers (ResumeGameEvent e)
+	{
+		if (_smellChargeTimerPaused) {
+			_smellChargeTimer.Start();
+			_smellChargeTimerPaused = false;
+		}
+
+		if (_smellProgressTimerPaused) {
+			_smellProgressTimer.Start();
+			_smellProgressTimerPaused = false;
+		}
 	}
 
 	private void BeginCharging (StartGameEvent e)
@@ -57,11 +95,11 @@ public class SmellManager : MonoBehaviour {
 	}
 
 	public bool CanSmell {
-		get { return _smellChargeTimer.IsRunning && (_smellChargeTimer.ElapsedMilliseconds > _smellChargeDuration * 1000f); }
+		get { return _smellChargeTimerIsRunning && (_smellChargeTimer.ElapsedMilliseconds > _smellChargeDuration * 1000f); }
 	}
 
 	public bool IsSmelling {
-		get { return _smellProgressTimer.IsRunning && (_smellProgressTimer.ElapsedMilliseconds < _maxSmellDuration * 1000f); }
+		get { return _smellProgressTimerIsRunning && (_smellProgressTimer.ElapsedMilliseconds < _maxSmellDuration * 1000f); }
 	}
 
 	public void StartSmellInRoomWithHunter (Room room, HunterController character) {
@@ -75,7 +113,7 @@ public class SmellManager : MonoBehaviour {
 	}
 
 	public void StopSmelling () {
-		if (_smellProgressTimer.IsRunning) {
+		if (_smellProgressTimerIsRunning) {
 			_smellProgressTimer.Reset();
 			_smellProgressTimer.Stop();
 			_smellCount++;
@@ -85,11 +123,12 @@ public class SmellManager : MonoBehaviour {
 	}
 
 	void Update () {
+		if (_smellProgressTimerPaused) return;
 		UpdateSmellCount();
 	}
 
 	private void UpdateSmellCount () {
-		if (_smellProgressTimer.IsRunning && _smellProgressTimer.ElapsedMilliseconds >= _maxSmellDuration * 1000f) {
+		if (_smellProgressTimerIsRunning && _smellProgressTimer.ElapsedMilliseconds >= _maxSmellDuration * 1000f) {
 			StopSmelling();
 		}
 	}
