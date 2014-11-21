@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class HauntUI : MonoBehaviour {
 
@@ -8,43 +7,43 @@ public class HauntUI : MonoBehaviour {
 	private GameObject _hauntIconPrefab;
 	[SerializeField]
 	private float _separation = 1f;
-	[SerializeField]
-	private Renderer _radialProgressRenderer;
 
-	private int _displayedHauntCount;
-	private List<GameObject> _hauntIcons = new List<GameObject>();
-	private Transform _currTransform;
+	private Transform _transform;
+
+	private int _displayedHauntCount = 0;
+	private HauntIcon[] _hauntIcons;
+
+	void Awake () {
+		_transform = transform;
+	}
 
 	void Start () {
-		_currTransform = transform;
+		_hauntIcons = new HauntIcon[HauntManager.g.RequiredHauntCount];
+		for (int i = 0; i < HauntManager.g.RequiredHauntCount; i++) {
+			Vector3 pos = _transform.position + _transform.right * i * _separation;
+			GameObject newHauntIcon = Instantiate(_hauntIconPrefab, pos, _transform.rotation) as GameObject;
+			_hauntIcons[i] = newHauntIcon.GetComponent<HauntIcon>();
+		}
 	}
 
 	void Update () {
 		UpdateDisplayedHaunts();
-		UpdateRadialTimer();
+		UpdateHauntTimer();
 	}
 
-	private void UpdateRadialTimer () {
-		_radialProgressRenderer.material.SetFloat ("_Cutoff", 1f - HauntManager.g.HauntTimerPercentage);
+	private void UpdateHauntTimer () {
+		_hauntIcons[_displayedHauntCount].PercentageFilled = HauntManager.g.HauntTimerPercentage;
 	}
 
 	private void UpdateDisplayedHaunts () {
-		while (_displayedHauntCount < HauntManager.g.HauntCount) {
-			Vector3 pos = _currTransform.position + transform.right * _separation;
-			GameObject newHauntIcon = Instantiate(_hauntIconPrefab, pos, _currTransform.rotation) as GameObject;
-			_currTransform = newHauntIcon.transform;
-			_hauntIcons.Add(newHauntIcon);
+		while (_displayedHauntCount < HauntManager.g.HauntCount && _displayedHauntCount < HauntManager.g.RequiredHauntCount) {
+			_hauntIcons[_displayedHauntCount].HauntState = HauntState.Haunted;
 			_displayedHauntCount++;
 		}
+
 		while (_displayedHauntCount > HauntManager.g.HauntCount) {
-			Destroy(_hauntIcons[_displayedHauntCount - 1]);
-			_hauntIcons.RemoveAt(_displayedHauntCount - 1);
+			_hauntIcons[_displayedHauntCount-1].HauntState = HauntState.WaitForHaunt;
 			_displayedHauntCount--;
-			if (_displayedHauntCount > 0) {
-				_currTransform = _hauntIcons[_displayedHauntCount - 1].transform;
-			} else {
-				_currTransform = transform;
-			}
 		}
 	}
 

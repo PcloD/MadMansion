@@ -14,6 +14,11 @@ public class HauntManager : MonoBehaviour {
 		get { return _hauntTimerPercentage; }
 	}
 	[SerializeField]
+	private int _requiredHauntCount = 4;
+	public int RequiredHauntCount {
+		get { return _requiredHauntCount; }
+	}
+	[SerializeField]
 	private int _hauntCount = 4;
 	public int HauntCount {
 		get { return _hauntCount; }
