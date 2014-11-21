@@ -11,36 +11,17 @@ public class HauntSoundPlayer : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		Events.g.AddListener<SmellEvent>(GhostSound);
+		Events.g.AddListener<HauntEvent>(PlayHauntSound);
 	}
 
 	void OnDisable ()
 	{
-		Events.g.RemoveListener<SmellEvent>(GhostSound);
+		Events.g.RemoveListener<HauntEvent>(PlayHauntSound);
 	}
 
-	private void GhostSound (SmellEvent e)
+	private void PlayHauntSound (HauntEvent e)
 	{
-		// Handle event here
-		if (e.IsStart) {
-			Vector3 toOldGhostPos = (e.hunter.transform.position - GhostTracker.g.HistoricalLocation);
-			float volumeScale = Mathf.Min(e.hunter.VolumeReduction/toOldGhostPos.magnitude, 1f);
-			PlayHauntSound(volumeScale);
-		} else {
-			StopHauntSound();
-		}
-	}
-
-
-	private void PlayHauntSound (float volumeScale) {
-		if (!_audioSource.isPlaying) {
-			_audioSource.Play();
-		}
-		_audioSource.volume = volumeScale;
-	}
-
-	public void StopHauntSound () {
-		_audioSource.Stop();
+		_audioSource.Play();
 	}
 
 }
