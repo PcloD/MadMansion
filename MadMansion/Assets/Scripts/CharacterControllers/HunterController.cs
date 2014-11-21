@@ -72,6 +72,7 @@ public class HunterController : MonoBehaviour {
 
 	public void TryToCatch () {
 		if (CatchManager.g.CanCatch) {
+			Events.g.Raise(new PauseGameEvent());
 			Debug.Log("Trying to catch");
 			TimeManager.g.StartBulletTime();
 			CatchManager.g.IsCatching = true; // XXX: Tight coupling!

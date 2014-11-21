@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838db629aa3e64c4a9ed89cbb76ff1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smellChargeDuration: 4
+  _smellChargeDuration: 10
   _maxSmellDuration: 10
 --- !u!4 &168505220
 Transform:
@@ -491,9 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320e278d4ffa34652b6528a4e2f80cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hauntChargeDuration: 4
-  _hauntDuration: 4
-  _requiredHauntCount: 4
+  _hauntChargeDuration: 20
+  _hauntDuration: 10
+  _requiredHauntCount: 3
 --- !u!4 &177240123
 Transform:
   m_ObjectHideFlags: 0
@@ -1449,6 +1449,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 2a0e0cb1075184de2ac76232c7a99374, type: 2}
+      propertyPath: _requiredHauntCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 2a0e0cb1075184de2ac76232c7a99374, type: 2}
+      propertyPath: _hauntDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 2a0e0cb1075184de2ac76232c7a99374, type: 2}
+      propertyPath: _hauntChargeDuration
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2a0e0cb1075184de2ac76232c7a99374, type: 2}
   m_RootGameObject: {fileID: 177240121}
@@ -1958,8 +1970,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea093a10959584e42aa59c0826f6a242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _possessionChargeDuration: 4
-  _forcedPossessionSecondsAfterCharge: 4
+  _possessionChargeDuration: 10
+  _forcedPossessionSecondsAfterCharge: 10
   _fullyRevealedAfterSeconds: 20
 --- !u!4 &785997585
 Transform:
@@ -3881,6 +3893,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
+      propertyPath: _forcedPossessionSecondsAfterCharge
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
+      propertyPath: _possessionChargeDuration
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
   m_RootGameObject: {fileID: 785997583}
@@ -4235,7 +4255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb196be19282a4fbca73c2ad9343f82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _catchChargeDuration: 4
+  _catchChargeDuration: 30
 --- !u!4 &1139499234
 Transform:
   m_ObjectHideFlags: 0
@@ -6261,6 +6281,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
+      propertyPath: _catchChargeDuration
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
   m_RootGameObject: {fileID: 1139499232}
@@ -6407,6 +6431,10 @@ Prefab:
     - target: {fileID: 400000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
+      propertyPath: _smellChargeDuration
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
