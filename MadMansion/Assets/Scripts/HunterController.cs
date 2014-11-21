@@ -37,6 +37,9 @@ public class HunterController : MonoBehaviour {
 		if (catchButton.WasPressed) {
 			TryToCatch();
 		}
+		if (catchButton.WasReleased) {
+			StopTryingToCatch();
+		}
 	}
 
 	private void Smell () {
@@ -52,6 +55,10 @@ public class HunterController : MonoBehaviour {
 	}
 
 	private void TryToCatch () {
+		TimeManager.g.StartBulletTime();
+	}
 
+	private void StopTryingToCatch () {
+		TimeManager.g.StopBulletTime();
 	}
 }

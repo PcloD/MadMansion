@@ -62,7 +62,7 @@ public class CharacterMotor : MonoBehaviour {
 	void Update () {
 		// Rotate towards velocity vector
 		if (_rigidbody.velocity.sqrMagnitude > _rotationSensitivity) {
-			_transform.forward = Vector3.RotateTowards(_transform.forward, _rigidbody.velocity, Time.deltaTime * _rotationSpeed, 0.0001f);
+			_transform.forward = Vector3.RotateTowards(_transform.forward, _rigidbody.velocity, Time.deltaTime * (_rotationSpeed * TimeScale), 0.0001f);
 		}
 	}
 
@@ -73,12 +73,22 @@ public class CharacterMotor : MonoBehaviour {
 		} else if (IsPossessed) {
 			inputVector = _ghostInputVector;
 		}
-		var relativeVelocity = inputVector.normalized * _movementSpeed;
+		var relativeVelocity = inputVector.normalized * (_movementSpeed * TimeScale);
 
 		// Calcualte the delta velocity
 		var currRelativeVelocity = rigidbody.velocity;
 		var velocityChange = relativeVelocity - currRelativeVelocity;
 
 		_rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+	}
+
+	private float TimeScale {
+		get {
+			if (IsHunter) {
+				return TimeManager.g.HunterTimeScale;
+			} else {
+				return TimeManager.g.TimeScale;
+			}
+		}
 	}
 }
