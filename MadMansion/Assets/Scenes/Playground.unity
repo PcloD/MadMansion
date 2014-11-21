@@ -412,6 +412,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 4b509f79329c046a09b1b1f2ec6abe7e, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ce97d0fdd42041bb9b9f51b62304259, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b509f79329c046a09b1b1f2ec6abe7e, type: 2}
   m_RootGameObject: {fileID: 898553678}
@@ -1549,6 +1553,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 79833e2f7d57a4f0ca2b9827ed191cc8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
   m_RootGameObject: {fileID: 1063068546}
@@ -1766,7 +1774,7 @@ AudioSource:
   m_GameObject: {fileID: 689871034}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c4e332054b5124c078bb60aec4277b3c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 300de8299bab547d3a27bbb5718d8a91, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2294,7 +2302,7 @@ AudioSource:
   m_GameObject: {fileID: 898553678}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c940bbf18cb0c4be093298dd6da4c4d3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5ce97d0fdd42041bb9b9f51b62304259, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3904,7 +3912,7 @@ AudioSource:
   m_GameObject: {fileID: 1063068546}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c4e332054b5124c078bb60aec4277b3c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 79833e2f7d57a4f0ca2b9827ed191cc8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7049,6 +7057,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 1849aea6a8d5f41629e83e80871082ce, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 300de8299bab547d3a27bbb5718d8a91, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1849aea6a8d5f41629e83e80871082ce, type: 2}
   m_RootGameObject: {fileID: 689871034}
