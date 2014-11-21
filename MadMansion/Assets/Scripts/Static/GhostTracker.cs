@@ -11,6 +11,9 @@ public class GhostTracker : MonoBehaviour {
 	private int _currCount;
 	[SerializeField]
 	private float _timeDelay = 5f;
+	public float TimeDelay {
+		get { return _timeDelay; }
+	}
 
 	private bool _canSeeHistory;
 	public bool CanSeeHistory {

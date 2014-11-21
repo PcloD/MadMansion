@@ -16,7 +16,11 @@ public class SmellManager : MonoBehaviour {
 	}
 	public float SmellChargePercentage {
 		get {
-			return Mathf.Min(1f, _smellChargeTimer.ElapsedMilliseconds/(_smellChargeDuration * 1000f));
+			float additionalDuration = 0f;
+			if (!GhostTracker.g.CanSeeHistory) {
+				additionalDuration = GhostTracker.g.TimeDelay;
+			}
+			return Mathf.Min(1f, _smellChargeTimer.ElapsedMilliseconds/((Mathf.Max(_smellChargeDuration, additionalDuration)) * 1000f));
 		}
 	}
 
@@ -95,7 +99,7 @@ public class SmellManager : MonoBehaviour {
 	}
 
 	public bool CanSmell {
-		get { return _smellChargeTimerIsRunning && (_smellChargeTimer.ElapsedMilliseconds > _smellChargeDuration * 1000f); }
+		get { return GhostTracker.g.CanSeeHistory && _smellChargeTimerIsRunning && (_smellChargeTimer.ElapsedMilliseconds > _smellChargeDuration * 1000f); }
 	}
 
 	public bool IsSmelling {
@@ -103,7 +107,7 @@ public class SmellManager : MonoBehaviour {
 	}
 
 	public void StartSmellInRoomWithHunter (Room room, HunterController character) {
-		if (CanSmell && GhostTracker.g.CanSeeHistory && !IsSmelling) {
+		if (CanSmell && !IsSmelling) {
 			_smellChargeTimer.Stop();
 			_smellChargeTimer.Reset();
 			_smellProgressTimer.Start();
