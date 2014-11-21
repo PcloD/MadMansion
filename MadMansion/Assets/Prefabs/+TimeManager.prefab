@@ -44,16 +44,24 @@ MonoBehaviour:
     m_Curve:
     - time: 0
       value: 1
-      inSlope: -.949999988
-      outSlope: -.949999988
+      inSlope: -1.55764961
+      outSlope: -1.55764961
+      tangentMode: 10
+    - time: .365693718
+      value: .430377305
+      inSlope: -1.03924894
+      outSlope: -1.03924894
       tangentMode: 10
     - time: 1
-      value: .0500000119
-      inSlope: -.949999988
-      outSlope: -.949999988
+      value: .099999994
+      inSlope: -.520848215
+      outSlope: -.520848215
       tangentMode: 10
     m_PreInfinity: 2
     m_PostInfinity: 2
+  _introTransitionDuration: 1
+  _outroTransitionDuration: .200000003
+  _hunterBulletTimeResilience: 6
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
