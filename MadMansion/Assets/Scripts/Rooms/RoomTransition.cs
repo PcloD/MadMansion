@@ -13,7 +13,7 @@ public class RoomTransition : MonoBehaviour {
 	private Transform _transform;
 
 	public Vector3 DoorLocation {
-		get { return _transform.position; }
+		get { return new Vector3(_transform.position.x, 0f, _transform.position.z); }
 	}
 
 	private Dictionary<Room,Room> _connections = null;

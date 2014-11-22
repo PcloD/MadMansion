@@ -55,6 +55,7 @@ public class Room : MonoBehaviour {
 
 	public GhostController ClosestGhostToCharacter (CharacterMotor character) {
         Vector3 characterPos = character.transform.position;
+        characterPos.y = 0f;
         GhostController closest = null;
         float sqrDistToClosest = Mathf.Infinity;
         foreach (CharacterMotor currNeighbor in _characters) {
@@ -62,6 +63,7 @@ public class Room : MonoBehaviour {
         		continue;
         	}
 			Vector3 currNeighborPos = currNeighbor.transform.position;
+			currNeighborPos.y = 0f;
 			float sqrDistToCurrNeighbor = (currNeighborPos - characterPos).sqrMagnitude;
 			if (closest == null || sqrDistToCurrNeighbor < sqrDistToClosest) {
             	sqrDistToClosest = sqrDistToCurrNeighbor;

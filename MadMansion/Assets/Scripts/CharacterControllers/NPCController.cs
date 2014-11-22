@@ -32,7 +32,7 @@ public class NPCController : MonoBehaviour {
 		yield return new WaitForSeconds(Random.Range(0f,1f));
 		while (true) {
 			PickDest();
-			yield return new WaitForSeconds(Random.Range(0f,5f));
+			// yield return new WaitForSeconds(Random.Range(0f,5f));
 			yield return StartCoroutine(ContinuouslySteerToDest ());
 		}
 	}
@@ -51,8 +51,8 @@ public class NPCController : MonoBehaviour {
 
 	private IEnumerator ContinuouslySteerToDest () {
 		YieldInstruction wait = new WaitForFixedUpdate();
-		float jitterTimer = 0f;
-		float jitterTimerDuration = 0.5f;
+		// float jitterTimer = 0f;
+		// float jitterTimerDuration = 0.5f;
 		Vector3 inputVector = Vector3.zero;
 		Vector3 offsetVector = Vector3.zero;
 		Vector3 initialVector = _currDest - _transform.position;
@@ -60,15 +60,15 @@ public class NPCController : MonoBehaviour {
 			Debug.DrawLine(_transform.position, _currDest);
 			inputVector = (_currDest - _transform.position);
 			//float completion = inputVector.sqrMagnitude/initialVector.sqrMagnitude;
-			inputVector = Vector3.Lerp(inputVector, inputVector + offsetVector, jitterTimer);
-			jitterTimer += Time.fixedDeltaTime;
-			if (jitterTimer > jitterTimerDuration) {
-				Vector3 perp = Vector3.Cross(initialVector, Vector3.up).normalized * 2f;
-				Debug.DrawLine(_transform.position, _transform.position + perp);
-				offsetVector = perp * (float)Random.Range(-1, 2);
-				jitterTimerDuration = Random.Range(0.5f,2f);
-				jitterTimer = 0f;
-			}
+			// inputVector = Vector3.Lerp(inputVector, inputVector + offsetVector, jitterTimer);
+			// jitterTimer += Time.fixedDeltaTime;
+			// if (jitterTimer > jitterTimerDuration) {
+			// 	Vector3 perp = Vector3.Cross(initialVector, Vector3.up).normalized * 2f;
+			// 	Debug.DrawLine(_transform.position, _transform.position + perp);
+			// 	offsetVector = perp * (float)Random.Range(-1, 2);
+			// 	jitterTimerDuration = Random.Range(0.5f,2f);
+			// 	jitterTimer = 0f;
+			// }
 			// inputVector = Vector3.ClampMagnitude(inputVector, completion);
 			_characterMotor.AddInputWithPriority(inputVector, ControlPriority.NPC);
 			yield return wait;
