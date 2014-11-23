@@ -1,32 +1,32 @@
 fileFormatVersion: 2
-guid: f8af0d856ce20492eaa6f35dacbcd247
+guid: 7c38474ffe97946a48da1612a1269616
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: Armature
-    100002: head
-    100004: //RootNode
+    100002: hat
+    100004: head
     100006: left arm
     100008: left foot
     100010: left shoulder
-    100012: right arm
-    100014: right foot
-    100016: right shoulder
-    100018: spine
+    100012: //RootNode
+    100014: right arm
+    100016: right foot
+    100018: right shoulder
+    100020: spine
     400000: Armature
-    400002: head
-    400004: //RootNode
+    400002: hat
+    400004: head
     400006: left arm
     400008: left foot
     400010: left shoulder
-    400012: right arm
-    400014: right foot
-    400016: right shoulder
-    400018: spine
-    4300000: Kantenmann
-    7400000: 
-    7400002: Armature|walking
-    7400004: Armature|walking
+    400012: //RootNode
+    400014: right arm
+    400016: right foot
+    400018: right shoulder
+    400020: spine
+    4300000: little boy
+    7400000: Littleboy|walking
     9500000: //RootNode
     13700000: //RootNode
   materials:
@@ -46,10 +46,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|walking
+      name: Littleboy|walking
       takeName: Armature|walking
       firstFrame: 0
-      lastFrame: 58
+      lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -73,17 +73,19 @@ ModelImporter:
         weight: 1
       - path: Armature
         weight: 1
+      - path: Armature/left foot
+        weight: 1
+      - path: Armature/right foot
+        weight: 1
       - path: Armature/spine
         weight: 1
       - path: Armature/spine/head
         weight: 1
-      - path: Armature/spine/left foot
+      - path: Armature/spine/head/hat
         weight: 1
       - path: Armature/spine/left shoulder
         weight: 1
       - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right foot
         weight: 1
       - path: Armature/spine/right shoulder
         weight: 1

@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: KantenmannController
+  m_Name: LittleboyController
   serializedVersion: 2
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -20,6 +20,26 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &110100000
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110200000}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110112005
 Transition:
   serializedVersion: 2
@@ -29,6 +49,26 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110200000}
   m_DstState: {fileID: 110285925}
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .896551728
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110146800
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110285925}
+  m_DstState: {fileID: 110200000}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
@@ -51,7 +91,7 @@ State:
   m_Motions:
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 84, y: -120, z: 0}
+  m_Position: {x: 36, y: -120, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -64,7 +104,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400002, guid: f8af0d856ce20492eaa6f35dacbcd247, type: 3}
+  - {fileID: 7400000, guid: 7c38474ffe97946a48da1612a1269616, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
   m_Position: {x: 84, y: -264, z: 0}
   m_IKOnFeet: 0
@@ -85,14 +125,14 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110285925}
+      first: {fileID: 0}
       second: []
     data:
       first: {fileID: 110200000}
       second:
       - {fileID: 110112005}
     data:
-      first: {fileID: 0}
+      first: {fileID: 110285925}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}

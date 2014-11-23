@@ -12,6 +12,9 @@ public class CharacterMotor : MonoBehaviour {
 
 	[SerializeField]
 	private float _movementSpeed = 7f;
+	public float MovementSpeed {
+		get { return _movementSpeed; }
+	}
 	[SerializeField]
 	private float _rotationSpeed = 10f;
 	[SerializeField]
