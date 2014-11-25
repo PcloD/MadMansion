@@ -45,6 +45,8 @@ public class PossessionManager : MonoBehaviour {
 		get { return _possessionForcedTimerPaused || _possessionForcedTimer.IsRunning; }
 	}
 
+	private bool _catchingInProgress = false;
+
 	void Awake () {
 		if (g == null) {
 			g = this;
@@ -58,6 +60,7 @@ public class PossessionManager : MonoBehaviour {
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
 		Events.g.AddListener<PauseGameEvent>(PauseTimers);
 		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
+		Events.g.AddListener<CatchEvent>(DisableInteractionOnCatch);
 	}
 
 	void OnDisable ()
@@ -65,6 +68,23 @@ public class PossessionManager : MonoBehaviour {
 		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+		Events.g.RemoveListener<CatchEvent>(DisableInteractionOnCatch);
+	}
+
+	private void DisableInteractionOnCatch (CatchEvent e) {
+		if (e.successful) {
+			_catchingInProgress = true;
+
+			if (_possessionChargeTimer.IsRunning) {
+				_possessionChargeTimer.Stop();
+				_possessionChargeTimerPaused = true;
+			}
+
+			if (_possessionForcedTimer.IsRunning) {
+				_possessionForcedTimer.Stop();
+				_possessionForcedTimerPaused = true;
+			}
+		}
 	}
 
 	private void PauseTimers (PauseGameEvent e)
@@ -82,6 +102,7 @@ public class PossessionManager : MonoBehaviour {
 
 	private void ResumeTimers (ResumeGameEvent e)
 	{
+		if (_catchingInProgress) { return; }
 		if (_possessionChargeTimerPaused) {
 			_possessionChargeTimer.Start();
 			_possessionChargeTimerPaused = false;
@@ -111,7 +132,7 @@ public class PossessionManager : MonoBehaviour {
 	}
 
 	public void StartPossessionInRoomForGhost (Room room, GhostController ghost) {
-		if (CanPossess) {
+		if (CanPossess && !_catchingInProgress) {
 
 			CharacterMotor character = ghost.GetComponent<CharacterMotor>();
 			GhostController closest = room.ClosestGhostToCharacter(character);

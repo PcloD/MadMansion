@@ -47,7 +47,7 @@ public class GhostController : MonoBehaviour {
 	}
 
 	void Update () {
-		if (_paused) return;
+		if (_paused) { return; }
 		HandleInput(PlayerInputManager.g.Ghost);
 		RevealGhost();
 	}
@@ -61,7 +61,7 @@ public class GhostController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (_paused) return;
+		if (_paused) { return; }
 		GhostTracker.g.RecordLocation(_transform.position);
 	}
 

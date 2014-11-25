@@ -43,4 +43,14 @@ public class RoomManager : MonoBehaviour {
 		return path;
 	}
 
+	public List<Vector3> PathToRoomFrom (Room destRoom, Vector3 start) {
+		List<Vector3> path = new List<Vector3>();
+		NavMeshPath navMeshPath = new NavMeshPath();
+		NavMesh.CalculatePath(start, destRoom.RandomPoint, -1, navMeshPath);
+		for (int i = 0; i < navMeshPath.corners.Length; i++) {
+			path.Add(navMeshPath.corners[i]);
+		}
+		return path;
+	}
+
 }

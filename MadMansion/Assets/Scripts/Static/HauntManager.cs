@@ -41,6 +41,8 @@ public class HauntManager : MonoBehaviour {
 	}
 	private Hauntable _activeHauntable = null;
 
+	private bool _catchingInProgress = false;
+
 	void Awake () {
 		if (g == null) {
 			g = this;
@@ -54,6 +56,7 @@ public class HauntManager : MonoBehaviour {
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
 		Events.g.AddListener<PauseGameEvent>(PauseTimers);
 		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
+		Events.g.AddListener<CatchEvent>(DisableInteractionOnCatch);
 	}
 
 	void OnDisable ()
@@ -61,6 +64,23 @@ public class HauntManager : MonoBehaviour {
 		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+		Events.g.RemoveListener<CatchEvent>(DisableInteractionOnCatch);
+	}
+
+	private void DisableInteractionOnCatch (CatchEvent e) {
+		if (e.successful) {
+			_catchingInProgress = true;
+
+			if (_hauntChargeTimer.IsRunning) {
+				_hauntChargeTimer.Stop();
+				_hauntChargeTimerPaused = true;
+			}
+
+			if (_hauntProgressTimer.IsRunning) {
+				_hauntProgressTimer.Stop();
+				_hauntProgressTimerPaused = true;
+			}
+		}
 	}
 
 	private void PauseTimers (PauseGameEvent e)
@@ -78,6 +98,7 @@ public class HauntManager : MonoBehaviour {
 
 	private void ResumeTimers (ResumeGameEvent e)
 	{
+		if (_catchingInProgress) { return; }
 		if (_hauntChargeTimerPaused) {
 			_hauntChargeTimer.Start();
 			_hauntChargeTimerPaused = false;
@@ -109,7 +130,7 @@ public class HauntManager : MonoBehaviour {
 
 	public void StartHauntInRoom (Room room) {
 		Hauntable hauntable = room.GetComponent<Hauntable>();
-		if (CanHaunt && hauntable != null) {
+		if (CanHaunt && hauntable != null && !_catchingInProgress) {
 			_activeHauntable = hauntable;
 			_activeHauntable.StartHaunting();
 			_hauntChargeTimer.Stop();

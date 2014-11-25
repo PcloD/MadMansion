@@ -8,7 +8,7 @@ TextureImporter:
     21300006: triButton
     21300008: sqButton
     21300010: sqButtonFaded
-    21300012: radialTimer
+    21300012: magicCircle
     21300014: xButtonImportant
   serializedVersion: 2
   mipmaps:
@@ -111,7 +111,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: radialTimer
+    - name: magicCircle
       rect:
         serializedVersion: 2
         x: 100

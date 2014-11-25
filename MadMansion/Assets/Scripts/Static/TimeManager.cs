@@ -52,7 +52,7 @@ public class TimeManager : MonoBehaviour {
 	}
 
 	public float HunterTimeScale {
-		get { return Mathf.Min(1f, TimeScale * _hunterBulletTimeResilience); }
+		get { return Mathf.Min(1f, Mathf.Max(TimeScale, 0.1f) * _hunterBulletTimeResilience); }
 	}
 
 	private void Reset () {

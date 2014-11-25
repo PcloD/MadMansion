@@ -3,6 +3,7 @@ using System.Collections;
 using InControl;
 
 [RequireComponent (typeof(CharacterMotor))]
+[RequireComponent (typeof(GhostSelectionMotor))]
 [RequireComponent (typeof(CurrRoomFinder))]
 public class HunterController : MonoBehaviour {
 
@@ -13,9 +14,11 @@ public class HunterController : MonoBehaviour {
 	}
 
 	private CharacterMotor _characterMotor;
+	private GhostSelectionMotor _ghostSelectionMotor;
 	private Transform _transform;
 	private CurrRoomFinder _currRoomFinder;
 	private bool _paused = true;
+	private bool _isCatching = false;
 
 	void OnEnable ()
 	{
@@ -43,20 +46,38 @@ public class HunterController : MonoBehaviour {
 		_characterMotor = GetComponent<CharacterMotor>();
 		_transform = transform;
 		_currRoomFinder = GetComponent<CurrRoomFinder>();
+		_ghostSelectionMotor = GetComponent<GhostSelectionMotor>();
 	}
 
 	void Update () {
 		if (_paused) return;
-		HandleInput(PlayerInputManager.g.Hunter);
+		if (_isCatching) {
+			HandleSelectionInput(PlayerInputManager.g.Hunter);
+		} else {
+			HandleStandardInput(PlayerInputManager.g.Hunter);
+		}
 	}
 
-	private void HandleInput (InputDevice device) {
+	private void HandleSelectionInput (InputDevice device) {
 		if (device == null) {
 			return;
 		}
-			Vector3 inputVector = new Vector3(device.LeftStickX.Value, 0f, device.LeftStickY.Value);
-			_characterMotor.AddInputWithPriority(inputVector, ControlPriority.Hunter);
 
+		Vector3 inputVector = new Vector3(device.LeftStickX.Value, 0f, device.LeftStickY.Value);
+		_ghostSelectionMotor.AddInput(inputVector);
+
+		InputControl catchButton = device.Action4;
+		if (catchButton.WasPressed) {
+			_ghostSelectionMotor.FinalizeCatch();
+		}
+	}
+
+	private void HandleStandardInput (InputDevice device) {
+		if (device == null) {
+			return;
+		}
+		Vector3 inputVector = new Vector3(device.LeftStickX.Value, 0f, device.LeftStickY.Value);
+		_characterMotor.AddInputWithPriority(inputVector, ControlPriority.Hunter);
 		InputControl smellButton = device.Action1;
 		InputControl catchButton = device.Action4;
 		if (smellButton.WasPressed) {
@@ -72,12 +93,11 @@ public class HunterController : MonoBehaviour {
 
 	public void TryToCatch () {
 		if (CatchManager.g.CanCatch) {
-			// Events.g.Raise(new PauseGameEvent());
-			Debug.Log("Trying to catch");
-			TimeManager.g.StartBulletTime();
-			CatchManager.g.IsCatching = true; // XXX: Tight coupling!
+			Events.g.Raise(new CatchEvent(true));
+			_isCatching = true;
+			_ghostSelectionMotor.Initialize();
 		} else {
-			Debug.Log("Can't Catch");
+			Events.g.Raise(new CatchEvent(false));
 		}
 	}
 }

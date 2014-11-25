@@ -11,6 +11,8 @@ public class NPCController : MonoBehaviour {
 	private float _destinationSensitivity = 0.5f;
 
 	[SerializeField]
+	private AnimationCurve _pauseCurve;
+	[SerializeField]
 	private int _contextMapLOD = 8;
 	[SerializeField]
 	private float _collisionAvoidanceRadius = 2f;
@@ -23,7 +25,7 @@ public class NPCController : MonoBehaviour {
 	private CurrRoomFinder _currRoomFinder;
 	private List<Vector3> _destList;
 	private float[] _contextMap;
-	private bool _paused = true;
+	private bool _paused = false;
 
 	void Awake () {
 		Cache();
@@ -65,24 +67,32 @@ public class NPCController : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (_paused) return;
 		UpdateBehaviors();
 		Vector3 inputVector = ChooseDirectionGivenContextMapAndHeading(_contextMap, _transform.forward);
+		if (_idle) inputVector = Vector3.zero;
 		_characterMotor.AddInputWithPriority(inputVector, ControlPriority.NPC);
 	}
 
+	private bool _idle = false;
 	private IEnumerator MovementLoop () {
 		yield return new WaitForSeconds(Random.Range(0f,1f));
 		while (true) {
+			_idle = true;
+			yield return new WaitForSeconds(_pauseCurve.Evaluate(Random.Range(0f,1f)));
+			_idle = false;
 			PickDest();
-			// yield return new WaitForSeconds(Random.Range(0f,5f));
 			yield return StartCoroutine(ContinuouslySteerToDest ());
 		}
 	}
 
+	Room _nextRoom = null;
 	private void PickDest () {
 		if (_destList == null || _destList.Count == 0) {
 			Room nextRoom = _roomPattern[_currRoomIndex];
-			_destList = RoomManager.g.PathBetweenRooms(_currRoomFinder.Room, nextRoom);
+			_nextRoom = nextRoom;
+			// _destList = RoomManager.g.PathBetweenRooms(_currRoomFinder.Room, nextRoom);
+			_destList = RoomManager.g.PathToRoomFrom(nextRoom, _transform.position);
 			_currRoomIndex++;
 			_currRoomIndex %= _roomPattern.Count;
 		}
@@ -96,7 +106,7 @@ public class NPCController : MonoBehaviour {
 		float stuckSensitivity = 1f;
 		float stuckTimer = 0f;
 		float timeTillStuck = 1f;
-		Vector3 stuckDest = Vector3.zero;
+		// Vector3 stuckDest = Vector3.zero;
 		Vector3 lastPos = _transform.position;
 		do {
 			Debug.DrawLine(_transform.position, _currDest);
@@ -106,11 +116,15 @@ public class NPCController : MonoBehaviour {
 			} else {
 				stuckTimer += Time.fixedDeltaTime;
 				if (stuckTimer >= timeTillStuck) {
+					Debug.Log("STUCK " + gameObject.name);
 					stuckTimer = 0f;
-					stuckDest = _currDest;
-					_currDest = _transform.position + (_transform.position - _currDest);
-					yield return new WaitForSeconds(1f);
-					_currDest = stuckDest;
+					if (_nextRoom != null) {
+						_destList = RoomManager.g.PathToRoomFrom(_nextRoom, _transform.position);
+					}
+					// stuckDest = _currDest;
+					// _currDest = _transform.position + (_transform.position - _currDest);
+					// yield return new WaitForSeconds(1f);
+					// _currDest = stuckDest;
 				}
 			}
 

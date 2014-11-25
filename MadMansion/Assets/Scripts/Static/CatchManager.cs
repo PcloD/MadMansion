@@ -32,6 +32,7 @@ public class CatchManager : MonoBehaviour {
 		Events.g.AddListener<StartGameEvent>(BeginCharging);
 		Events.g.AddListener<PauseGameEvent>(PauseTimers);
 		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
+		Events.g.AddListener<CatchEvent>(StartCatching);
 	}
 
 	void OnDisable ()
@@ -39,6 +40,7 @@ public class CatchManager : MonoBehaviour {
 		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
+		Events.g.RemoveListener<CatchEvent>(StartCatching);
 	}
 
 	private void PauseTimers (PauseGameEvent e)
@@ -63,10 +65,20 @@ public class CatchManager : MonoBehaviour {
 		StartCatchCharge();
 	}
 
+	private void StartCatching (CatchEvent e)
+	{
+		if (e.successful) {
+			print("Succeeded catch event");
+			TimeManager.g.StartBulletTime();
+			_isCatching = true;
+		} else {
+			print("Failed catch event");
+		}
+	}
+
 	private bool _isCatching = false;
 	public bool IsCatching {
 		get { return _isCatching; }
-		set { _isCatching = value; } // XXX: Tight coupling
 	}
 
 	private void StartCatchCharge () {
