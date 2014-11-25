@@ -15,7 +15,6 @@ public class HunterController : MonoBehaviour {
 
 	private CharacterMotor _characterMotor;
 	private GhostSelectionMotor _ghostSelectionMotor;
-	private Transform _transform;
 	private CurrRoomFinder _currRoomFinder;
 	private bool _paused = true;
 	private bool _isCatching = false;
@@ -44,7 +43,6 @@ public class HunterController : MonoBehaviour {
 
 	void Awake () {
 		_characterMotor = GetComponent<CharacterMotor>();
-		_transform = transform;
 		_currRoomFinder = GetComponent<CurrRoomFinder>();
 		_ghostSelectionMotor = GetComponent<GhostSelectionMotor>();
 	}
@@ -95,6 +93,7 @@ public class HunterController : MonoBehaviour {
 		if (CatchManager.g.CanCatch) {
 			Events.g.Raise(new CatchEvent(true));
 			_isCatching = true;
+			_characterMotor.AddInputWithPriority(Vector3.zero, ControlPriority.Hunter);
 			_ghostSelectionMotor.Initialize();
 		} else {
 			Events.g.Raise(new CatchEvent(false));

@@ -92,6 +92,7 @@ GameObject:
   - 114: {fileID: 57268095}
   - 208: {fileID: 57268096}
   - 136: {fileID: 57268089}
+  - 114: {fileID: 57268097}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -311,6 +312,21 @@ NavMeshObstacle:
   m_Height: 2
   m_MoveThreshold: .100000001
   m_Carve: 0
+--- !u!114 &57268097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 57268085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9242523af7ff04f0ea5af60b09ed7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostSelectionCirclePrefab: {fileID: 100000, guid: 50c55b52a293d4121bf1f3ed0c08a2d3,
+    type: 2}
+  _selectionSensitivity: .800000012
+  _inputDelay: .300000012
 --- !u!1001 &119968902
 Prefab:
   m_ObjectHideFlags: 0
@@ -596,6 +612,7 @@ GameObject:
   - 114: {fileID: 244872250}
   - 136: {fileID: 244872241}
   - 208: {fileID: 244872242}
+  - 114: {fileID: 244872245}
   m_Layer: 0
   m_Name: Kantenmann
   m_TagString: Untagged
@@ -658,6 +675,21 @@ MonoBehaviour:
   _rotationSpeed: 10
   _rotationSensitivity: 1
   _ghostMovementSensitivity: .5
+--- !u!114 &244872245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 244872240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9242523af7ff04f0ea5af60b09ed7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostSelectionCirclePrefab: {fileID: 100000, guid: 50c55b52a293d4121bf1f3ed0c08a2d3,
+    type: 2}
+  _selectionSensitivity: .800000012
+  _inputDelay: .300000012
 --- !u!54 &244872246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -914,6 +946,7 @@ GameObject:
   - 136: {fileID: 376098340}
   - 114: {fileID: 376098346}
   - 208: {fileID: 376098347}
+  - 114: {fileID: 376098348}
   m_Layer: 0
   m_Name: Torus
   m_TagString: Untagged
@@ -1134,6 +1167,21 @@ NavMeshObstacle:
   m_Height: 2
   m_MoveThreshold: .100000001
   m_Carve: 0
+--- !u!114 &376098348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 376098336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9242523af7ff04f0ea5af60b09ed7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostSelectionCirclePrefab: {fileID: 100000, guid: 50c55b52a293d4121bf1f3ed0c08a2d3,
+    type: 2}
+  _selectionSensitivity: .800000012
+  _inputDelay: .300000012
 --- !u!1 &384628628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1198,7 @@ GameObject:
   - 114: {fileID: 384628638}
   - 136: {fileID: 384628629}
   - 208: {fileID: 384628630}
+  - 114: {fileID: 384628632}
   m_Layer: 0
   m_Name: Littleboy
   m_TagString: Untagged
@@ -1195,6 +1244,21 @@ Transform:
   - {fileID: 1466020854}
   m_Father: {fileID: 1491595470}
   m_RootOrder: 1
+--- !u!114 &384628632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 384628628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9242523af7ff04f0ea5af60b09ed7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostSelectionCirclePrefab: {fileID: 100000, guid: 50c55b52a293d4121bf1f3ed0c08a2d3,
+    type: 2}
+  _selectionSensitivity: .800000012
+  _inputDelay: .300000012
 --- !u!54 &384628633
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2653,6 +2717,7 @@ GameObject:
   - 114: {fileID: 923030184}
   - 208: {fileID: 923030185}
   - 136: {fileID: 923030178}
+  - 114: {fileID: 923030186}
   m_Layer: 0
   m_Name: Diamond
   m_TagString: Untagged
@@ -2872,6 +2937,21 @@ NavMeshObstacle:
   m_Height: 2
   m_MoveThreshold: .100000001
   m_Carve: 0
+--- !u!114 &923030186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923030174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9242523af7ff04f0ea5af60b09ed7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostSelectionCirclePrefab: {fileID: 100000, guid: 50c55b52a293d4121bf1f3ed0c08a2d3,
+    type: 2}
+  _selectionSensitivity: .800000012
+  _inputDelay: .300000012
 --- !u!1 &932718928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4586,6 +4666,7 @@ GameObject:
   - 114: {fileID: 1135743744}
   - 208: {fileID: 1135743745}
   - 136: {fileID: 1135743738}
+  - 114: {fileID: 1135743746}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4805,6 +4886,21 @@ NavMeshObstacle:
   m_Height: 2
   m_MoveThreshold: .100000001
   m_Carve: 0
+--- !u!114 &1135743746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135743734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9242523af7ff04f0ea5af60b09ed7866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostSelectionCirclePrefab: {fileID: 100000, guid: 50c55b52a293d4121bf1f3ed0c08a2d3,
+    type: 2}
+  _selectionSensitivity: .800000012
+  _inputDelay: .300000012
 --- !u!1 &1139499232
 GameObject:
   m_ObjectHideFlags: 0
@@ -7842,6 +7938,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 158f1ed99dfea4111a2997f0f755c66a, type: 2}
+      propertyPath: _bulletTimeTransition.m_Curve.Array.data[1].inSlope
+      value: -1.11807513
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 158f1ed99dfea4111a2997f0f755c66a, type: 2}
+      propertyPath: _bulletTimeTransition.m_Curve.Array.data[1].outSlope
+      value: -1.11807513
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 158f1ed99dfea4111a2997f0f755c66a, type: 2}
+      propertyPath: _bulletTimeTransition.m_Curve.Array.data[2].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 158f1ed99dfea4111a2997f0f755c66a, type: 2}
+      propertyPath: _bulletTimeTransition.m_Curve.Array.data[2].inSlope
+      value: -.678500772
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 158f1ed99dfea4111a2997f0f755c66a, type: 2}
+      propertyPath: _bulletTimeTransition.m_Curve.Array.data[2].outSlope
+      value: -.678500772
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 158f1ed99dfea4111a2997f0f755c66a, type: 2}
   m_RootGameObject: {fileID: 1864416088}
@@ -8245,13 +8361,13 @@ MonoBehaviour:
       tangentMode: 10
     - time: .365693718
       value: .430377305
-      inSlope: -1.03924894
-      outSlope: -1.03924894
+      inSlope: -1.11807513
+      outSlope: -1.11807513
       tangentMode: 10
     - time: 1
-      value: .099999994
-      inSlope: -.520848215
-      outSlope: -.520848215
+      value: 0
+      inSlope: -.678500772
+      outSlope: -.678500772
       tangentMode: 10
     m_PreInfinity: 2
     m_PostInfinity: 2

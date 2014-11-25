@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 [RequireComponent (typeof(CurrRoomFinder))]
+[RequireComponent (typeof(CharacterMotor))]
 public class GhostSelectionMotor : MonoBehaviour {
 
 	[SerializeField]
@@ -19,10 +20,12 @@ public class GhostSelectionMotor : MonoBehaviour {
 	private CurrRoomFinder _currRoomFinder;
 	private List<Transform> _sortedTransformsInRoom = new List<Transform>();
 	private int _currSelection = 0;
+	private CharacterMotor _characterMotor;
 
 	void Awake () {
 		_transform = transform;
 		_currRoomFinder = GetComponent<CurrRoomFinder>();
+		_characterMotor = GetComponent<CharacterMotor>();
 	}
 
 	public void Initialize () {
@@ -95,6 +98,6 @@ public class GhostSelectionMotor : MonoBehaviour {
 	}
 
 	public void FinalizeCatch () {
-		// _ghostSelectionCircle
+		Events.g.Raise(new FinishCatchEvent(hunter: _characterMotor, guess: _targetTransform.GetComponent<CharacterMotor>()));
 	}
 }

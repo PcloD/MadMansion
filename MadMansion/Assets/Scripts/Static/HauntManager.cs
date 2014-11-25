@@ -155,7 +155,7 @@ public class HauntManager : MonoBehaviour {
 			StartHauntCharge();
 		}
 		if (_hauntCount >= _requiredHauntCount) {
-			Events.g.Raise(new EndGameEvent(Player.GhostPlayer));
+			Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.GhostHauntedHouse));
 			Events.g.Raise(new PauseGameEvent());
 		}
 	}

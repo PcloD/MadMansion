@@ -7,13 +7,19 @@ public enum Player {
 	NoPlayer
 }
 
-public class EndGameEvent : GameEvent {
-	private Player _winner;
-	public Player Winner {
-		get { return _winner; }
-	}
+public enum EndReason {
+	HunterCaughtGhost,
+	GhostHauntedHouse,
+	HunterCaughtGhostInSameBody,
+	HunterCaughtInnocent
+}
 
-	public EndGameEvent (Player winner) {
-		_winner = winner;
+public class EndGameEvent : GameEvent {
+	public Player winner;
+	public EndReason rationale;
+
+	public EndGameEvent (Player winner, EndReason rationale) {
+		this.winner = winner;
+		this.rationale = rationale;
 	}
 }

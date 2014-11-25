@@ -33,6 +33,7 @@ public class CatchManager : MonoBehaviour {
 		Events.g.AddListener<PauseGameEvent>(PauseTimers);
 		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.AddListener<CatchEvent>(StartCatching);
+		Events.g.AddListener<FinishCatchEvent>(FinalizeCatching);
 	}
 
 	void OnDisable ()
@@ -41,6 +42,7 @@ public class CatchManager : MonoBehaviour {
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
 		Events.g.RemoveListener<CatchEvent>(StartCatching);
+		Events.g.RemoveListener<FinishCatchEvent>(FinalizeCatching);
 	}
 
 	private void PauseTimers (PauseGameEvent e)
@@ -73,6 +75,22 @@ public class CatchManager : MonoBehaviour {
 			_isCatching = true;
 		} else {
 			print("Failed catch event");
+		}
+	}
+
+	private void FinalizeCatching (FinishCatchEvent e) {
+		if (e.guess == null) {
+			return;
+		}
+		GhostController ghostController = e.guess.GetComponent<GhostController>();
+		if (ghostController != null && ghostController.enabled) {
+			if (e.hunter == e.guess) {
+				Events.g.Raise(new EndGameEvent(winner: Player.NoPlayer, rationale: EndReason.HunterCaughtGhostInSameBody));
+			} else {
+				Events.g.Raise(new EndGameEvent(winner: Player.HunterPlayer, rationale: EndReason.HunterCaughtGhost));
+			}
+		} else {
+			Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.HunterCaughtInnocent));
 		}
 	}
 
