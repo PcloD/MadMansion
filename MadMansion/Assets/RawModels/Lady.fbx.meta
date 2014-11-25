@@ -1,36 +1,42 @@
 fileFormatVersion: 2
-guid: 7c38474ffe97946a48da1612a1269616
+guid: d3cd1728580bf483284cb6811678b9ee
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: Armature
-    100002: hat
-    100004: head
-    100006: left arm
-    100008: left foot
-    100010: left shoulder
-    100012: //RootNode
-    100014: right arm
-    100016: right foot
-    100018: right shoulder
-    100020: spine
+    100002: Cone.001
+    100004: hair
+    100006: head
+    100008: //RootNode
+    100010: left arm
+    100012: left hand
+    100014: left shoulder
+    100016: right arm
+    100018: right hand
+    100020: right shoulder
+    100022: spine
+    100024: waist
+    100026: waist.001
     400000: Armature
-    400002: hat
-    400004: head
-    400006: left arm
-    400008: left foot
-    400010: left shoulder
-    400012: //RootNode
-    400014: right arm
-    400016: right foot
-    400018: right shoulder
-    400020: spine
-    4300000: little boy
-    7400000: Littleboy|walking
-    7400002: little boy|Scared
-    7400004: Armature|Jump
+    400002: Cone.001
+    400004: hair
+    400006: head
+    400008: //RootNode
+    400010: left arm
+    400012: left hand
+    400014: left shoulder
+    400016: right arm
+    400018: right hand
+    400020: right shoulder
+    400022: spine
+    400024: waist
+    400026: waist.001
+    4300000: Cone.001
+    7400000: LadyArmature|jump
+    7400002: LadyArmature|scared
+    7400004: LadyArmature|walking
     9500000: //RootNode
-    13700000: //RootNode
+    13700000: Cone.001
   materials:
     importMaterials: 1
     materialName: 0
@@ -48,10 +54,118 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Littleboy|walking
+      name: LadyArmature|jump
+      takeName: Armature|jump
+      firstFrame: 0
+      lastFrame: 89
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/spine
+        weight: 1
+      - path: Armature/spine/waist
+        weight: 1
+      - path: Armature/spine/waist/head
+        weight: 1
+      - path: Armature/spine/waist/head/hair
+        weight: 1
+      - path: Armature/spine/waist/left shoulder
+        weight: 1
+      - path: Armature/spine/waist/left shoulder/left arm
+        weight: 1
+      - path: Armature/spine/waist/left shoulder/left arm/left hand
+        weight: 1
+      - path: Armature/spine/waist/right shoulder
+        weight: 1
+      - path: Armature/spine/waist/right shoulder/right arm
+        weight: 1
+      - path: Armature/spine/waist/right shoulder/right arm/right hand
+        weight: 1
+      - path: Armature/spine/waist/waist.001
+        weight: 1
+      - path: Cone.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: LadyArmature|scared
+      takeName: Armature|scared
+      firstFrame: 0
+      lastFrame: 89
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/spine
+        weight: 1
+      - path: Armature/spine/waist
+        weight: 1
+      - path: Armature/spine/waist/head
+        weight: 1
+      - path: Armature/spine/waist/head/hair
+        weight: 1
+      - path: Armature/spine/waist/left shoulder
+        weight: 1
+      - path: Armature/spine/waist/left shoulder/left arm
+        weight: 1
+      - path: Armature/spine/waist/left shoulder/left arm/left hand
+        weight: 1
+      - path: Armature/spine/waist/right shoulder
+        weight: 1
+      - path: Armature/spine/waist/right shoulder/right arm
+        weight: 1
+      - path: Armature/spine/waist/right shoulder/right arm/right hand
+        weight: 1
+      - path: Armature/spine/waist/waist.001
+        weight: 1
+      - path: Cone.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: LadyArmature|walking
       takeName: Armature|walking
       firstFrame: 0
-      lastFrame: 64
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -75,119 +189,29 @@ ModelImporter:
         weight: 1
       - path: Armature
         weight: 1
-      - path: Armature/left foot
-        weight: 1
-      - path: Armature/right foot
-        weight: 1
       - path: Armature/spine
         weight: 1
-      - path: Armature/spine/head
+      - path: Armature/spine/waist
         weight: 1
-      - path: Armature/spine/head/hat
+      - path: Armature/spine/waist/head
         weight: 1
-      - path: Armature/spine/left shoulder
+      - path: Armature/spine/waist/head/hair
         weight: 1
-      - path: Armature/spine/left shoulder/left arm
+      - path: Armature/spine/waist/left shoulder
         weight: 1
-      - path: Armature/spine/right shoulder
+      - path: Armature/spine/waist/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/right shoulder/right arm
+      - path: Armature/spine/waist/left shoulder/left arm/left hand
         weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: little boy|Scared
-      takeName: little boy|Scared
-      firstFrame: 0
-      lastFrame: 93
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
+      - path: Armature/spine/waist/right shoulder
         weight: 1
-      - path: Armature
+      - path: Armature/spine/waist/right shoulder/right arm
         weight: 1
-      - path: Armature/left foot
+      - path: Armature/spine/waist/right shoulder/right arm/right hand
         weight: 1
-      - path: Armature/right foot
+      - path: Armature/spine/waist/waist.001
         weight: 1
-      - path: Armature/spine
-        weight: 1
-      - path: Armature/spine/head
-        weight: 1
-      - path: Armature/spine/head/hat
-        weight: 1
-      - path: Armature/spine/left shoulder
-        weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
-      firstFrame: 0
-      lastFrame: 93
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/left foot
-        weight: 1
-      - path: Armature/right foot
-        weight: 1
-      - path: Armature/spine
-        weight: 1
-      - path: Armature/spine/head
-        weight: 1
-      - path: Armature/spine/head/hat
-        weight: 1
-      - path: Armature/spine/left shoulder
-        weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
+      - path: Cone.001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

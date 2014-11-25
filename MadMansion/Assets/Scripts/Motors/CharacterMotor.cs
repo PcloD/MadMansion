@@ -11,6 +11,11 @@ public enum ControlPriority {
 public class CharacterMotor : MonoBehaviour {
 
 	[SerializeField]
+	private Animator _animator;
+	[SerializeField]
+	private float _animationScale = 1f;
+
+	[SerializeField]
 	private float _movementSpeed = 7f;
 	public float MovementSpeed {
 		get { return _movementSpeed; }
@@ -107,7 +112,11 @@ public class CharacterMotor : MonoBehaviour {
 		var currRelativeVelocity = rigidbody.velocity;
 		var velocityChange = relativeVelocity - currRelativeVelocity;
 
+		if (_animator != null) {
+			_animator.speed = _rigidbody.velocity.magnitude * _animationScale;
+		}
 		_rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
+
 	}
 
 	private float TimeScale {

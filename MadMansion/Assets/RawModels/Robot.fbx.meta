@@ -1,36 +1,55 @@
 fileFormatVersion: 2
-guid: 7c38474ffe97946a48da1612a1269616
+guid: 8b9a2cf8142014c08aab849b59bcba8f
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: Armature
-    100002: hat
-    100004: head
-    100006: left arm
-    100008: left foot
+    100002: Camera
+    100004: Cube
+    100006: head
+    100008: left arm
     100010: left shoulder
-    100012: //RootNode
-    100014: right arm
-    100016: right foot
-    100018: right shoulder
-    100020: spine
+    100012: right arm
+    100014: right shoulder
+    100016: //RootNode
+    100018: spine
+    100020: Robot
+    100022: RobotArmature
     400000: Armature
-    400002: hat
-    400004: head
-    400006: left arm
-    400008: left foot
+    400002: Camera
+    400004: Cube
+    400006: head
+    400008: left arm
     400010: left shoulder
-    400012: //RootNode
-    400014: right arm
-    400016: right foot
-    400018: right shoulder
-    400020: spine
-    4300000: little boy
-    7400000: Littleboy|walking
-    7400002: little boy|Scared
-    7400004: Armature|Jump
+    400012: right arm
+    400014: right shoulder
+    400016: //RootNode
+    400018: spine
+    400020: Robot
+    400022: RobotArmature
+    4300000: Cube
+    4300002: Robot
+    7400000: Armature|1
+    7400002: Armature|ArmatureAction
+    7400004: Armature|jump
+    7400006: Armature|Jump
+    7400008: Armature|s
+    7400010: Armature|Scared
+    7400012: Armature|scared
+    7400014: Armature|walk
+    7400016: Cube|1
+    7400018: Cube|ArmatureAction
+    7400020: Cube|jump
+    7400022: Cube|s
+    7400024: Camera|1
+    7400026: Camera|ArmatureAction
+    7400028: Camera|s
+    7400030: RobotArmature|jump
+    7400032: RobotArmature|scared
+    7400034: RobotArmature|walk
     9500000: //RootNode
-    13700000: //RootNode
+    13700000: Cube
+    13700002: Robot
   materials:
     importMaterials: 1
     materialName: 0
@@ -48,10 +67,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Littleboy|walking
-      takeName: Armature|walking
+      name: RobotArmature|jump
+      takeName: RobotArmature|jump
       firstFrame: 0
-      lastFrame: 64
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -73,33 +92,29 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Robot
         weight: 1
-      - path: Armature/left foot
+      - path: RobotArmature
         weight: 1
-      - path: Armature/right foot
+      - path: RobotArmature/spine
         weight: 1
-      - path: Armature/spine
+      - path: RobotArmature/spine/head
         weight: 1
-      - path: Armature/spine/head
+      - path: RobotArmature/spine/left shoulder
         weight: 1
-      - path: Armature/spine/head/hat
+      - path: RobotArmature/spine/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/left shoulder
+      - path: RobotArmature/spine/right shoulder
         weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
+      - path: RobotArmature/spine/right shoulder/right arm
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: little boy|Scared
-      takeName: little boy|Scared
+      name: RobotArmature|scared
+      takeName: RobotArmature|scared
       firstFrame: 0
-      lastFrame: 93
+      lastFrame: 86
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -121,33 +136,29 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Robot
         weight: 1
-      - path: Armature/left foot
+      - path: RobotArmature
         weight: 1
-      - path: Armature/right foot
+      - path: RobotArmature/spine
         weight: 1
-      - path: Armature/spine
+      - path: RobotArmature/spine/head
         weight: 1
-      - path: Armature/spine/head
+      - path: RobotArmature/spine/left shoulder
         weight: 1
-      - path: Armature/spine/head/hat
+      - path: RobotArmature/spine/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/left shoulder
+      - path: RobotArmature/spine/right shoulder
         weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
+      - path: RobotArmature/spine/right shoulder/right arm
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
+      name: RobotArmature|walk
+      takeName: RobotArmature|walk
       firstFrame: 0
-      lastFrame: 93
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -169,25 +180,21 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Robot
         weight: 1
-      - path: Armature/left foot
+      - path: RobotArmature
         weight: 1
-      - path: Armature/right foot
+      - path: RobotArmature/spine
         weight: 1
-      - path: Armature/spine
+      - path: RobotArmature/spine/head
         weight: 1
-      - path: Armature/spine/head
+      - path: RobotArmature/spine/left shoulder
         weight: 1
-      - path: Armature/spine/head/hat
+      - path: RobotArmature/spine/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/left shoulder
+      - path: RobotArmature/spine/right shoulder
         weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
+      - path: RobotArmature/spine/right shoulder/right arm
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
