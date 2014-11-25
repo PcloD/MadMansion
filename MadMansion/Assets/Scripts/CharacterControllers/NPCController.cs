@@ -116,7 +116,6 @@ public class NPCController : MonoBehaviour {
 			} else {
 				stuckTimer += Time.fixedDeltaTime;
 				if (stuckTimer >= timeTillStuck) {
-					Debug.Log("STUCK " + gameObject.name);
 					stuckTimer = 0f;
 					if (_nextRoom != null) {
 						_destList = RoomManager.g.PathToRoomFrom(_nextRoom, _transform.position);
