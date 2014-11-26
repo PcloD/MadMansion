@@ -86,12 +86,11 @@ public class NPCController : MonoBehaviour {
 		}
 	}
 
-	IFurniture _nextFurniture = null;
+	// IFurniture _nextFurniture = null;
 	private void PickDest () {
 		if (_destList == null || _destList.Count == 0) {
 			IFurniture nextFurniture = _furniturePattern[_currFurnitureIndex];
-			_nextFurniture = nextFurniture;
-			// _destList = RoomManager.g.PathBetweenRooms(_currRoomFinder.Room, nextFurniture);
+			// _nextFurniture = nextFurniture;
 			_destList = RoomManager.g.PathToFurnitureFrom(nextFurniture, _transform.position);
 			_currFurnitureIndex++;
 			_currFurnitureIndex %= _furniturePattern.Count;
@@ -107,11 +106,11 @@ public class NPCController : MonoBehaviour {
 
 	private IEnumerator ContinuouslySteerToDest () {
 		YieldInstruction wait = new WaitForFixedUpdate();
-		float stuckSensitivity = 1f;
-		float stuckTimer = 0f;
-		float timeTillStuck = 1f;
+		// float stuckSensitivity = 1f;
+		// float stuckTimer = 0f;
+		// float timeTillStuck = 1f;
 		// Vector3 stuckDest = Vector3.zero;
-		Vector3 lastPos = _transform.position;
+		// Vector3 lastPos = _transform.position;
 		do {
 			Debug.DrawLine(_transform.position, _currDest);
 			// if ((lastPos - _transform.position).sqrMagnitude > stuckSensitivity * _characterMotor.MovementSpeed || _paused) {
