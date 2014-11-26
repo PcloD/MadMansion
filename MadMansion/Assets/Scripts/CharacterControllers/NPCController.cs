@@ -20,8 +20,8 @@ public class NPCController : MonoBehaviour {
 	private Vector3 _currDest;
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
-	private List<Room> _roomPattern;
-	private int _currRoomIndex = 0;
+	private List<IFurniture> _furniturePattern;
+	private int _currFurnitureIndex = 0;
 	private CurrRoomFinder _currRoomFinder;
 	private List<Vector3> _destList;
 	private float[] _contextMap;
@@ -58,8 +58,8 @@ public class NPCController : MonoBehaviour {
 		_paused = false;
 	}
 
-	public void InitRoomPattern (List<Room> pattern) {
-		_roomPattern = pattern;
+	public void InitFurniturePattern (List<IFurniture> pattern) {
+		_furniturePattern = pattern;
 	}
 
 	private Vector3 RaycastOrigin {
@@ -86,15 +86,15 @@ public class NPCController : MonoBehaviour {
 		}
 	}
 
-	Room _nextRoom = null;
+	IFurniture _nextFurniture = null;
 	private void PickDest () {
 		if (_destList == null || _destList.Count == 0) {
-			Room nextRoom = _roomPattern[_currRoomIndex];
-			_nextRoom = nextRoom;
-			// _destList = RoomManager.g.PathBetweenRooms(_currRoomFinder.Room, nextRoom);
-			_destList = RoomManager.g.PathToRoomFrom(nextRoom, _transform.position);
-			_currRoomIndex++;
-			_currRoomIndex %= _roomPattern.Count;
+			IFurniture nextFurniture = _furniturePattern[_currFurnitureIndex];
+			_nextFurniture = nextFurniture;
+			// _destList = RoomManager.g.PathBetweenRooms(_currRoomFinder.Room, nextFurniture);
+			_destList = RoomManager.g.PathToFurnitureFrom(nextFurniture, _transform.position);
+			_currFurnitureIndex++;
+			_currFurnitureIndex %= _furniturePattern.Count;
 		}
 
 		if (_destList.Count > 0) {
@@ -114,22 +114,22 @@ public class NPCController : MonoBehaviour {
 		Vector3 lastPos = _transform.position;
 		do {
 			Debug.DrawLine(_transform.position, _currDest);
-			if ((lastPos - _transform.position).sqrMagnitude > stuckSensitivity * _characterMotor.MovementSpeed || _paused) {
-				lastPos = _transform.position;
-				stuckTimer = 0f;
-			} else {
-				stuckTimer += Time.fixedDeltaTime;
-				if (stuckTimer >= timeTillStuck) {
-					stuckTimer = 0f;
-					if (_nextRoom != null) {
-						_destList = RoomManager.g.PathToRoomFrom(_nextRoom, _transform.position);
-					}
-					// stuckDest = _currDest;
-					// _currDest = _transform.position + (_transform.position - _currDest);
-					// yield return new WaitForSeconds(1f);
-					// _currDest = stuckDest;
-				}
-			}
+			// if ((lastPos - _transform.position).sqrMagnitude > stuckSensitivity * _characterMotor.MovementSpeed || _paused) {
+			// 	lastPos = _transform.position;
+			// 	stuckTimer = 0f;
+			// } else {
+			// 	stuckTimer += Time.fixedDeltaTime;
+			// 	if (stuckTimer >= timeTillStuck) {
+			// 		stuckTimer = 0f;
+			// 		if (_nextFurniture != null) {
+			// 			_destList = RoomManager.g.PathToFurnitureFrom(_nextFurniture, _transform.position);
+			// 		}
+			// 		// stuckDest = _currDest;
+			// 		// _currDest = _transform.position + (_transform.position - _currDest);
+			// 		// yield return new WaitForSeconds(1f);
+			// 		// _currDest = stuckDest;
+			// 	}
+			// }
 
 			yield return wait;
 		} while ((_currDest - _transform.position).sqrMagnitude > _destinationSensitivity);

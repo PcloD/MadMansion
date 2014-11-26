@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using MadMansion.Extensions.Interface;
 
 [RequireComponent (typeof(BoxCollider))]
 public class Room : MonoBehaviour {
 
+	[SerializeField]
+	private Transform[] _furnitureTransform;
 	private HashSet<CharacterMotor> _characters = new HashSet<CharacterMotor>();
 	private BoxCollider _collider;
 	private Dictionary<Room,RoomTransition> _transitionsForRooms = new Dictionary<Room,RoomTransition>();
@@ -51,6 +54,12 @@ public class Room : MonoBehaviour {
 		get {	float inset = 1f;
 				return new Vector3(Random.Range(_collider.bounds.min.x + inset, _collider.bounds.max.x - inset), 0f,
 						         Random.Range(_collider.bounds.min.z + inset, _collider.bounds.max.z - inset)); }
+	}
+
+	public IFurniture RandomFurniture {
+		get {
+			return _furnitureTransform[Random.Range(0,_furnitureTransform.Length)].gameObject.GetInterface<IFurniture>();
+		}
 	}
 
 	public GhostController ClosestGhostToCharacter (CharacterMotor character) {

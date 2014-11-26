@@ -26,7 +26,9 @@ public class AssignCharactersOnStart : MonoBehaviour {
 			npcController.enabled = true;
 			hunterController.enabled = false;
 			ghostController.enabled = false;
-			npcController.InitRoomPattern(RoomManager.g.RandomRoomList(3));
+			int minimumFurnitureCount = Mathf.Max(0, RoomManager.g.RoomCount - 1);
+			int maximumFurnitureCount = RoomManager.g.RoomCount;
+			npcController.InitFurniturePattern(RoomManager.g.RandomFurnitureList(Random.Range(minimumFurnitureCount,maximumFurnitureCount)));
 		}
 
 		int hunterIndex = Random.Range(0,_players.Length);
