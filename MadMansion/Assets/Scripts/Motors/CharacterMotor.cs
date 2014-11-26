@@ -14,6 +14,10 @@ public class CharacterMotor : MonoBehaviour {
 	private Animator _animator;
 	[SerializeField]
 	private float _animationScale = 1f;
+	[SerializeField]
+	private float _confusionDuration = 3f;
+	[SerializeField]
+	private float _reactionTime = 0.2f;
 
 	[SerializeField]
 	private float _movementSpeed = 7f;
@@ -30,6 +34,7 @@ public class CharacterMotor : MonoBehaviour {
 
 	private GhostController _ghostController;
 	private HunterController _hunterController;
+	private CurrRoomFinder _currRoomFinder;
 
 	private Vector3 _ghostInputVector;
 	private Vector3 _hunterInputVector;
@@ -65,6 +70,7 @@ public class CharacterMotor : MonoBehaviour {
 		_rigidbody = GetComponent<Rigidbody>();
 		_ghostController = GetComponent<GhostController>();
 		_hunterController = GetComponent<HunterController>();
+		_currRoomFinder = GetComponent<CurrRoomFinder>();
 		_transform = transform;
 	}
 
@@ -72,12 +78,52 @@ public class CharacterMotor : MonoBehaviour {
 	{
 		Events.g.AddListener<PauseGameEvent>(PauseMovement);
 		Events.g.AddListener<ResumeGameEvent>(ResumeMovement);
+		Events.g.AddListener<HauntEvent>(RespondToHaunt);
+		Events.g.AddListener<PossessionEvent>(RespondToPossession);
 	}
 
 	void OnDisable ()
 	{
 		Events.g.RemoveListener<PauseGameEvent>(PauseMovement);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeMovement);
+		Events.g.RemoveListener<HauntEvent>(RespondToHaunt);
+		Events.g.RemoveListener<PossessionEvent>(RespondToPossession);
+	}
+
+	private void RespondToHaunt (HauntEvent e) {
+		if (!e.succeeded) { return; }
+		if (e.IsStart) {
+			StartCoroutine(GetScaredByHaunt(e.room == _currRoomFinder.Room));
+		} else {
+			StartCoroutine(RecoverFromHaunt(e.room == _currRoomFinder.Room));
+		}
+	}
+
+	private void RespondToPossession (PossessionEvent e) {
+		if (e.succeeded) {
+			StartCoroutine(GetConfusedByPossession(e.room == _currRoomFinder.Room));
+		}
+	}
+
+	private IEnumerator GetScaredByHaunt (bool inSameRoom) {
+		yield return new WaitForSeconds(_reactionTime);
+		_animator.SetBool(AnimationConstants.IsScared, true);
+	}
+
+	private IEnumerator RecoverFromHaunt (bool inSameRoom) {
+		yield return new WaitForSeconds(_reactionTime);
+		_animator.SetBool(AnimationConstants.IsScared, false);
+	}
+
+	private IEnumerator GetConfusedByPossession (bool inSameRoom) {
+		yield return new WaitForSeconds(_reactionTime);
+		_animator.SetBool(AnimationConstants.IsConfused, true);
+		yield return StartCoroutine(RecoverFromPossession(inSameRoom));
+	}
+
+	private IEnumerator RecoverFromPossession (bool inSameRoom) {
+		yield return new WaitForSeconds(_confusionDuration);
+		_animator.SetBool(AnimationConstants.IsConfused, false);
 	}
 
 	private void PauseMovement (PauseGameEvent e)
@@ -113,7 +159,14 @@ public class CharacterMotor : MonoBehaviour {
 		var velocityChange = relativeVelocity - currRelativeVelocity;
 
 		if (_animator != null) {
-			_animator.speed = _rigidbody.velocity.magnitude * _animationScale;
+			AnimatorStateInfo currentState = _animator.GetCurrentAnimatorStateInfo(0);
+			if (currentState.nameHash == AnimationConstants.Walking &&
+				!_animator.GetBool(AnimationConstants.IsScared) &&
+				!_animator.GetBool(AnimationConstants.IsConfused)) {
+				_animator.speed = _rigidbody.velocity.magnitude * _animationScale;
+			} else {
+				_animator.speed = 1f; // So that animation speed is not affected
+			}
 		}
 		_rigidbody.AddForce(velocityChange, ForceMode.VelocityChange);
 

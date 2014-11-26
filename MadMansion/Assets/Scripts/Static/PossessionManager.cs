@@ -137,11 +137,11 @@ public class PossessionManager : MonoBehaviour {
 			CharacterMotor character = ghost.GetComponent<CharacterMotor>();
 			GhostController closest = room.ClosestGhostToCharacter(character);
 			if (closest == null) {
-				Events.g.Raise(new PossessionEvent(false));
+				Events.g.Raise(new PossessionEvent(false, room: null));
 				return;
 			}
 
-			Events.g.Raise(new PossessionEvent(true));
+			Events.g.Raise(new PossessionEvent(true, room: room));
 			closest.enabled = true;
 			ghost.enabled = false;
 
@@ -154,7 +154,7 @@ public class PossessionManager : MonoBehaviour {
 
 			StartPossessionCharge();
 		} else {
-			Events.g.Raise(new PossessionEvent(false));
+			Events.g.Raise(new PossessionEvent(false, room: null));
 		}
 	}
 

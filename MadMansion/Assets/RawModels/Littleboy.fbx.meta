@@ -14,6 +14,7 @@ ModelImporter:
     100016: right foot
     100018: right shoulder
     100020: spine
+    100022: Littleboy
     400000: Armature
     400002: hat
     400004: head
@@ -25,10 +26,15 @@ ModelImporter:
     400016: right foot
     400018: right shoulder
     400020: spine
+    400022: Littleboy
     4300000: little boy
-    7400000: Littleboy|walking
-    7400002: little boy|Scared
-    7400004: Armature|Jump
+    7400000: little boy|Scared
+    7400002: Armature|Jump
+    7400004: Armature|Scared
+    7400006: Armature|walking
+    7400008: Littleboy|Jump
+    7400010: Littleboy|Scared
+    7400012: Littleboy|walking
     9500000: //RootNode
     13700000: //RootNode
   materials:
@@ -48,8 +54,104 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
+      name: Littleboy|Jump
+      takeName: Littleboy|Jump
+      firstFrame: 0
+      lastFrame: 93
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Littleboy
+        weight: 1
+      - path: Littleboy/left foot
+        weight: 1
+      - path: Littleboy/right foot
+        weight: 1
+      - path: Littleboy/spine
+        weight: 1
+      - path: Littleboy/spine/head
+        weight: 1
+      - path: Littleboy/spine/head/hat
+        weight: 1
+      - path: Littleboy/spine/left shoulder
+        weight: 1
+      - path: Littleboy/spine/left shoulder/left arm
+        weight: 1
+      - path: Littleboy/spine/right shoulder
+        weight: 1
+      - path: Littleboy/spine/right shoulder/right arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Littleboy|Scared
+      takeName: Littleboy|Scared
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Littleboy
+        weight: 1
+      - path: Littleboy/left foot
+        weight: 1
+      - path: Littleboy/right foot
+        weight: 1
+      - path: Littleboy/spine
+        weight: 1
+      - path: Littleboy/spine/head
+        weight: 1
+      - path: Littleboy/spine/head/hat
+        weight: 1
+      - path: Littleboy/spine/left shoulder
+        weight: 1
+      - path: Littleboy/spine/left shoulder/left arm
+        weight: 1
+      - path: Littleboy/spine/right shoulder
+        weight: 1
+      - path: Littleboy/spine/right shoulder/right arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
       name: Littleboy|walking
-      takeName: Armature|walking
+      takeName: Littleboy|walking
       firstFrame: 0
       lastFrame: 64
       wrapMode: 0
@@ -73,121 +175,25 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Littleboy
         weight: 1
-      - path: Armature/left foot
+      - path: Littleboy/left foot
         weight: 1
-      - path: Armature/right foot
+      - path: Littleboy/right foot
         weight: 1
-      - path: Armature/spine
+      - path: Littleboy/spine
         weight: 1
-      - path: Armature/spine/head
+      - path: Littleboy/spine/head
         weight: 1
-      - path: Armature/spine/head/hat
+      - path: Littleboy/spine/head/hat
         weight: 1
-      - path: Armature/spine/left shoulder
+      - path: Littleboy/spine/left shoulder
         weight: 1
-      - path: Armature/spine/left shoulder/left arm
+      - path: Littleboy/spine/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/right shoulder
+      - path: Littleboy/spine/right shoulder
         weight: 1
-      - path: Armature/spine/right shoulder/right arm
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: little boy|Scared
-      takeName: little boy|Scared
-      firstFrame: 0
-      lastFrame: 93
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/left foot
-        weight: 1
-      - path: Armature/right foot
-        weight: 1
-      - path: Armature/spine
-        weight: 1
-      - path: Armature/spine/head
-        weight: 1
-      - path: Armature/spine/head/hat
-        weight: 1
-      - path: Armature/spine/left shoulder
-        weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Armature|Jump
-      takeName: Armature|Jump
-      firstFrame: 0
-      lastFrame: 93
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/left foot
-        weight: 1
-      - path: Armature/right foot
-        weight: 1
-      - path: Armature/spine
-        weight: 1
-      - path: Armature/spine/head
-        weight: 1
-      - path: Armature/spine/head/hat
-        weight: 1
-      - path: Armature/spine/left shoulder
-        weight: 1
-      - path: Armature/spine/left shoulder/left arm
-        weight: 1
-      - path: Armature/spine/right shoulder
-        weight: 1
-      - path: Armature/spine/right shoulder/right arm
+      - path: Littleboy/spine/right shoulder/right arm
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

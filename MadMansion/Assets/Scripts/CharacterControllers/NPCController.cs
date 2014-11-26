@@ -97,8 +97,12 @@ public class NPCController : MonoBehaviour {
 			_currRoomIndex %= _roomPattern.Count;
 		}
 
-		_currDest = _destList[0];
-		_destList.RemoveAt(0);
+		if (_destList.Count > 0) {
+			_currDest = _destList[0];
+			_destList.RemoveAt(0);
+		} else {
+			_currDest = _transform.position;
+		}
 	}
 
 	private IEnumerator ContinuouslySteerToDest () {

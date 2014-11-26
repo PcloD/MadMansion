@@ -128,6 +128,7 @@ public class HauntManager : MonoBehaviour {
 		get { return _hauntProgressTimerIsRunning && (_hauntProgressTimer.ElapsedMilliseconds < _hauntDuration * 1000f); }
 	}
 
+	Room _hauntedRoom = null;
 	public void StartHauntInRoom (Room room) {
 		Hauntable hauntable = room.GetComponent<Hauntable>();
 		if (CanHaunt && hauntable != null && !_catchingInProgress) {
@@ -136,7 +137,10 @@ public class HauntManager : MonoBehaviour {
 			_hauntChargeTimer.Stop();
 			_hauntChargeTimer.Reset();
 			_hauntProgressTimer.Start();
-			Events.g.Raise(new HauntEvent(starting: true, duration: _hauntDuration));
+			_hauntedRoom = room;
+			Events.g.Raise(new HauntEvent(succeeded: true, starting: true, duration: _hauntDuration, room: room));
+		} else {
+			Events.g.Raise(new HauntEvent(succeeded: false, starting: true, duration: _hauntDuration, room: room));
 		}
 	}
 
@@ -151,7 +155,7 @@ public class HauntManager : MonoBehaviour {
 			_hauntProgressTimer.Stop();
 			_hauntProgressTimer.Reset();
 			_hauntCount++;
-			Events.g.Raise(new HauntEvent(starting: false, duration: _hauntDuration));
+			Events.g.Raise(new HauntEvent(succeeded: true, starting: false, duration: _hauntDuration, room: _hauntedRoom));
 			StartHauntCharge();
 		}
 		if (_hauntCount >= _requiredHauntCount) {
