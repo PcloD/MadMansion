@@ -26,6 +26,7 @@ public class HauntUI : MonoBehaviour {
 		for (int i = 0; i < HauntManager.g.RequiredHauntCount; i++) {
 			Vector3 pos = _transform.position + _transform.right * i * _separation;
 			GameObject newHauntIcon = Instantiate(_hauntIconPrefab, pos, _transform.rotation) as GameObject;
+			newHauntIcon.transform.SetParent(this.transform);
 			_hauntIcons[i] = newHauntIcon.GetComponent<HauntIcon>();
 		}
 	}
