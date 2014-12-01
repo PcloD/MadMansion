@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public enum HauntState {
@@ -7,7 +8,7 @@ public enum HauntState {
 	Haunted
 }
 
-[RequireComponent (typeof(SpriteRenderer))]
+[RequireComponent (typeof(Image))]
 public class HauntIcon : MonoBehaviour {
 
 	[SerializeField]
@@ -17,7 +18,7 @@ public class HauntIcon : MonoBehaviour {
 	[SerializeField]
 	private Sprite _canHauntImage;
 	[SerializeField]
-	private Renderer _radialTimerRenderer;
+	private Image _radialTimerRenderer;
 
 	private HauntState _hauntState;
 	public HauntState HauntState {
@@ -40,22 +41,23 @@ public class HauntIcon : MonoBehaviour {
 	}
 
 	public float PercentageFilled {
-		set { _radialTimerRenderer.material.SetFloat ("_Cutoff", 1f-value); }
+		set { _radialTimerRenderer.material.SetFloat ("_Fraction", value); }
 	}
 
 	public Color Color {
 		set { _radialTimerRenderer.material.SetColor ("_Color", value); }
 	}
 
-	private SpriteRenderer _spriteRenderer;
+	private Image _spriteRenderer;
 
 	void Awake () {
-		_spriteRenderer = GetComponent<SpriteRenderer>();
+		_spriteRenderer = GetComponent<Image>();
+		_radialTimerRenderer.material = new Material(_radialTimerRenderer.material);
 	}
 
 	void Start () {
 		HauntState = HauntState.WaitForHaunt;
-		_radialTimerRenderer.material.SetFloat ("_Cutoff", 1f);
+		_radialTimerRenderer.material.SetFloat ("_Fraction", 0f);
 	}
 
 

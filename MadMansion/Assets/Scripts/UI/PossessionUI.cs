@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public enum PossessionState {
@@ -16,7 +17,7 @@ public class PossessionUI : MonoBehaviour {
 	[SerializeField]
 	private Sprite _mustPossessImage;
 	[SerializeField]
-	private Renderer _radialTimerRenderer;
+	private Image _radialTimerRenderer;
 
 	[SerializeField]
 	private Color _chargingColor;
@@ -41,15 +42,16 @@ public class PossessionUI : MonoBehaviour {
 		}
 	}
 
-	private SpriteRenderer _spriteRenderer;
+	private Image _spriteRenderer;
 
 	void Awake () {
-		_spriteRenderer = GetComponent<SpriteRenderer>();
+		_spriteRenderer = GetComponent<Image>();
+		_radialTimerRenderer.material = new Material(_radialTimerRenderer.material);
 	}
 
 	void Start () {
 		PossessionState = PossessionState.WaitForPossession;
-		_radialTimerRenderer.material.SetFloat ("_Cutoff", 0f);
+		_radialTimerRenderer.material.SetFloat ("_Fraction", 1f);
 	}
 
 	void Update () {
@@ -57,7 +59,7 @@ public class PossessionUI : MonoBehaviour {
 	}
 
 	public float PercentageFilled {
-		set { _radialTimerRenderer.material.SetFloat ("_Cutoff", 1f-value); }
+		set { _radialTimerRenderer.material.SetFloat ("_Fraction", value); }
 	}
 
 	public Color Color {
