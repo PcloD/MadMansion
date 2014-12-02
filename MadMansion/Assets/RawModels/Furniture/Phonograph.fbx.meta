@@ -1,30 +1,25 @@
 fileFormatVersion: 2
-guid: 4cfaba4a52f8b466faf524e204d957db
+guid: 216d7d7f9e6b643728e26282cee774a0
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: Armature
-    100002: Bone
-    100004: Bone_001
-    100006: Cube
+    100002: Crank
+    100004: Cube
+    100006: Needle
     100008: //RootNode
-    100010: Crank
-    100012: Needle
-    100014: Record
-    100016: Speaker
+    100010: Record
+    100012: Speaker
     400000: Armature
-    400002: Bone
-    400004: Bone_001
-    400006: Cube
+    400002: Crank
+    400004: Cube
+    400006: Needle
     400008: //RootNode
-    400010: Crank
-    400012: Needle
-    400014: Record
-    400016: Speaker
+    400010: Record
+    400012: Speaker
     2300000: Cube
     3300000: Cube
     4300000: Cube
-    7400000: Default Take
     9500000: //RootNode
   materials:
     importMaterials: 1
