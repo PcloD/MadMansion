@@ -15,6 +15,7 @@ public class GhostSelectionMotor : MonoBehaviour {
 	private float _inputDelay = 0.3f;
 
 	private Transform _ghostSelectionCircleTransform = null;
+	private Vector3 _oldPos = Vector3.zero;
 	private Transform _targetTransform;
 	private Transform _transform;
 	private CurrRoomFinder _currRoomFinder;
@@ -34,6 +35,7 @@ public class GhostSelectionMotor : MonoBehaviour {
 		_ghostSelectionCircleTransform = ghostSelectionCircle.transform;
 		HashSet<CharacterMotor> peopleInRoom = _currRoomFinder.Room.Characters;
 		_targetTransform = _transform;
+		_oldPos = _targetTransform.position;
 
 		HashSet<Transform> exclude = new HashSet<Transform>();
 		Transform currTransform = _transform;
@@ -86,7 +88,11 @@ public class GhostSelectionMotor : MonoBehaviour {
 			_inputDelayer.Start();
 		}
 		_currSelection = Modulo(_currSelection + delta, _sortedTransformsInRoom.Count);
+		if (_targetTransform != null) {
+			_targetTransform.position = _oldPos;
+		}
 		_targetTransform = _sortedTransformsInRoom[_currSelection];
+		_oldPos = _targetTransform.position;
 		_inputDelayer.Reset();
 		_inputDelayer.Start();
 	}
@@ -94,6 +100,9 @@ public class GhostSelectionMotor : MonoBehaviour {
 	void LateUpdate () {
 		if (_ghostSelectionCircleTransform != null && _targetTransform != null) {
 			_ghostSelectionCircleTransform.position = _targetTransform.position;
+			if (_inputDelayer.IsRunning) {
+				_targetTransform.position = _oldPos + Vector3.up * 3f * _inputDelayer.ElapsedMilliseconds/1000f;
+			}
 		}
 	}
 

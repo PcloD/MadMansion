@@ -810,7 +810,7 @@ Transform:
   - {fileID: 1129756329}
   - {fileID: 314000159}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
 --- !u!1 &177240121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,7 +2950,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
 --- !u!1001 &562495693
 Prefab:
   m_ObjectHideFlags: 0
@@ -9358,13 +9358,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endText: {fileID: 445154392}
   _endTextReason: {fileID: 1764552061}
-  _hunterWinText: Hunter Wins!
-  _ghostWinText: Ghost Wins!
-  _noPlayerWinText: Hunter Guessed Correctly!
-  _hunterCaughtGhostText: You Caught the Ghost
-  _ghostHauntedHouseText: You Haunted the House
-  _hunterCaughtGhostInSameBodyText: You Sacrificed Yourself
-  _hunterCaughtInnocentText: Hunter Guessed Incorrectly
+  _hunterWinText: Hunter Wins
+  _ghostWinText: Ghost Wins
+  _noPlayerWinText: Draw
+  _hunterCaughtGhostText: The Ghost was Banished from the Dollhouse!
+  _ghostHauntedHouseText: The Dollhouse was Haunted Forever!
+  _hunterCaughtGhostInSameBodyText: The Hunter was Sacrificed!
+  _hunterCaughtInnocentText: The Hunter is a Charlatan!
 --- !u!222 &1501599839
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9400,7 +9400,7 @@ Transform:
   - {fileID: 898553681}
   - {fileID: 1063068547}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 12
 --- !u!1001 &1546462875
 Prefab:
   m_ObjectHideFlags: 0
@@ -9604,7 +9604,7 @@ Transform:
   - {fileID: 1001126382}
   - {fileID: 296290078}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
 --- !u!95 &1563708359
 Animator:
   serializedVersion: 3
@@ -9925,7 +9925,7 @@ Transform:
   - {fileID: 850615758}
   - {fileID: 862276735}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
 --- !u!1 &1680109575
 GameObject:
   m_ObjectHideFlags: 0
