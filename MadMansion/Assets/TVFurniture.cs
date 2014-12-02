@@ -78,12 +78,10 @@ public class TVFurniture : MonoBehaviour, IFurniture {
 
     private void On () {
         _on = true;
-        // StartCoroutine(BeginTurningOn());
     }
 
     private void Off () {
         _on = false;
         JumpToFrame(35);
-        // StartCoroutine(BeginTurningOff());
     }
 }

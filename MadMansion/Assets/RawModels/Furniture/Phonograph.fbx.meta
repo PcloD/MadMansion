@@ -10,6 +10,7 @@ ModelImporter:
     100008: //RootNode
     100010: Record
     100012: Speaker
+    100014: PhonographArmature
     400000: Armature
     400002: Crank
     400004: Cube
@@ -17,10 +18,12 @@ ModelImporter:
     400008: //RootNode
     400010: Record
     400012: Speaker
+    400014: PhonographArmature
     2300000: Cube
     3300000: Cube
     4300000: Cube
     9500000: //RootNode
+    13700000: Cube
   materials:
     importMaterials: 1
     materialName: 0
