@@ -9019,6 +9019,10 @@ Prefab:
       propertyPath: _crankTransform
       value: 
       objectReference: {fileID: 497165016}
+    - target: {fileID: 100026, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400022, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
@@ -9352,13 +9356,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endText: {fileID: 445154392}
   _endTextReason: {fileID: 1764552061}
-  _hunterWinText: Hunter Wins
-  _ghostWinText: Ghost Wins
+  _hunterWinText: Seeker Wins
+  _ghostWinText: Mage Wins
   _noPlayerWinText: Draw
-  _hunterCaughtGhostText: The Ghost was Banished from the Dollhouse!
-  _ghostHauntedHouseText: The Dollhouse was Haunted Forever!
-  _hunterCaughtGhostInSameBodyText: The Hunter was Sacrificed!
-  _hunterCaughtInnocentText: The Hunter is a Charlatan!
+  _hunterCaughtGhostText: The Seeker stole the Mage's powers!
+  _ghostHauntedHouseText: The Mage can keep the powerful magic for another night!
+  _hunterCaughtGhostInSameBodyText: The Seeker and Mage are in the same doll!
+  _hunterCaughtInnocentText: The Seeker's power is dwindling!
 --- !u!222 &1501599839
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9929,7 +9933,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1680109576}
   - 114: {fileID: 1680109577}
-  m_Layer: 0
+  - 65: {fileID: 1680109578}
+  m_Layer: 2
   m_Name: Fireplace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9988,6 +9993,18 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!65 &1680109578
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1680109575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.49308395, y: 5.51963043, z: 1.78894901}
+  m_Center: {x: 0, y: 2.24000001, z: 0}
 --- !u!1 &1707468315
 GameObject:
   m_ObjectHideFlags: 0
@@ -10850,8 +10867,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: 0, y: -49}
-  m_SizeDelta: {x: 0, y: 68}
+  m_AnchoredPosition: {x: 0, y: -63}
+  m_SizeDelta: {x: 0, y: 96}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1764552061
 MonoBehaviour:
@@ -10877,7 +10894,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: .579999983
   m_Text: 
 --- !u!222 &1764552062
 CanvasRenderer:

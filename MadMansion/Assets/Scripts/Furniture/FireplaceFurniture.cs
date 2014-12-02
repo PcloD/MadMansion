@@ -28,7 +28,7 @@ public class FireplaceFurniture : MonoBehaviour, IFurniture {
     AnimationCurve _particleSizeCurve;
     private HashSet<FireParticle> visibleParticles = new HashSet<FireParticle>();
     private Queue<FireParticle> pooledParticles = new Queue<FireParticle>();
-    private bool _on = true;//false;
+    private bool _on = false;
     private int _visitors = 0;
 
     void Start() {
