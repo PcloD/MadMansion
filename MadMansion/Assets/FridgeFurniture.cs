@@ -21,7 +21,6 @@ public class FridgeFurniture : MonoBehaviour, IFurniture {
     void OnTriggerEnter (Collider other) {
         CharacterMotor character = other.GetComponent<CharacterMotor>();
         if (character != null) {
-            Debug.Log("OPEN");
             _visitors++;
             if (!_open && _visitors == 1) {
                 Open();

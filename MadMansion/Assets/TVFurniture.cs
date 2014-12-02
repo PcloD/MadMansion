@@ -14,6 +14,8 @@ public class TVFurniture : MonoBehaviour, IFurniture {
     private Renderer _renderer;
     [SerializeField]
     private int _totalFrames = 100;
+    private bool _on = false;
+    private int _visitors = 0;
 
     //the current frame to display
     private int index = 0;
@@ -25,6 +27,7 @@ public class TVFurniture : MonoBehaviour, IFurniture {
     void Start()
     {
         StartCoroutine(UpdateTiling());
+        JumpToFrame(35);
 
         //set the tile size of the texture (in UV units), based on the _rows and _columns
         Vector2 size = new Vector2(1f / _columns, 1f / _rows);
@@ -34,19 +37,53 @@ public class TVFurniture : MonoBehaviour, IFurniture {
     private IEnumerator UpdateTiling()
     {
         while (true) {
-            //move to the next index
-            index++;
-            if (index >= _totalFrames)
-                index = 0;
-
-            //split into x and y indexes
-            Vector2 offset = new Vector2((float)index / _columns - (index / _columns), //x index
-                                          (index / _columns) / (float)_rows);          //y index
-
-            _renderer.materials[_materialIndex].SetTextureOffset("_MainTex", offset);
-
+        	if (_on) {
+	            //move to the next index
+	            index++;
+	            if (index >= _totalFrames)
+	                index = 0;
+	            JumpToFrame(index);
+        	}
             yield return new WaitForSeconds(1f / _framesPerSecond);
         }
 
+    }
+
+    private void JumpToFrame (int index) {
+        Vector2 offset = new Vector2((float)index / _columns - (index / _columns), //x index
+                                      (index / _columns) / (float)_rows);          //y index
+
+        _renderer.materials[_materialIndex].SetTextureOffset("_MainTex", offset);
+    }
+
+    void OnTriggerEnter (Collider other) {
+        CharacterMotor character = other.GetComponent<CharacterMotor>();
+        if (character != null) {
+            _visitors++;
+            if (!_on && _visitors == 1) {
+                On();
+            }
+        }
+    }
+
+    void OnTriggerExit (Collider other) {
+        CharacterMotor character = other.GetComponent<CharacterMotor>();
+        if (character != null) {
+            _visitors--;
+            if (_on && _visitors == 0) {
+                Off();
+            }
+        }
+    }
+
+    private void On () {
+        _on = true;
+        // StartCoroutine(BeginTurningOn());
+    }
+
+    private void Off () {
+        _on = false;
+        JumpToFrame(35);
+        // StartCoroutine(BeginTurningOff());
     }
 }
