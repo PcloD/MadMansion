@@ -76,19 +76,24 @@ public class NPCController : MonoBehaviour {
 
 	private bool _idle = false;
 	private IEnumerator MovementLoop () {
-		yield return new WaitForSeconds(Random.Range(0f,1f));
+		_idle = true;
+		yield return new WaitForSeconds(Random.Range(1f,3f));
+		_idle = false;
 		while (true) {
-			_idle = true;
-			yield return new WaitForSeconds(_pauseCurve.Evaluate(Random.Range(0f,1f)));
-			_idle = false;
-			PickDest();
+			yield return StartCoroutine(PickDest());
 			yield return StartCoroutine(ContinuouslySteerToDest ());
 		}
 	}
 
 	// IFurniture _nextFurniture = null;
-	private void PickDest () {
+	private IEnumerator PickDest () {
 		if (_destList == null || _destList.Count == 0) {
+			if (_destList != null) {
+				_idle = true;
+				yield return new WaitForSeconds(_pauseCurve.Evaluate(Random.Range(0f,1f)));
+				_idle = false;
+			}
+
 			IFurniture nextFurniture = _furniturePattern[_currFurnitureIndex];
 			// _nextFurniture = nextFurniture;
 			_destList = RoomManager.g.PathToFurnitureFrom(nextFurniture, _transform.position);
@@ -102,6 +107,7 @@ public class NPCController : MonoBehaviour {
 		} else {
 			_currDest = _transform.position;
 		}
+		yield break;
 	}
 
 	private IEnumerator ContinuouslySteerToDest () {
