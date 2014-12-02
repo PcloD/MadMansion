@@ -1692,8 +1692,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: .5}
   m_AnchorMax: {x: 0, y: .5}
-  m_AnchoredPosition: {x: 33.7161255, y: -11}
-  m_SizeDelta: {x: 282, y: 80}
+  m_AnchoredPosition: {x: 39, y: -11}
+  m_SizeDelta: {x: 325, y: 80}
   m_Pivot: {x: .117787719, y: .5}
 --- !u!114 &364431593
 MonoBehaviour:
@@ -3309,15 +3309,20 @@ Transform:
 --- !u!114 &693932358
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400028, guid: 44b2b4e6900294f5aaef8d6090907361,
-    type: 2}
-  m_PrefabInternal: {fileID: 971986622}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 693932356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f946223a5d9404a2a8265ee91a1cf740, type: 3}
+  m_Script: {fileID: 11500000, guid: 28d1c7b9646764d3ca7cfebbc31a214c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _columns: 37
+  _rows: 24
+  _framesPerSecond: 12
+  _materialIndex: 1
+  _renderer: {fileID: 1707468317}
+  _totalFrames: 474
 --- !u!1 &702302556
 GameObject:
   m_ObjectHideFlags: 0
@@ -4791,7 +4796,13 @@ Prefab:
       propertyPath: m_Center.z
       value: 1.04983807
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 100034, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400028, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
+    - {fileID: 11400024, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
   m_RootGameObject: {fileID: 175153361}
   m_IsPrefabParent: 0
@@ -7159,7 +7170,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 94, y: 55}
+  m_SizeDelta: {x: 129, y: 55}
   m_Pivot: {x: 1, y: .5}
 --- !u!114 &1166470770
 MonoBehaviour:
@@ -7186,7 +7197,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Haunt
+  m_Text: Enchant
 --- !u!222 &1166470771
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10775,8 +10786,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1757839964}
-  - 114: {fileID: 1757839965}
-  m_Layer: 0
+  - 114: {fileID: 1757839967}
+  - 65: {fileID: 1757839966}
+  m_Layer: 2
   m_Name: Fridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10796,18 +10808,31 @@ Transform:
   - {fileID: 470702948}
   m_Father: {fileID: 1129756329}
   m_RootOrder: 4
---- !u!114 &1757839965
+--- !u!65 &1757839966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1757839963}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.21626973, y: 3.84283352, z: 2.09309101}
+  m_Center: {x: 1.3673196e-05, y: 1.91921854, z: -9.14741759e-06}
+--- !u!114 &1757839967
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400024, guid: 44b2b4e6900294f5aaef8d6090907361,
-    type: 2}
-  m_PrefabInternal: {fileID: 971986622}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1757839963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f946223a5d9404a2a8265ee91a1cf740, type: 3}
+  m_Script: {fileID: 11500000, guid: 67ce4a59982a9447a92c6f1867320757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doorTransform: {fileID: 650776402}
+  _duration: 1
 --- !u!1 &1764552059
 GameObject:
   m_ObjectHideFlags: 0
