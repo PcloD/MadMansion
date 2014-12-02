@@ -37,7 +37,6 @@ public class PhonographFurniture : MonoBehaviour, IFurniture {
                 _speakerTransform.localScale = new Vector3(1+Mathf.PingPong(counter/_speakerDuration,0.5f) * _maxSpeakerEnlargement * 2f,
                                                            1f,
                                                            1+Mathf.PingPong(counter/_speakerDuration,0.5f) * _maxSpeakerEnlargement * 2f);
-                Debug.Log(_speakerTransform.localScale);
                 counter %= _speakerDuration;
             }
             yield return wait;

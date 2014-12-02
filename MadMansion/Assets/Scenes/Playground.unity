@@ -1969,6 +1969,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1094221465}
   m_RootOrder: 3
+--- !u!1 &380574840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 380574841}
+  m_Layer: 0
+  m_Name: Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &380574841
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 380574840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.569999993, z: 4.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1680109576}
+  m_RootOrder: 0
 --- !u!1 &384628628
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3098,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hunter, Press a Button
+  m_Text: 'Seeker, Press a Button
 
 '
 --- !u!222 &631276894
@@ -8992,7 +9019,8 @@ Prefab:
       propertyPath: _crankTransform
       value: 
       objectReference: {fileID: 497165016}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400022, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 44b2b4e6900294f5aaef8d6090907361, type: 2}
   m_RootGameObject: {fileID: 175153361}
   m_IsPrefabParent: 0
@@ -9917,21 +9945,49 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.23999977, y: 0, z: 4.8499999}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 380574841}
   m_Father: {fileID: 1129756329}
   m_RootOrder: 5
 --- !u!114 &1680109577
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400022, guid: 44b2b4e6900294f5aaef8d6090907361,
-    type: 2}
-  m_PrefabInternal: {fileID: 1409664757}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1680109575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f946223a5d9404a2a8265ee91a1cf740, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e6ac3112ce3b43f280033e9ca78147a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireParticlePrefab: {fileID: 100000, guid: 4ab1b3c63dfb74ec3b17a13f00dac524, type: 2}
+  _fireSourceTransform: {fileID: 380574841}
+  _maxParticles: 100
+  _maxTimeTillEmission: .00100000005
+  _particleSpeed: 3.82999992
+  _particleAcceleration: .460000008
+  _particleLifetime: 1.70000005
+  _maxFireRange: {x: 1.64999998, y: .899999976}
+  _particleSizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1.14999998
+      inSlope: .132207587
+      outSlope: .132207587
+      tangentMode: 0
+    - time: .361584455
+      value: .293039411
+      inSlope: -1.22725964
+      outSlope: -1.22725964
+      tangentMode: 0
+    - time: .995000005
+      value: 0
+      inSlope: -.420934796
+      outSlope: -.420934796
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1707468315
 GameObject:
   m_ObjectHideFlags: 0
