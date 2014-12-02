@@ -40,12 +40,38 @@ public class NPCController : MonoBehaviour {
 	{
 		Events.g.AddListener<PauseGameEvent>(PauseMovement);
 		Events.g.AddListener<ResumeGameEvent>(ResumeMovement);
+		Events.g.AddListener<HauntEvent>(RespondToHaunt);
+		Events.g.AddListener<PossessionEvent>(RespondToPossession);
 	}
 
 	void OnDisable ()
 	{
 		Events.g.RemoveListener<PauseGameEvent>(PauseMovement);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeMovement);
+		Events.g.RemoveListener<HauntEvent>(RespondToHaunt);
+		Events.g.RemoveListener<PossessionEvent>(RespondToPossession);
+	}
+
+	private void RespondToHaunt (HauntEvent e) {
+		if (!e.succeeded) { return; }
+		if (e.IsStart) {
+			StartCoroutine(IdleForTime(Random.Range(2f,4f)));
+		} else {
+
+		}
+	}
+
+	private void RespondToPossession (PossessionEvent e) {
+		if (e.succeeded) {
+			StartCoroutine(IdleForTime(Random.Range(2f,4f)));
+		}
+	}
+
+	private IEnumerator IdleForTime (float t) {
+		yield return new WaitForSeconds(Random.Range(0.5f,1f));
+		_idle = true;
+		yield return new WaitForSeconds(t);
+		_idle = false;
 	}
 
 	private void PauseMovement (PauseGameEvent e)
