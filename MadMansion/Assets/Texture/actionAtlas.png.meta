@@ -10,6 +10,11 @@ TextureImporter:
     21300010: sqButtonFaded
     21300012: magicCircle
     21300014: xButtonImportant
+    21300016: triButton_Faded
+    21300018: circleButtonFaded
+    21300020: circleButton
+    21300022: sqButtonImportant
+    21300024: triButtonImportant
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -28,6 +33,9 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
@@ -38,6 +46,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -54,82 +63,133 @@ TextureImporter:
     - name: haunt
       rect:
         serializedVersion: 2
-        x: 146
-        y: 750
-        width: 223
-        height: 223
+        x: 775
+        y: 68
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: xButton
       rect:
         serializedVersion: 2
-        x: 388
-        y: 748
-        width: 225
-        height: 225
+        x: 529
+        y: 548
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: xButtonFaded
       rect:
         serializedVersion: 2
-        x: 628
-        y: 748
-        width: 225
-        height: 225
+        x: 529
+        y: 788
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: triButton
       rect:
         serializedVersion: 2
-        x: 146
-        y: 510
-        width: 223
-        height: 223
+        x: 284
+        y: 548
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: sqButton
       rect:
         serializedVersion: 2
-        x: 389
-        y: 510
-        width: 224
-        height: 223
+        x: 775
+        y: 548
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: sqButtonFaded
       rect:
         serializedVersion: 2
-        x: 629
-        y: 510
-        width: 224
-        height: 223
+        x: 775
+        y: 788
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: magicCircle
       rect:
         serializedVersion: 2
-        x: 100
-        y: 75
-        width: 357
-        height: 357
+        x: 103
+        y: 107
+        width: 353
+        height: 353
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: xButtonImportant
       rect:
         serializedVersion: 2
-        x: 628
-        y: 268
-        width: 225
-        height: 225
+        x: 529
+        y: 308
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: triButton_Faded
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 788
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: circleButtonFaded
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 788
+        width: 222
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: circleButton
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 548
+        width: 222
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sqButtonImportant
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 308
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: triButtonImportant
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 64
+        width: 222
+        height: 222
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 

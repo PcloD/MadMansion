@@ -20,17 +20,24 @@ public class HunterController : MonoBehaviour {
 	private CurrRoomFinder _currRoomFinder;
 	private bool _paused = true;
 	private bool _isCatching = false;
+	private bool _catchFinalized = false;
 
 	void OnEnable ()
 	{
 		Events.g.AddListener<PauseGameEvent>(PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent>(ResumeInteraction);
+		Events.g.AddListener<FinishCatchEvent>(MarkCatchFinalized);
 	}
 
 	void OnDisable ()
 	{
 		Events.g.RemoveListener<PauseGameEvent>(PauseInteraction);
 		Events.g.RemoveListener<ResumeGameEvent>(ResumeInteraction);
+		Events.g.RemoveListener<FinishCatchEvent>(MarkCatchFinalized);
+	}
+
+	private void MarkCatchFinalized (FinishCatchEvent e) {
+		_catchFinalized = true;
 	}
 
 	private void PauseInteraction (PauseGameEvent e)
@@ -51,6 +58,7 @@ public class HunterController : MonoBehaviour {
 
 	void Update () {
 		if (_paused) return;
+		if (_catchFinalized) return;
 		if (_isCatching) {
 			HandleSelectionInput(PlayerInputManager.g.Hunter);
 		} else {
