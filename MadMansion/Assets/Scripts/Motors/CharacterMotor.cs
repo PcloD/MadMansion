@@ -53,6 +53,8 @@ public class CharacterMotor : MonoBehaviour
 		private Transform _transform;
 		private bool _paused = true;
 
+		private bool _catchHappened = false;
+
 		public bool IsPossessed {
 				get { return _ghostController.enabled; }
 		}
@@ -66,7 +68,11 @@ public class CharacterMotor : MonoBehaviour
 				input.y = 0f;
 				switch (priority) {
 				case ControlPriority.Ghost:
-						_ghostInputVector = input;
+						if (!_catchHappened) {
+							_ghostInputVector = input;
+						} else {
+							_ghostInputVector = Vector3.zero;
+						}
 						break;
 				case ControlPriority.Hunter:
 						_hunterInputVector = input;
@@ -92,6 +98,9 @@ public class CharacterMotor : MonoBehaviour
 				Events.g.AddListener<ResumeGameEvent> (ResumeMovement);
 				Events.g.AddListener<HauntEvent> (RespondToHaunt);
 				Events.g.AddListener<PossessionEvent> (RespondToPossession);
+
+				Events.g.AddListener<CatchEvent>(MarkCatchHappened);
+
 		}
 
 		void OnDisable ()
@@ -100,6 +109,14 @@ public class CharacterMotor : MonoBehaviour
 				Events.g.RemoveListener<ResumeGameEvent> (ResumeMovement);
 				Events.g.RemoveListener<HauntEvent> (RespondToHaunt);
 				Events.g.RemoveListener<PossessionEvent> (RespondToPossession);
+
+				Events.g.RemoveListener<CatchEvent>(MarkCatchHappened);
+		}
+
+		private void MarkCatchHappened (CatchEvent e) {
+			if (e.successful) {
+				_catchHappened = true;
+			}
 		}
 
 		private void RespondToHaunt (HauntEvent e)
