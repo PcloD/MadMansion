@@ -84,4 +84,11 @@ public class Room : MonoBehaviour {
         }
         return closest;
 	}
+
+	public void DimRoom () {
+		foreach (CharacterMotor character in _characters) {
+			CharacterDimmer dimmer = character.GetComponent<CharacterDimmer>();
+			dimmer.Dim();
+		}
+	}
 }

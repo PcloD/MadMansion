@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Pink
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Ghost
+  m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _LIGHTMAPPING_REALTIME _UVSEC_UV1
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -79,10 +79,6 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Shininess
-        second: .66991514
-      data:
-        first:
           name: _AlphaTestRef
         second: .5
       data:
@@ -108,7 +104,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: .769999981
       data:
         first:
           name: _BumpScale
@@ -137,6 +133,10 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _InvFade
+        second: 1
     m_Colors:
       data:
         first:
@@ -145,7 +145,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .988235295, g: .68235296, b: .68235296, a: 1}
+        second: {r: .99999994, g: .99999994, b: .99999994, a: 0}
       data:
         first:
           name: _EmissionColorUI
@@ -154,7 +154,3 @@ Material:
         first:
           name: _EmissionColorWithMapUI
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}

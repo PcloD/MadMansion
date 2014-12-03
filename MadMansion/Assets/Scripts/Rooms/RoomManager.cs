@@ -78,4 +78,13 @@ public class RoomManager : MonoBehaviour {
 		return path;
 	}
 
+	public void DimOtherRooms(Room exclude) {
+		for (int i = 0; i < _rooms.Length; i++) {
+			Room room = _rooms[i];
+			if (room != exclude) {
+				room.DimRoom();
+			}
+		}
+	}
+
 }

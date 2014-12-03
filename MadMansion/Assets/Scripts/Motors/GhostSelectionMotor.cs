@@ -33,6 +33,7 @@ public class GhostSelectionMotor : MonoBehaviour {
 	 	GameObject ghostSelectionCircle;
 		ghostSelectionCircle = Instantiate(_ghostSelectionCirclePrefab, _transform.position, Quaternion.identity) as GameObject;
 		_ghostSelectionCircleTransform = ghostSelectionCircle.transform;
+		RoomManager.g.DimOtherRooms(exclude: _currRoomFinder.Room);
 		HashSet<CharacterMotor> peopleInRoom = _currRoomFinder.Room.Characters;
 		_targetTransform = _transform;
 		_oldPos = _targetTransform.position;
