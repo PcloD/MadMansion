@@ -12,6 +12,8 @@ public class HunterController : MonoBehaviour {
 	public float VolumeReduction {
 		get { return _volumeReduction; }
 	}
+	[SerializeField]
+	private bool _canAbortSmellPrematurely = false;
 
 	private CharacterMotor _characterMotor;
 	private GhostSelectionMotor _ghostSelectionMotor;
@@ -81,7 +83,7 @@ public class HunterController : MonoBehaviour {
 		if (smellButton.WasPressed) {
 			SmellManager.g.StartSmellInRoomWithHunter(_currRoomFinder.Room, this);
 		}
-		if (smellButton.WasReleased) {
+		if (_canAbortSmellPrematurely && smellButton.WasReleased) {
 			SmellManager.g.StopSmelling();
 		}
 		if (catchButton.WasPressed) {

@@ -2783,6 +2783,14 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 2bf2a386cb14e42b6a45a9d5e6809d4a, type: 3}
+    - target: {fileID: 11400000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
+      propertyPath: _ghostPresentSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2bf2a386cb14e42b6a45a9d5e6809d4a, type: 3}
+    - target: {fileID: 11400000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
+      propertyPath: _noGhostSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d5cc9eb21d2f5429b917d701cb413eec, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 005bedcdbf8f9433b9ae280db36625f8, type: 2}
   m_IsPrefabParent: 0
@@ -6545,6 +6553,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
       propertyPath: _smellChargeDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 840d8acc8ae8e483cb550bd3ab226cfe, type: 2}
+      propertyPath: _maxSmellDuration
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

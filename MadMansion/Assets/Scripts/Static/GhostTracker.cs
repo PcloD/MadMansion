@@ -7,6 +7,7 @@ public class GhostTracker : MonoBehaviour {
 	public static GhostTracker g;
 
 	private Vector3[] _pastLocations;
+	private Room _room;
 	private int _maxCount = 0;
 	private int _currCount;
 	[SerializeField]
@@ -44,7 +45,8 @@ public class GhostTracker : MonoBehaviour {
 		Reset();
 	}
 
-	public void RecordLocation (Vector3 loc) {
+	public void RecordLocation (Vector3 loc, Room room) {
+		_room = room;
 		_pastLocations[_currCount] = loc;
 		_currCount ++;
 		if (_currCount >= _maxCount) {
@@ -57,6 +59,12 @@ public class GhostTracker : MonoBehaviour {
 		get {
 			int sampleIndex = (_maxCount - _currCount - 1);
 			return _pastLocations[sampleIndex];
+		}
+	}
+
+	public Room CurrGhostRoom {
+		get {
+			return _room;
 		}
 	}
 }

@@ -4,6 +4,14 @@ using System.Collections;
 [RequireComponent (typeof(AudioSource))]
 public class SmellSoundPlayer : MonoBehaviour {
 	private AudioSource _audioSource;
+	[SerializeField]
+	private bool _smellingIsBinary = true;
+	[SerializeField]
+	private AudioClip _ghostPresentSoundClip;
+	[SerializeField]
+	private AudioClip _noGhostSoundClip;
+	[SerializeField]
+	private AudioClip _notChargedSoundClip;
 
 	void Awake () {
 		_audioSource = GetComponent<AudioSource>();
@@ -26,6 +34,13 @@ public class SmellSoundPlayer : MonoBehaviour {
 		// Handle event here
 		if (e.IsStart) {
 			_hunter = e.hunter;
+			if (_smellingIsBinary) {
+				if (e.room == GhostTracker.g.CurrGhostRoom) {
+					_audioSource.clip = _ghostPresentSoundClip;
+				} else {
+					_audioSource.clip = _noGhostSoundClip;
+				}
+			}
 			_playing = true;
 		} else {
 			_playing = false;
@@ -46,8 +61,10 @@ public class SmellSoundPlayer : MonoBehaviour {
 			_audioSource.loop = true;
 			_audioSource.Play();
 		}
-		_audioSource.volume = volumeScale;
-		_audioSource.pitch = Mathf.Max(1f-volumeScale, 0.5f);
+		if (!_smellingIsBinary) {
+			_audioSource.volume = volumeScale;
+			_audioSource.pitch = Mathf.Max(1f-volumeScale, 0.5f);
+		}
 	}
 
 	public void StopSmellSound () {

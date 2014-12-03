@@ -62,7 +62,7 @@ public class GhostController : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (_paused) { return; }
-		GhostTracker.g.RecordLocation(_transform.position);
+		GhostTracker.g.RecordLocation(_transform.position, _currRoomFinder.Room);
 	}
 
 	private void HandleInput (InputDevice device) {
