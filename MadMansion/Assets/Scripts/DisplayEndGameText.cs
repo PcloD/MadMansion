@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using InControl;
 
 public class DisplayEndGameText : MonoBehaviour {
 
@@ -22,6 +23,10 @@ public class DisplayEndGameText : MonoBehaviour {
 	private string _hunterCaughtGhostInSameBodyText;
 	[SerializeField]
 	private string _hunterCaughtInnocentText;
+	[SerializeField]
+	private GameObject _restartMessageObject;
+
+	private bool _gameOver = false;
 
 	void OnEnable ()
 	{
@@ -58,6 +63,16 @@ public class DisplayEndGameText : MonoBehaviour {
 			case EndReason.HunterCaughtInnocent:
 				_endTextReason.text = _hunterCaughtInnocentText;
 				break;
+		}
+
+		_gameOver = true;
+		_restartMessageObject.SetActive(true);
+	}
+
+	void Update () {
+		if (_gameOver && InputManager.ActiveDevice.Action2.WasPressed) {
+			// Restart game
+			Application.LoadLevel (Application.loadedLevel); // TODO: Make this nicer
 		}
 	}
 

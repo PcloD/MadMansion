@@ -39,7 +39,7 @@ public class PlayerInputManager : MonoBehaviour {
 	}
 
 	void Start () {
-		ResetControls();
+		StartCoroutine(ManageAssignment());
 	}
 
 	private void ResetControls () {
@@ -51,37 +51,43 @@ public class PlayerInputManager : MonoBehaviour {
 		Events.g.Raise(new PauseGameEvent());
 	}
 
-	void Update () {
-		if (InputManager.ActiveDevice.AnyButton) {
-			InputDevice currDevice = InputManager.ActiveDevice;
-			if (currDevice == _hunterDevice || currDevice == _ghostDevice) {
-				return;
-			}
-			switch (_selectionStatus) {
-				case PlayerSelectionStatus.AllAssigned:
-					break;
-				case PlayerSelectionStatus.AssigningHunter:
-					Debug.Log("Assigning Hunter: " + currDevice.Name);
-					_hunterDevice = currDevice;
-					_selectionStatus = PlayerSelectionStatus.AssigningGhost;
-					_hunterAssignmentText.SetActive(false);
-					_ghostAssignmentText.SetActive(true);
-					break;
-				case PlayerSelectionStatus.AssigningGhost:
-					Debug.Log("Assigning Ghost: " + currDevice.Name);
-					_ghostDevice = currDevice;
-					_selectionStatus = PlayerSelectionStatus.AllAssigned;
-					_ghostAssignmentText.SetActive(false);
-					Events.g.Raise(new ResumeGameEvent());
-					if (_firstAssignment) {
-						Events.g.Raise(new StartGameEvent());
-						_firstAssignment = false;
-					}
-					break;
-				default:
-					break;
-			}
-		}
 
+	IEnumerator ManageAssignment () {
+		yield return new WaitForSeconds(1.5f);
+		ResetControls();
+		while (true) {
+			if (InputManager.ActiveDevice.AnyButton) {
+				InputDevice currDevice = InputManager.ActiveDevice;
+				if (currDevice == _hunterDevice || currDevice == _ghostDevice) {
+					yield return null;
+					continue;
+				}
+				switch (_selectionStatus) {
+					case PlayerSelectionStatus.AllAssigned:
+						break;
+					case PlayerSelectionStatus.AssigningHunter:
+						Debug.Log("Assigning Hunter: " + currDevice.Name);
+						_hunterDevice = currDevice;
+						_selectionStatus = PlayerSelectionStatus.AssigningGhost;
+						_hunterAssignmentText.SetActive(false);
+						_ghostAssignmentText.SetActive(true);
+						break;
+					case PlayerSelectionStatus.AssigningGhost:
+						Debug.Log("Assigning Ghost: " + currDevice.Name);
+						_ghostDevice = currDevice;
+						_selectionStatus = PlayerSelectionStatus.AllAssigned;
+						_ghostAssignmentText.SetActive(false);
+						Events.g.Raise(new ResumeGameEvent());
+						if (_firstAssignment) {
+							Events.g.Raise(new StartGameEvent());
+							_firstAssignment = false;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+			yield return null;
+		}
 	}
 }

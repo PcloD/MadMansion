@@ -4614,6 +4614,7 @@ MonoBehaviour:
   _ghostHauntedHouseText: The Ghost Haunted the House 3 times!
   _hunterCaughtGhostInSameBodyText: The Hunter and Ghost are in the same doll!
   _hunterCaughtInnocentText: The Hunter caught the wrong doll!
+  _restartMessageObject: {fileID: 1288971276}
 --- !u!222 &1501599839
 CanvasRenderer:
   m_ObjectHideFlags: 0
