@@ -23,6 +23,12 @@ public class PossessionUI : MonoBehaviour {
 	private Color _chargingColor;
 	[SerializeField]
 	private Color _mustPossessColor;
+	[SerializeField]
+	private AnimationCurve _forcePossessionPulseCurve;
+	[SerializeField]
+	private AnimationCurve _forcePossessionPulseSpeedCurve;
+
+	private RectTransform _rectTransform;
 
 	private PossessionState _possessionState;
 	public PossessionState PossessionState {
@@ -47,6 +53,7 @@ public class PossessionUI : MonoBehaviour {
 	void Awake () {
 		_spriteRenderer = GetComponent<Image>();
 		_radialTimerRenderer.material = new Material(_radialTimerRenderer.material);
+		_rectTransform = GetComponent<RectTransform>();
 	}
 
 	void Start () {
@@ -66,17 +73,24 @@ public class PossessionUI : MonoBehaviour {
 		set { _radialTimerRenderer.material.SetColor ("_Color", value); }
 	}
 
+	private float _counter = 0f;
 	private void UpdatePossessionTimer () {
 		if (PossessionManager.g.MustPossess) {
+			_counter += Time.deltaTime;
 			PossessionState = PossessionState.MustPossess;
+			_rectTransform.localScale = Vector2.one * (1 + Mathf.PingPong(Mathf.Pow(_counter, 1.1f), 1f) * _forcePossessionPulseCurve.Evaluate(PossessionManager.g.PossessionForcedPercentage));
 		} else if (PossessionManager.g.CanPossess) {
+			_counter += Time.deltaTime;
 			PercentageFilled = PossessionManager.g.PossessionForcedPercentage;
 			PossessionState = PossessionState.CanPossess;
 			Color = _mustPossessColor;
+			_rectTransform.localScale = Vector2.one * (1 + Mathf.PingPong(Mathf.Pow(_counter, 1.1f), 1f) * _forcePossessionPulseCurve.Evaluate(PossessionManager.g.PossessionForcedPercentage));
 		} else {
+			_counter = 0f;
 			Color = _chargingColor;
 			PercentageFilled = PossessionManager.g.PossessionChargePercentage;
 			PossessionState = PossessionState.WaitForPossession;
+			_rectTransform.localScale = Vector2.one;
 		}
 	}
 }
