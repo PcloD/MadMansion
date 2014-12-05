@@ -1,0 +1,237 @@
+fileFormatVersion: 2
+guid: 7c38474ffe97946a48da1612a1269616
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Armature
+    100002: hat
+    100004: head
+    100006: left arm
+    100008: left foot
+    100010: left shoulder
+    100012: //RootNode
+    100014: right arm
+    100016: right foot
+    100018: right shoulder
+    100020: spine
+    100022: Littleboy
+    400000: Armature
+    400002: hat
+    400004: head
+    400006: left arm
+    400008: left foot
+    400010: left shoulder
+    400012: //RootNode
+    400014: right arm
+    400016: right foot
+    400018: right shoulder
+    400020: spine
+    400022: Littleboy
+    4300000: little boy
+    7400000: little boy|Scared
+    7400002: Armature|Jump
+    7400004: Armature|Scared
+    7400006: Armature|walking
+    7400008: Littleboy|Jump
+    7400010: Littleboy|Scared
+    7400012: Littleboy|walking
+    9500000: //RootNode
+    13700000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Littleboy|Jump
+      takeName: Littleboy|Jump
+      firstFrame: 0
+      lastFrame: 93
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Littleboy
+        weight: 1
+      - path: Littleboy/left foot
+        weight: 1
+      - path: Littleboy/right foot
+        weight: 1
+      - path: Littleboy/spine
+        weight: 1
+      - path: Littleboy/spine/head
+        weight: 1
+      - path: Littleboy/spine/head/hat
+        weight: 1
+      - path: Littleboy/spine/left shoulder
+        weight: 1
+      - path: Littleboy/spine/left shoulder/left arm
+        weight: 1
+      - path: Littleboy/spine/right shoulder
+        weight: 1
+      - path: Littleboy/spine/right shoulder/right arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Littleboy|Scared
+      takeName: Littleboy|Scared
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Littleboy
+        weight: 1
+      - path: Littleboy/left foot
+        weight: 1
+      - path: Littleboy/right foot
+        weight: 1
+      - path: Littleboy/spine
+        weight: 1
+      - path: Littleboy/spine/head
+        weight: 1
+      - path: Littleboy/spine/head/hat
+        weight: 1
+      - path: Littleboy/spine/left shoulder
+        weight: 1
+      - path: Littleboy/spine/left shoulder/left arm
+        weight: 1
+      - path: Littleboy/spine/right shoulder
+        weight: 1
+      - path: Littleboy/spine/right shoulder/right arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Littleboy|walking
+      takeName: Littleboy|walking
+      firstFrame: 0
+      lastFrame: 64
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Littleboy
+        weight: 1
+      - path: Littleboy/left foot
+        weight: 1
+      - path: Littleboy/right foot
+        weight: 1
+      - path: Littleboy/spine
+        weight: 1
+      - path: Littleboy/spine/head
+        weight: 1
+      - path: Littleboy/spine/head/hat
+        weight: 1
+      - path: Littleboy/spine/left shoulder
+        weight: 1
+      - path: Littleboy/spine/left shoulder/left arm
+        weight: 1
+      - path: Littleboy/spine/right shoulder
+        weight: 1
+      - path: Littleboy/spine/right shoulder/right arm
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

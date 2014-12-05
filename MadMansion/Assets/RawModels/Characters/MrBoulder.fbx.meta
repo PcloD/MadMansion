@@ -1,0 +1,271 @@
+fileFormatVersion: 2
+guid: 37399f6873048421abc71c2a8b3dd10e
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Hat
+    100002: Head
+    100004: LeftArm
+    100006: LeftFoot
+    100008: LeftHand
+    100010: LeftMustache
+    100012: LeftShoulder
+    100014: //RootNode
+    100016: MrBoulder
+    100018: MrBoulderArmature
+    100020: RightArm
+    100022: RightFoot
+    100024: RightHand
+    100026: RightMustache
+    100028: RightShoulder
+    100030: Spine
+    400000: Hat
+    400002: Head
+    400004: LeftArm
+    400006: LeftFoot
+    400008: LeftHand
+    400010: LeftMustache
+    400012: LeftShoulder
+    400014: MrBoulder
+    400016: //RootNode
+    400018: MrBoulderArmature
+    400020: RightArm
+    400022: RightFoot
+    400024: RightHand
+    400026: RightMustache
+    400028: RightShoulder
+    400030: Spine
+    4300000: MrBoulder
+    7400000: MrBoulderArmature|Jump
+    7400002: MrBoulderArmature|Scared
+    7400004: MrBoulderArmature|Walk
+    9500000: //RootNode
+    13700000: MrBoulder
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: MrBoulderArmature|Jump
+      takeName: MrBoulderArmature|Jump
+      firstFrame: 0
+      lastFrame: 74
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MrBoulder
+        weight: 1
+      - path: MrBoulderArmature
+        weight: 1
+      - path: MrBoulderArmature/Spine
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/Hat
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/LeftMustache
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/RightMustache
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftFoot
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder/LeftArm
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder/LeftArm/LeftHand
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightFoot
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder/RightArm
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder/RightArm/RightHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: MrBoulderArmature|Scared
+      takeName: MrBoulderArmature|Scared
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MrBoulder
+        weight: 1
+      - path: MrBoulderArmature
+        weight: 1
+      - path: MrBoulderArmature/Spine
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/Hat
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/LeftMustache
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/RightMustache
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftFoot
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder/LeftArm
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder/LeftArm/LeftHand
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightFoot
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder/RightArm
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder/RightArm/RightHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: MrBoulderArmature|Walk
+      takeName: MrBoulderArmature|Walk
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MrBoulder
+        weight: 1
+      - path: MrBoulderArmature
+        weight: 1
+      - path: MrBoulderArmature/Spine
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/Hat
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/LeftMustache
+        weight: 1
+      - path: MrBoulderArmature/Spine/Head/RightMustache
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftFoot
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder/LeftArm
+        weight: 1
+      - path: MrBoulderArmature/Spine/LeftShoulder/LeftArm/LeftHand
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightFoot
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder/RightArm
+        weight: 1
+      - path: MrBoulderArmature/Spine/RightShoulder/RightArm/RightHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
