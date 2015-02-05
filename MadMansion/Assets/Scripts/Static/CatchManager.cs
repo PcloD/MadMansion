@@ -78,6 +78,12 @@ public class CatchManager : MonoBehaviour {
 		}
 	}
 
+	private void StopCatching ()
+	{
+		TimeManager.g.StopBulletTime();
+		_isCatching = false;
+	}
+
 	private void FinalizeCatching (FinishCatchEvent e) {
 		if (e.guess == null) {
 			return;
@@ -90,7 +96,9 @@ public class CatchManager : MonoBehaviour {
 				Events.g.Raise(new EndGameEvent(winner: Player.HunterPlayer, rationale: EndReason.HunterCaughtGhost));
 			}
 		} else {
-			Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.HunterCaughtInnocent));
+			//Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.HunterCaughtInnocent));
+			StopCatching();
+
 		}
 	}
 
