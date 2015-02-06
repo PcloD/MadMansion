@@ -1,48 +1,39 @@
 fileFormatVersion: 2
-guid: d3cd1728580bf483284cb6811678b9ee
+guid: 2b60bcfc66a214f56bdae59c14ca71c6
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Armature
-    100002: Cone.001
-    100004: hair
+    100000: ArmatureBallerina
+    100002: //RootNode
+    100004: BallerinaObject
     100006: head
-    100008: //RootNode
+    100008: knob
     100010: left arm
-    100012: left hand
+    100012: left leg
     100014: left shoulder
     100016: right arm
-    100018: right hand
+    100018: right leg
     100020: right shoulder
     100022: spine
-    100024: waist
-    100026: waist.001
-    100028: Lady
-    100030: LadyArmature
-    400000: Armature
-    400002: Cone.001
-    400004: hair
+    400000: ArmatureBallerina
+    400002: //RootNode
+    400004: BallerinaObject
     400006: head
-    400008: //RootNode
+    400008: knob
     400010: left arm
-    400012: left hand
+    400012: left leg
     400014: left shoulder
     400016: right arm
-    400018: right hand
+    400018: right leg
     400020: right shoulder
     400022: spine
-    400024: waist
-    400026: waist.001
-    400028: Lady
-    400030: LadyArmature
-    4300000: Cone.001
-    4300002: Lady
-    7400000: LadyArmature|jump
-    7400002: LadyArmature|scared
-    7400004: LadyArmature|walking
+    4300000: BallerinaObject
+    7400000: ArmatureBallerina|jump
+    7400002: ArmatureBallerina|scared
+    7400004: ArmatureBallerina|walk
+    7400006: BallerinaObject|walk
     9500000: //RootNode
-    13700000: Cone.001
-    13700002: Lady
+    13700000: BallerinaObject
   materials:
     importMaterials: 1
     materialName: 0
@@ -61,8 +52,8 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: LadyArmature|jump
-      takeName: LadyArmature|jump
+      name: ArmatureBallerina|jump
+      takeName: ArmatureBallerina|jump
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -86,37 +77,33 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Lady
+      - path: ArmatureBallerina
         weight: 1
-      - path: LadyArmature
+      - path: ArmatureBallerina/spine
         weight: 1
-      - path: LadyArmature/spine
+      - path: ArmatureBallerina/spine/head
         weight: 1
-      - path: LadyArmature/spine/waist
+      - path: ArmatureBallerina/spine/knob
         weight: 1
-      - path: LadyArmature/spine/waist/head
+      - path: ArmatureBallerina/spine/left leg
         weight: 1
-      - path: LadyArmature/spine/waist/head/hair
+      - path: ArmatureBallerina/spine/left shoulder
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder
+      - path: ArmatureBallerina/spine/left shoulder/left arm
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder/left arm
+      - path: ArmatureBallerina/spine/right leg
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder/left arm/left hand
+      - path: ArmatureBallerina/spine/right shoulder
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder
+      - path: ArmatureBallerina/spine/right shoulder/right arm
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder/right arm
-        weight: 1
-      - path: LadyArmature/spine/waist/right shoulder/right arm/right hand
-        weight: 1
-      - path: LadyArmature/spine/waist/waist.001
+      - path: BallerinaObject
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: LadyArmature|scared
-      takeName: LadyArmature|scared
+      name: ArmatureBallerina|scared
+      takeName: ArmatureBallerina|scared
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -140,37 +127,33 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Lady
+      - path: ArmatureBallerina
         weight: 1
-      - path: LadyArmature
+      - path: ArmatureBallerina/spine
         weight: 1
-      - path: LadyArmature/spine
+      - path: ArmatureBallerina/spine/head
         weight: 1
-      - path: LadyArmature/spine/waist
+      - path: ArmatureBallerina/spine/knob
         weight: 1
-      - path: LadyArmature/spine/waist/head
+      - path: ArmatureBallerina/spine/left leg
         weight: 1
-      - path: LadyArmature/spine/waist/head/hair
+      - path: ArmatureBallerina/spine/left shoulder
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder
+      - path: ArmatureBallerina/spine/left shoulder/left arm
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder/left arm
+      - path: ArmatureBallerina/spine/right leg
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder/left arm/left hand
+      - path: ArmatureBallerina/spine/right shoulder
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder
+      - path: ArmatureBallerina/spine/right shoulder/right arm
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder/right arm
-        weight: 1
-      - path: LadyArmature/spine/waist/right shoulder/right arm/right hand
-        weight: 1
-      - path: LadyArmature/spine/waist/waist.001
+      - path: BallerinaObject
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: LadyArmature|walking
-      takeName: LadyArmature|walking
+      name: ArmatureBallerina|walk
+      takeName: ArmatureBallerina|walk
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -194,31 +177,77 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Lady
+      - path: ArmatureBallerina
         weight: 1
-      - path: LadyArmature
+      - path: ArmatureBallerina/spine
         weight: 1
-      - path: LadyArmature/spine
+      - path: ArmatureBallerina/spine/head
         weight: 1
-      - path: LadyArmature/spine/waist
+      - path: ArmatureBallerina/spine/knob
         weight: 1
-      - path: LadyArmature/spine/waist/head
+      - path: ArmatureBallerina/spine/left leg
         weight: 1
-      - path: LadyArmature/spine/waist/head/hair
+      - path: ArmatureBallerina/spine/left shoulder
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder
+      - path: ArmatureBallerina/spine/left shoulder/left arm
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder/left arm
+      - path: ArmatureBallerina/spine/right leg
         weight: 1
-      - path: LadyArmature/spine/waist/left shoulder/left arm/left hand
+      - path: ArmatureBallerina/spine/right shoulder
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder
+      - path: ArmatureBallerina/spine/right shoulder/right arm
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder/right arm
+      - path: BallerinaObject
         weight: 1
-      - path: LadyArmature/spine/waist/right shoulder/right arm/right hand
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: BallerinaObject|walk
+      takeName: BallerinaObject|walk
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
         weight: 1
-      - path: LadyArmature/spine/waist/waist.001
+      - path: ArmatureBallerina
+        weight: 1
+      - path: ArmatureBallerina/spine
+        weight: 1
+      - path: ArmatureBallerina/spine/head
+        weight: 1
+      - path: ArmatureBallerina/spine/knob
+        weight: 1
+      - path: ArmatureBallerina/spine/left leg
+        weight: 1
+      - path: ArmatureBallerina/spine/left shoulder
+        weight: 1
+      - path: ArmatureBallerina/spine/left shoulder/left arm
+        weight: 1
+      - path: ArmatureBallerina/spine/right leg
+        weight: 1
+      - path: ArmatureBallerina/spine/right shoulder
+        weight: 1
+      - path: ArmatureBallerina/spine/right shoulder/right arm
+        weight: 1
+      - path: BallerinaObject
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -239,7 +268,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1

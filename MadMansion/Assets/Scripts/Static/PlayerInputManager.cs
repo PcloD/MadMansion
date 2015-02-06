@@ -66,7 +66,7 @@ public class PlayerInputManager : MonoBehaviour {
 					case PlayerSelectionStatus.AllAssigned:
 						break;
 					case PlayerSelectionStatus.AssigningHunter:
-						Debug.Log("Assigning Hunter: " + currDevice.Name);
+						Debug.Log("Assigning Hunter: " + currDevice.Name); // TODO: Strip out debugs!
 						_hunterDevice = currDevice;
 						_selectionStatus = PlayerSelectionStatus.AssigningGhost;
 						_hunterAssignmentText.SetActive(false);

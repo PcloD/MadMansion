@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 8b9a2cf8142014c08aab849b59bcba8f
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: Armature
     100002: Camera
@@ -47,6 +47,7 @@ ModelImporter:
     7400030: RobotArmature|jump
     7400032: RobotArmature|scared
     7400034: RobotArmature|walk
+    7400036: RobotArmature|walking
     9500000: //RootNode
     13700000: Cube
     13700002: Robot
@@ -59,6 +60,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    pivotNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -155,8 +157,8 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: RobotArmature|walk
-      takeName: RobotArmature|walk
+      name: RobotArmature|walking
+      takeName: RobotArmature|walking
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -209,11 +211,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -236,3 +240,4 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 
