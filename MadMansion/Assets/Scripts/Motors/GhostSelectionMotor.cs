@@ -38,17 +38,16 @@ public class GhostSelectionMotor : MonoBehaviour
 	}
 	void OnEnable ()
 	{
-		Events.g.AddListener<CatchWrongEvent> (StopSelection);
+		Events.g.AddListener<CatchEndEvent> (StopSelection);
 	}
 	void OnDisable ()
 	{
 
-		Events.g.RemoveListener<CatchWrongEvent> (StopSelection);
+		Events.g.RemoveListener<CatchEndEvent> (StopSelection);
 	}
 
 	public void Initialize ()
 	{
-				
 		ghostSelectionCircle = Instantiate (_ghostSelectionCirclePrefab, _transform.position, Quaternion.identity) as GameObject;
 		_ghostSelectionCircleTransform = ghostSelectionCircle.transform;
 		RoomManager.g.DimOtherRooms (exclude: _currRoomFinder.Room);
@@ -128,13 +127,17 @@ public class GhostSelectionMotor : MonoBehaviour
 		}
 	}
 
-	void StopSelection (CatchWrongEvent e)
+	void StopSelection (CatchEndEvent e)
 	{
-		Destroy (ghostSelectionCircle);
-		RoomManager.g.UndimRoom (room: _currRoomFinder.Room);
+		if (e.catchRight) {
+		} else {
+			Destroy (ghostSelectionCircle);
+			RoomManager.g.UndimRoom (room: _currRoomFinder.Room);
+		}
+
 	}
 
-	public void FinalizeCatch ()
+	public void FinalizeCatch ()//finalize means the hunter player finishes choosing. End it goes to CatchEnd
 	{
 		Events.g.Raise (new FinishCatchEvent (hunter: _characterMotor, guess: _targetTransform.GetComponent<CharacterMotor> ()));
 	}

@@ -104,7 +104,8 @@ public class CatchManager : MonoBehaviour
 			return;
 		}
 		GhostController ghostController = e.guess.GetComponent<GhostController> ();
-		if (ghostController != null && ghostController.enabled) {
+		if (ghostController != null && ghostController.enabled) {//catch right
+			Events.g.Raise (new CatchEndEvent (true));
 			if (e.hunter == e.guess) {
 				Events.g.Raise (new EndGameEvent (winner: Player.NoPlayer, rationale: EndReason.HunterCaughtGhostInSameBody));
 			} else {
@@ -113,8 +114,7 @@ public class CatchManager : MonoBehaviour
 		} else {
 			//Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.HunterCaughtInnocent));
 			StopCatching ();
-			Events.g.Raise (new CatchWrongEvent ());
-
+			Events.g.Raise (new CatchEndEvent (false));
 		}
 	}
 

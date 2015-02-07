@@ -24,13 +24,14 @@ public class HunterController : MonoBehaviour
 	private bool _paused = true;
 	private bool _isCatching = false;
 	private bool _catchFinalized = false;
+	private bool _catchRight = false;
 
 	void OnEnable ()
 	{
 		Events.g.AddListener<PauseGameEvent> (PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.AddListener<FinishCatchEvent> (MarkCatchFinalized);
-		Events.g.AddListener<CatchWrongEvent> (CatchWrong);
+		Events.g.AddListener<CatchEndEvent> (CatchEnd);
 	}
 
 	void OnDisable ()
@@ -38,19 +39,25 @@ public class HunterController : MonoBehaviour
 		Events.g.RemoveListener<PauseGameEvent> (PauseInteraction);
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.RemoveListener<FinishCatchEvent> (MarkCatchFinalized);
-		Events.g.RemoveListener<CatchWrongEvent> (CatchWrong);
+		Events.g.RemoveListener<CatchEndEvent> (CatchEnd);
 	}
 
 	private void MarkCatchFinalized (FinishCatchEvent e)
 	{
-		print ("finalize");
 		_catchFinalized = true;
 	}
 
-	private void CatchWrong (CatchWrongEvent e)
+	private void CatchEnd (CatchEndEvent e)
 	{
 		_catchFinalized = false;
 		_isCatching = false;
+		if (e.catchRight) {
+			_catchRight = true;
+		} else {
+
+			_catchRight = false;
+		}
+
 	}
 
 	private void PauseInteraction (PauseGameEvent e)
@@ -74,7 +81,7 @@ public class HunterController : MonoBehaviour
 	{
 		if (_paused)
 			return;
-		if (_catchFinalized)
+		if (_catchRight)
 			return;
 		if (_isCatching) {
 			HandleSelectionInput (PlayerInputManager.g.Hunter);

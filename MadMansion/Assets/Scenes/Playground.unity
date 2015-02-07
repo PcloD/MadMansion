@@ -4661,7 +4661,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
       propertyPath: logDebugInfo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
       propertyPath: customProfiles.Array.data[0]

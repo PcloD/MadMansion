@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Diagnostics;
 
@@ -66,7 +66,7 @@ public class PossessionManager : MonoBehaviour
 		Events.g.AddListener<PauseGameEvent> (PauseTimers);
 		Events.g.AddListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.AddListener<CatchEvent> (DisableInteractionOnCatch);
-		Events.g.AddListener<CatchWrongEvent> (EnableInteractionAfterCatch);
+		Events.g.AddListener<CatchEndEvent> (EnableInteractionAfterCatch);
 	}
 
 	void OnDisable ()
@@ -75,7 +75,7 @@ public class PossessionManager : MonoBehaviour
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent> (BeginCharging);
 		Events.g.RemoveListener<CatchEvent> (DisableInteractionOnCatch);
-		Events.g.RemoveListener<CatchWrongEvent> (EnableInteractionAfterCatch);
+		Events.g.RemoveListener<CatchEndEvent> (EnableInteractionAfterCatch);
 	}
 
 	private void DisableInteractionOnCatch (CatchEvent e)
@@ -94,20 +94,21 @@ public class PossessionManager : MonoBehaviour
 			}
 		}
 	}
-	private void EnableInteractionAfterCatch (CatchWrongEvent e)
+	private void EnableInteractionAfterCatch (CatchEndEvent e)
 	{
 		_catchingInProgress = false;
+		if (e.catchRight) {
+		} else {
+			if (!_possessionChargeTimer.IsRunning) {
+				_possessionChargeTimer.Start ();
+				_possessionChargeTimerPaused = false;
+			}
 			
-		if (!_possessionChargeTimer.IsRunning) {
-			_possessionChargeTimer.Start ();
-			_possessionChargeTimerPaused = false;
+			if (!_possessionForcedTimer.IsRunning) {
+				_possessionForcedTimer.Start ();
+				_possessionForcedTimerPaused = false;
+			}
 		}
-			
-		if (!_possessionForcedTimer.IsRunning) {
-			_possessionForcedTimer.Start ();
-			_possessionForcedTimerPaused = false;
-		}
-
 	}
 
 	private void PauseTimers (PauseGameEvent e)

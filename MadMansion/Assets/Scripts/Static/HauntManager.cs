@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Diagnostics;
 
@@ -62,7 +62,7 @@ public class HauntManager : MonoBehaviour
 		Events.g.AddListener<PauseGameEvent> (PauseTimers);
 		Events.g.AddListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.AddListener<CatchEvent> (DisableInteractionOnCatch);
-		Events.g.AddListener<CatchWrongEvent> (EnableInteractionAfterCatch);
+		Events.g.AddListener<CatchEndEvent> (EnableInteractionAfterCatch);
 	}
 
 	void OnDisable ()
@@ -71,7 +71,7 @@ public class HauntManager : MonoBehaviour
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent> (BeginCharging);
 		Events.g.RemoveListener<CatchEvent> (DisableInteractionOnCatch);
-		Events.g.RemoveListener<CatchWrongEvent> (EnableInteractionAfterCatch);
+		Events.g.RemoveListener<CatchEndEvent> (EnableInteractionAfterCatch);
 	}
 
 	private void DisableInteractionOnCatch (CatchEvent e)
@@ -90,21 +90,21 @@ public class HauntManager : MonoBehaviour
 			}
 		}
 	}
-	private void EnableInteractionAfterCatch (CatchWrongEvent e)
+	private void EnableInteractionAfterCatch (CatchEndEvent e)
 	{
-		print ("enable");
 		_catchingInProgress = false;
+		if (e.catchRight) {
+		} else {
+			if (!_hauntChargeTimer.IsRunning && _hauntChargeTimerPaused) {
+				_hauntChargeTimer.Start ();
+				_hauntChargeTimerPaused = false;
+			}
 			
-		if (!_hauntChargeTimer.IsRunning) {
-			_hauntChargeTimer.Start ();
-			_hauntChargeTimerPaused = false;
+			if (!_hauntProgressTimer.IsRunning && _hauntProgressTimerPaused) {
+				_hauntProgressTimer.Start ();
+				_hauntProgressTimerPaused = false;
+			}
 		}
-			
-		if (!_hauntProgressTimer.IsRunning) {
-			_hauntProgressTimer.Start ();
-			_hauntProgressTimerPaused = false;
-		}
-
 	}
 
 
@@ -183,6 +183,7 @@ public class HauntManager : MonoBehaviour
 	private void UpdateHauntCount ()
 	{
 		if (_hauntProgressTimer.ElapsedMilliseconds >= _hauntDuration * 1000f) {
+
 			_activeHauntable.StopHaunting ();
 			_hauntProgressTimer.Stop ();
 			_hauntProgressTimer.Reset ();
