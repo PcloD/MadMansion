@@ -4129,7 +4129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
       propertyPath: _possessionChargeDuration
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
       propertyPath: _fullyRevealedAfterSeconds
@@ -6203,7 +6203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
       propertyPath: _catchChargeDuration
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
