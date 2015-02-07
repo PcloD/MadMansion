@@ -4129,7 +4129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
       propertyPath: _possessionChargeDuration
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 76e64f73bc2a44d559963f5a4be6ae4d, type: 2}
       propertyPath: _fullyRevealedAfterSeconds
@@ -4623,6 +4623,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
+      propertyPath: customProfiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4658,6 +4662,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
       propertyPath: logDebugInfo
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
+      propertyPath: customProfiles.Array.data[0]
+      value: CustomInputProfiles.DebugKeyboardProfilePlayerOne
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
+      propertyPath: customProfiles.Array.data[1]
+      value: CustomInputProfiles.DebugKeyboardProfilePlayerTwo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
@@ -6191,7 +6203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
       propertyPath: _catchChargeDuration
-      value: 30
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
