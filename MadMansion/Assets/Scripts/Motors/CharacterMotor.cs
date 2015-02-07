@@ -53,7 +53,7 @@ public class CharacterMotor : MonoBehaviour
 		private Transform _transform;
 		private bool _paused = true;
 
-		private bool _catchHappened = false;
+		private bool _catchHappening = false;
 
 		public bool IsPossessed {
 				get { return _ghostController.enabled; }
@@ -68,10 +68,10 @@ public class CharacterMotor : MonoBehaviour
 				input.y = 0f;
 				switch (priority) {
 				case ControlPriority.Ghost:
-						if (!_catchHappened) {
-							_ghostInputVector = input;
+						if (!_catchHappening) {
+								_ghostInputVector = input;
 						} else {
-							_ghostInputVector = Vector3.zero;
+								_ghostInputVector = Vector3.zero;
 						}
 						break;
 				case ControlPriority.Hunter:
@@ -99,7 +99,8 @@ public class CharacterMotor : MonoBehaviour
 				Events.g.AddListener<HauntEvent> (RespondToHaunt);
 				Events.g.AddListener<PossessionEvent> (RespondToPossession);
 
-				Events.g.AddListener<CatchEvent>(MarkCatchHappened);
+				Events.g.AddListener<CatchEvent> (MarkCatchHappening);
+				Events.g.AddListener<CatchWrongEvent> (MarkCatchFinished);
 
 		}
 
@@ -110,13 +111,21 @@ public class CharacterMotor : MonoBehaviour
 				Events.g.RemoveListener<HauntEvent> (RespondToHaunt);
 				Events.g.RemoveListener<PossessionEvent> (RespondToPossession);
 
-				Events.g.RemoveListener<CatchEvent>(MarkCatchHappened);
+				Events.g.RemoveListener<CatchEvent> (MarkCatchHappening);
+				Events.g.RemoveListener<CatchWrongEvent> (MarkCatchFinished);
 		}
 
-		private void MarkCatchHappened (CatchEvent e) {
-			if (e.successful) {
-				_catchHappened = true;
-			}
+		private void MarkCatchHappening (CatchEvent e)
+		{
+				if (e.successful) {
+						_catchHappening = true;
+				}
+		}
+		private void MarkCatchFinished (CatchWrongEvent e)
+		{
+			
+				_catchHappening = false;
+				
 		}
 
 		private void RespondToHaunt (HauntEvent e)
