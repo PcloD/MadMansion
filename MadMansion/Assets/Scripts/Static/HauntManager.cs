@@ -2,25 +2,29 @@
 using System.Collections;
 using System.Diagnostics;
 
-public class HauntManager : MonoBehaviour {
+public class HauntManager : MonoBehaviour
+{
 
 	public static HauntManager g;
 	[SerializeField]
-	private float _hauntChargeDuration = 4f;
+	private float
+		_hauntChargeDuration = 4f;
 	[SerializeField]
-	private float _hauntDuration = 4f;
+	private float
+		_hauntDuration = 4f;
 	public float HauntTimerPercentage {
 		get {
-			return Mathf.Min(1f, _hauntProgressTimer.ElapsedMilliseconds/(_hauntDuration * 1000f));
+			return Mathf.Min (1f, _hauntProgressTimer.ElapsedMilliseconds / (_hauntDuration * 1000f));
 		}
 	}
 	public float HauntChargePercentage {
 		get {
-			return Mathf.Min(1f, _hauntChargeTimer.ElapsedMilliseconds/(_hauntChargeDuration * 1000f));
+			return Mathf.Min (1f, _hauntChargeTimer.ElapsedMilliseconds / (_hauntChargeDuration * 1000f));
 		}
 	}
 	[SerializeField]
-	private int _requiredHauntCount = 4;
+	private int
+		_requiredHauntCount = 4;
 	public int RequiredHauntCount {
 		get { return _requiredHauntCount; }
 	}
@@ -29,12 +33,12 @@ public class HauntManager : MonoBehaviour {
 		get { return _hauntCount; }
 	}
 
-	private Stopwatch _hauntChargeTimer = new Stopwatch();
+	private Stopwatch _hauntChargeTimer = new Stopwatch ();
 	private bool _hauntChargeTimerPaused = false;
 	private bool _hauntChargeTimerIsRunning {
 		get { return _hauntChargeTimerPaused || _hauntChargeTimer.IsRunning; }
 	}
-	private Stopwatch _hauntProgressTimer = new Stopwatch();
+	private Stopwatch _hauntProgressTimer = new Stopwatch ();
 	private bool _hauntProgressTimerPaused = false;
 	private bool _hauntProgressTimerIsRunning {
 		get { return _hauntProgressTimerPaused || _hauntProgressTimer.IsRunning; }
@@ -43,69 +47,92 @@ public class HauntManager : MonoBehaviour {
 
 	private bool _catchingInProgress = false;
 
-	void Awake () {
+	void Awake ()
+	{
 		if (g == null) {
 			g = this;
 		} else {
-			Destroy(this);
+			Destroy (this);
 		}
 	}
 
 	void OnEnable ()
 	{
-		Events.g.AddListener<StartGameEvent>(BeginCharging);
-		Events.g.AddListener<PauseGameEvent>(PauseTimers);
-		Events.g.AddListener<ResumeGameEvent>(ResumeTimers);
-		Events.g.AddListener<CatchEvent>(DisableInteractionOnCatch);
+		Events.g.AddListener<StartGameEvent> (BeginCharging);
+		Events.g.AddListener<PauseGameEvent> (PauseTimers);
+		Events.g.AddListener<ResumeGameEvent> (ResumeTimers);
+		Events.g.AddListener<CatchEvent> (DisableInteractionOnCatch);
+		Events.g.AddListener<CatchWrongEvent> (EnableInteractionAfterCatch);
 	}
 
 	void OnDisable ()
 	{
-		Events.g.RemoveListener<PauseGameEvent>(PauseTimers);
-		Events.g.RemoveListener<ResumeGameEvent>(ResumeTimers);
-		Events.g.RemoveListener<StartGameEvent>(BeginCharging);
-		Events.g.RemoveListener<CatchEvent>(DisableInteractionOnCatch);
+		Events.g.RemoveListener<PauseGameEvent> (PauseTimers);
+		Events.g.RemoveListener<ResumeGameEvent> (ResumeTimers);
+		Events.g.RemoveListener<StartGameEvent> (BeginCharging);
+		Events.g.RemoveListener<CatchEvent> (DisableInteractionOnCatch);
+		Events.g.RemoveListener<CatchWrongEvent> (EnableInteractionAfterCatch);
 	}
 
-	private void DisableInteractionOnCatch (CatchEvent e) {
+	private void DisableInteractionOnCatch (CatchEvent e)
+	{
 		if (e.successful) {
 			_catchingInProgress = true;
 
 			if (_hauntChargeTimer.IsRunning) {
-				_hauntChargeTimer.Stop();
+				_hauntChargeTimer.Stop ();
 				_hauntChargeTimerPaused = true;
 			}
 
 			if (_hauntProgressTimer.IsRunning) {
-				_hauntProgressTimer.Stop();
+				_hauntProgressTimer.Stop ();
 				_hauntProgressTimerPaused = true;
 			}
 		}
 	}
+	private void EnableInteractionAfterCatch (CatchWrongEvent e)
+	{
+		print ("enable");
+		_catchingInProgress = false;
+			
+		if (!_hauntChargeTimer.IsRunning) {
+			_hauntChargeTimer.Start ();
+			_hauntChargeTimerPaused = false;
+		}
+			
+		if (!_hauntProgressTimer.IsRunning) {
+			_hauntProgressTimer.Start ();
+			_hauntProgressTimerPaused = false;
+		}
+
+	}
+
 
 	private void PauseTimers (PauseGameEvent e)
 	{
 		if (_hauntChargeTimer.IsRunning) {
-			_hauntChargeTimer.Stop();
+			_hauntChargeTimer.Stop ();
 			_hauntChargeTimerPaused = true;
 		}
 
 		if (_hauntProgressTimer.IsRunning) {
-			_hauntProgressTimer.Stop();
+			_hauntProgressTimer.Stop ();
 			_hauntProgressTimerPaused = true;
 		}
 	}
 
 	private void ResumeTimers (ResumeGameEvent e)
 	{
-		if (_catchingInProgress) { return; }
+		if (_catchingInProgress) {
+			return;
+		}
 		if (_hauntChargeTimerPaused) {
-			_hauntChargeTimer.Start();
+			_hauntChargeTimer.Start ();
 			_hauntChargeTimerPaused = false;
 		}
 
 		if (_hauntProgressTimerPaused) {
-			_hauntProgressTimer.Start();
+			_hauntProgressTimer.Start ();
 			_hauntProgressTimerPaused = false;
 		}
 	}
@@ -113,11 +140,12 @@ public class HauntManager : MonoBehaviour {
 	private void BeginCharging (StartGameEvent e)
 	{
 		// Handle event here
-		StartHauntCharge();
+		StartHauntCharge ();
 	}
 
-	private void StartHauntCharge () {
-		_hauntChargeTimer.Start();
+	private void StartHauntCharge ()
+	{
+		_hauntChargeTimer.Start ();
 	}
 
 	public bool CanHaunt {
@@ -129,38 +157,42 @@ public class HauntManager : MonoBehaviour {
 	}
 
 	Room _hauntedRoom = null;
-	public void StartHauntInRoom (Room room) {
-		Hauntable hauntable = room.GetComponent<Hauntable>();
+	public void StartHauntInRoom (Room room)
+	{
+		Hauntable hauntable = room.GetComponent<Hauntable> ();
 		if (CanHaunt && hauntable != null && !_catchingInProgress) {
 			_activeHauntable = hauntable;
-			_activeHauntable.StartHaunting();
-			_hauntChargeTimer.Stop();
-			_hauntChargeTimer.Reset();
-			_hauntProgressTimer.Start();
+			_activeHauntable.StartHaunting ();
+			_hauntChargeTimer.Stop ();
+			_hauntChargeTimer.Reset ();
+			_hauntProgressTimer.Start ();
 			_hauntedRoom = room;
-			Events.g.Raise(new HauntEvent(succeeded: true, starting: true, duration: _hauntDuration, room: room));
+			Events.g.Raise (new HauntEvent (succeeded: true, starting: true, duration: _hauntDuration, room: room));
 		} else {
-			Events.g.Raise(new HauntEvent(succeeded: false, starting: true, duration: _hauntDuration, room: room));
+			Events.g.Raise (new HauntEvent (succeeded: false, starting: true, duration: _hauntDuration, room: room));
 		}
 	}
 
-	void Update () {
-		if (_hauntProgressTimerPaused) return;
-		UpdateHauntCount();
+	void Update ()
+	{
+		if (_hauntProgressTimerPaused)
+			return;
+		UpdateHauntCount ();
 	}
 
-	private void UpdateHauntCount () {
+	private void UpdateHauntCount ()
+	{
 		if (_hauntProgressTimer.ElapsedMilliseconds >= _hauntDuration * 1000f) {
-			_activeHauntable.StopHaunting();
-			_hauntProgressTimer.Stop();
-			_hauntProgressTimer.Reset();
+			_activeHauntable.StopHaunting ();
+			_hauntProgressTimer.Stop ();
+			_hauntProgressTimer.Reset ();
 			_hauntCount++;
-			Events.g.Raise(new HauntEvent(succeeded: true, starting: false, duration: _hauntDuration, room: _hauntedRoom));
-			StartHauntCharge();
+			Events.g.Raise (new HauntEvent (succeeded: true, starting: false, duration: _hauntDuration, room: _hauntedRoom));
+			StartHauntCharge ();
 		}
 		if (_hauntCount >= _requiredHauntCount) {
-			Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.GhostHauntedHouse));
-			Events.g.Raise(new PauseGameEvent());
+			Events.g.Raise (new EndGameEvent (winner: Player.GhostPlayer, rationale: EndReason.GhostHauntedHouse));
+			Events.g.Raise (new PauseGameEvent ());
 		}
 	}
 
