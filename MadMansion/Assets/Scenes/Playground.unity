@@ -950,19 +950,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08321f79ff73d47d8b5502c1f8141714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToFadeIn: 3
+  _timeToFadeIn: 1.5
+  _timeToFadeOut: .5
   _fadeCurve:
     serializedVersion: 2
     m_Curve:
     - time: 0
       value: 1
-      inSlope: -1.87956154
-      outSlope: -1.87956154
+      inSlope: -.24962315
+      outSlope: -.24962315
+      tangentMode: 10
+    - time: .0710060447
+      value: .982275248
+      inSlope: -1.25980926
+      outSlope: -1.25980926
       tangentMode: 10
     - time: .367433906
       value: .309385359
-      inSlope: -1.18432868
-      outSlope: -1.18432868
+      inSlope: -1.37954557
+      outSlope: -1.37954557
       tangentMode: 10
     - time: 1
       value: 0
