@@ -17,6 +17,11 @@ public class PlayTransition : MonoBehaviour {
 	RectTransform _panel;
 
 	[SerializeField]
+	RectTransform _leftControlsPanel;
+	[SerializeField]
+	RectTransform _rightControlsPanel;
+
+	[SerializeField]
 	AnimationCurve _lightIntensityCurve;
 	[SerializeField]
 	AnimationCurve _panelTransitionCurve;
@@ -33,15 +38,17 @@ public class PlayTransition : MonoBehaviour {
 		Debug.Log("Play Clicked");
 		_playButton.interactable = false;
 		StartCoroutine(FadeAndStart(_intensityTransitionDuration));
-		StartCoroutine(MovePanelOffscreen(_panelTransitionDuration));
+		StartCoroutine(MoveMenuPanelOffscreen(_panelTransitionDuration));
+
+		// StartCoroutine(MoveHunterPanelOnscreen(_panelTransitionDuration));
+		// StartCoroutine(MoveGhostPanelOnscreen(_panelTransitionDuration));
 	}
 
-	private IEnumerator MovePanelOffscreen (float timerDuration) {
+	private IEnumerator MoveMenuPanelOffscreen (float timerDuration) {
 		float timer = 0f;
 		Vector2 destOffset = new Vector2(-1,0);
 		Vector2 origAnchorPos = _panel.anchoredPosition;
-		// while (timer < timerDuration) {
-		while (true) {
+		while (timer < timerDuration) {
 			timer += Time.deltaTime;
 			Vector2 desPos = _panelTransitionCurve.Evaluate(timer/timerDuration) * destOffset;
 			_panel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _panel.rect.width, desPos.y * _panel.rect.height);
@@ -49,6 +56,19 @@ public class PlayTransition : MonoBehaviour {
 		}
 		_panel.anchoredPosition = origAnchorPos + new Vector2(destOffset.x * _panel.rect.width, destOffset.y * _panel.rect.height);
 	}
+
+	// private IEnumerator MoveGhostPanelOnscreen (float timerDuration) {
+	// 	float timer = 0f;
+	// 	Vector2 destOffset = new Vector2(-1,0);
+	// 	Vector2 origAnchorPos = _panel.anchoredPosition;
+	// 	while (timer < timerDuration) {
+	// 		timer += Time.deltaTime;
+	// 		Vector2 desPos = _panelTransitionCurve.Evaluate(timer/timerDuration) * destOffset;
+	// 		_panel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _panel.rect.width, desPos.y * _panel.rect.height);
+	// 		yield return null;
+	// 	}
+	// 	_panel.anchoredPosition = origAnchorPos + new Vector2(destOffset.x * _panel.rect.width, destOffset.y * _panel.rect.height);
+	// }
 
 	private IEnumerator FadeAndStart (float timerDuration) {
 		float timer = 0f;

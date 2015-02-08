@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Color: {r: 0, g: 0, b: 0, a: .392156869}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1352,6 +1352,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: bd07587e939a94a6081c2a5fa72bfbdb, type: 2}
   m_PrefabInternal: {fileID: 1546462875}
+--- !u!224 &1151737216
+RectTransform:
+  m_PrefabParentObject: {fileID: 22453518, guid: bf746ae74cd574d9d8dc360d0a97d352,
+    type: 2}
+  m_PrefabInternal: {fileID: 1749521910}
 --- !u!1 &1196302137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +1672,8 @@ MonoBehaviour:
   _playingIntensity: .0900000036
   _intensityTransitionDuration: 1
   _panel: {fileID: 325522079}
+  _leftControlsPanel: {fileID: 1978781406}
+  _rightControlsPanel: {fileID: 1151737216}
   _lightIntensityCurve:
     serializedVersion: 2
     m_Curve:
@@ -1690,28 +1697,23 @@ MonoBehaviour:
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - time: .369232655
-      value: .576457024
+    - time: .371155739
+      value: .260261685
       inSlope: 1.34781003
       outSlope: 1.34781003
       tangentMode: 0
-    - time: .45889619
-      value: .311811715
-      inSlope: -.0433085822
-      outSlope: -.0433085822
-      tangentMode: 0
-    - time: .908304334
-      value: .574968278
-      inSlope: 1.59204006
-      outSlope: 1.59204006
+    - time: .743843079
+      value: .835569501
+      inSlope: 1.65700912
+      outSlope: 1.65700912
       tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: .172486946
+      outSlope: .172486946
       tangentMode: 0
     m_PreInfinity: 2
-    m_PostInfinity: 1
+    m_PostInfinity: 2
   _panelTransitionDuration: .5
 --- !u!114 &1378358369
 MonoBehaviour:
@@ -2089,6 +2091,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 22453518, guid: bf746ae74cd574d9d8dc360d0a97d352, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22453518, guid: bf746ae74cd574d9d8dc360d0a97d352, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -316.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 22453518, guid: bf746ae74cd574d9d8dc360d0a97d352, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 632.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf746ae74cd574d9d8dc360d0a97d352, type: 2}
   m_IsPrefabParent: 0
@@ -2285,6 +2299,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 460d981e9d7544890a4cba9ac67e4a26, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &1978781406
+RectTransform:
+  m_PrefabParentObject: {fileID: 22452940, guid: bf746ae74cd574d9d8dc360d0a97d352,
+    type: 2}
+  m_PrefabInternal: {fileID: 1749521910}
 --- !u!1 &1995796840
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class MenuButtonHighlighted : MonoBehaviour {
-
 	private Button _button;
 	private Vector3 _defaultScale;
 	void Awake () {
