@@ -32,43 +32,42 @@ public class PlayTransition : MonoBehaviour {
 	void Awake () {
 		_playButton = GetComponent<Button>();
 		_mainLight.intensity = _dimIntensity;
+
+		Vector2 desPos = new Vector2(-1,0);
+		Vector2 origAnchorPos = _leftControlsPanel.anchoredPosition;
+		_leftControlsPanel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _leftControlsPanel.rect.width, desPos.y * _leftControlsPanel.rect.height);
+		origAnchorPos = _rightControlsPanel.anchoredPosition;
+		desPos = new Vector2(1,0);
+		_rightControlsPanel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _rightControlsPanel.rect.width, desPos.y * _rightControlsPanel.rect.height);
 	}
 
 	public void TransitionToPlay() {
 		Debug.Log("Play Clicked");
 		_playButton.interactable = false;
-		StartCoroutine(FadeAndStart(_intensityTransitionDuration));
-		StartCoroutine(MoveMenuPanelOffscreen(_panelTransitionDuration));
 
-		// StartCoroutine(MoveHunterPanelOnscreen(_panelTransitionDuration));
-		// StartCoroutine(MoveGhostPanelOnscreen(_panelTransitionDuration));
+
+		StartCoroutine(FadeAndStart(_intensityTransitionDuration));
+
+		// Menu Panel offscreen
+		StartCoroutine(MovePanelByOffset (_panel, _panelTransitionDuration, new Vector2(-1,0), _panelTransitionCurve));
+
+		// LeftControlPanel onscreen
+		StartCoroutine(MovePanelByOffset (_leftControlsPanel, _panelTransitionDuration, new Vector2(1,0), _panelTransitionCurve));
+		// RightControlPanel onscreen
+		StartCoroutine(MovePanelByOffset (_rightControlsPanel, _panelTransitionDuration, new Vector2(-1,0), _panelTransitionCurve));
 	}
 
-	private IEnumerator MoveMenuPanelOffscreen (float timerDuration) {
+	private IEnumerator MovePanelByOffset (RectTransform panel, float timerDuration, Vector2 offset, AnimationCurve curve) {
 		float timer = 0f;
-		Vector2 destOffset = new Vector2(-1,0);
-		Vector2 origAnchorPos = _panel.anchoredPosition;
+		Vector2 origAnchorPos = panel.anchoredPosition;
 		while (timer < timerDuration) {
 			timer += Time.deltaTime;
-			Vector2 desPos = _panelTransitionCurve.Evaluate(timer/timerDuration) * destOffset;
-			_panel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _panel.rect.width, desPos.y * _panel.rect.height);
+			Vector2 desPos = curve.Evaluate(timer/timerDuration) * offset;
+			panel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * panel.rect.width, desPos.y * panel.rect.height);
 			yield return null;
 		}
-		_panel.anchoredPosition = origAnchorPos + new Vector2(destOffset.x * _panel.rect.width, destOffset.y * _panel.rect.height);
+		panel.anchoredPosition = origAnchorPos + new Vector2(offset.x * panel.rect.width, offset.y * panel.rect.height);
 	}
-
-	// private IEnumerator MoveGhostPanelOnscreen (float timerDuration) {
-	// 	float timer = 0f;
-	// 	Vector2 destOffset = new Vector2(-1,0);
-	// 	Vector2 origAnchorPos = _panel.anchoredPosition;
-	// 	while (timer < timerDuration) {
-	// 		timer += Time.deltaTime;
-	// 		Vector2 desPos = _panelTransitionCurve.Evaluate(timer/timerDuration) * destOffset;
-	// 		_panel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _panel.rect.width, desPos.y * _panel.rect.height);
-	// 		yield return null;
-	// 	}
-	// 	_panel.anchoredPosition = origAnchorPos + new Vector2(destOffset.x * _panel.rect.width, destOffset.y * _panel.rect.height);
-	// }
 
 	private IEnumerator FadeAndStart (float timerDuration) {
 		float timer = 0f;
