@@ -23,6 +23,12 @@ public class AssignCharactersOnStart : MonoBehaviour {
 			NPCController npcController = _players[i].GetComponent<NPCController>();
 			GhostController ghostController = _players[i].GetComponent<GhostController>();
 			HunterController hunterController = _players[i].GetComponent<HunterController>();
+
+			if (e.gameMode == GameMode.Practice) {
+				hunterController.AlwaysRevealed = true;
+				ghostController.AlwaysRevealed = true;
+			}
+
 			npcController.enabled = true;
 			hunterController.enabled = false;
 			ghostController.enabled = false;

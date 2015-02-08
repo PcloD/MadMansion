@@ -49,7 +49,7 @@ public class PlayerInputManager : MonoBehaviour {
 	void BeginSelection (StartCharacterSelectionEvent e) {
 		InputManager.OnDeviceAttached += inputDevice => ResetControls();
 		InputManager.OnDeviceDetached += inputDevice => ResetControls();
-		StartCoroutine(ManageAssignment());
+		StartCoroutine(ManageAssignment(e.gameMode));
 	}
 
 	private void ResetControls () {
@@ -62,7 +62,7 @@ public class PlayerInputManager : MonoBehaviour {
 	}
 
 
-	IEnumerator ManageAssignment () {
+	IEnumerator ManageAssignment (GameMode gameMode) {
 		yield return new WaitForSeconds(0.5f);
 		ResetControls();
 		while (true) {
@@ -89,7 +89,7 @@ public class PlayerInputManager : MonoBehaviour {
 						_ghostAssignmentText.SetActive(false);
 						Events.g.Raise(new ResumeGameEvent());
 						if (_firstAssignment) {
-							Events.g.Raise(new StartGameEvent());
+							Events.g.Raise(new StartGameEvent(gameMode));
 							_firstAssignment = false;
 						}
 						break;

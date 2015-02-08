@@ -9,6 +9,15 @@ public class GhostController : MonoBehaviour
 	private Transform _transform;
 	private CharacterMotor _characterMotor;
 	private bool _paused = true;
+	private bool _alwaysRevealed = false;
+	public bool AlwaysRevealed {
+		get {
+			return _alwaysRevealed;
+		}
+		set {
+			_alwaysRevealed = value;
+		}
+	}
 
 	[SerializeField]
 	private Renderer
@@ -26,9 +35,8 @@ public class GhostController : MonoBehaviour
 	private CurrRoomFinder _currRoomFinder;
 
 	[SerializeField]
-	private GameObject
-		_ghostRevealRolePrefab;
-
+	private GameObject _ghostRevealRolePrefab;
+	private Vector3 _ghostRevealRolePrefabStartPos;
 
 	void Awake ()
 	{
@@ -37,6 +45,7 @@ public class GhostController : MonoBehaviour
 
 	void OnEnable ()
 	{
+		_ghostRevealRolePrefabStartPos = _ghostRevealRolePrefab.transform.localPosition;
 		Events.g.AddListener<PauseGameEvent> (PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.AddListener<EndGameEvent> (RevealRoleAtEnd);
@@ -47,6 +56,7 @@ public class GhostController : MonoBehaviour
 		Events.g.RemoveListener<PauseGameEvent> (PauseInteraction);
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.RemoveListener<EndGameEvent> (RevealRoleAtEnd);
+		IsRevealed = false;
 	}
 
 	private void PauseInteraction (PauseGameEvent e)
@@ -61,6 +71,10 @@ public class GhostController : MonoBehaviour
 
 	void Update ()
 	{
+		if (_alwaysRevealed) {
+			IsRevealed = true;
+		}
+
 		if (_paused) {
 			return;
 		}
@@ -130,11 +144,23 @@ public class GhostController : MonoBehaviour
 		Gizmos.color = Color.cyan;
 		Gizmos.DrawWireSphere (_transform.position, 0.1f);
 	}
-	void RevealRoleAtEnd (EndGameEvent e)
-	{
-		if (e.rationale == EndReason.HunterCaughtGhostInSameBody) {
-			_ghostRevealRolePrefab.transform.position += _ghostRevealRolePrefab.transform.forward * 3;
+
+	private bool IsRevealed {
+		set {
+			if (value) {
+				if (_characterMotor.IsHunter) {
+					_ghostRevealRolePrefab.transform.localPosition = _ghostRevealRolePrefabStartPos + _ghostRevealRolePrefab.transform.forward * 3;
+				} else {
+					_ghostRevealRolePrefab.transform.localPosition = _ghostRevealRolePrefabStartPos;
+				}
+				_ghostRevealRolePrefab.SetActive (true);
+			} else {
+				_ghostRevealRolePrefab.SetActive (false);
+			}
 		}
-		_ghostRevealRolePrefab.SetActive (true);
+	}
+
+	private void RevealRoleAtEnd (EndGameEvent e) {
+		IsRevealed = true;
 	}
 }

@@ -3,12 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class MenuButtonHighlighted : MonoBehaviour {
-	private Button _button;
-	private Vector3 _defaultScale;
+	// private Button _button;
+	// private Vector3 _defaultScale;
 	private PulseComponent _pulser;
 	void Awake () {
-		_button = GetComponent<Button>();
-		_defaultScale = _button.transform.localScale;
+		// _button = GetComponent<Button>();
+		// _defaultScale = _button.transform.localScale;
 		_pulser = GetComponent<PulseComponent>();
 		if(_pulser != null) {
 			_pulser.enabled = false;

@@ -18,6 +18,16 @@ public class HunterController : MonoBehaviour
 	private bool
 		_canAbortSmellPrematurely = false;
 
+	private bool _alwaysRevealed = false;
+	public bool AlwaysRevealed {
+		get {
+			return _alwaysRevealed;
+		}
+		set {
+			_alwaysRevealed = value;
+		}
+	}
+
 	private CharacterMotor _characterMotor;
 	private GhostSelectionMotor _ghostSelectionMotor;
 	private CurrRoomFinder _currRoomFinder;
@@ -26,8 +36,7 @@ public class HunterController : MonoBehaviour
 	private bool _catchFinalized = false;
 
 	[SerializeField]
-	private GameObject
-		_hunterRevealRolePrefab;
+	private GameObject _hunterRevealRolePrefab;
 
 
 	void OnEnable ()
@@ -44,6 +53,7 @@ public class HunterController : MonoBehaviour
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.RemoveListener<FinishCatchEvent> (MarkCatchFinalized);
 		Events.g.RemoveListener<EndGameEvent> (RevealRoleAtEnd);
+		IsRevealed = false;
 	}
 
 	private void MarkCatchFinalized (FinishCatchEvent e)
@@ -70,6 +80,10 @@ public class HunterController : MonoBehaviour
 
 	void Update ()
 	{
+		if (_alwaysRevealed) {
+			IsRevealed = true;
+		}
+
 		if (_paused)
 			return;
 		if (_catchFinalized)
@@ -127,8 +141,15 @@ public class HunterController : MonoBehaviour
 			Events.g.Raise (new CatchEvent (false));
 		}
 	}
+
+	private bool IsRevealed {
+		set {
+			_hunterRevealRolePrefab.SetActive (value);
+		}
+	}
+
 	void RevealRoleAtEnd (EndGameEvent e)
 	{
-		_hunterRevealRolePrefab.SetActive (true);
+		IsRevealed = true;
 	}
 }
