@@ -133,7 +133,7 @@ public class GhostController : MonoBehaviour
 	void RevealRoleAtEnd (EndGameEvent e)
 	{
 		if (e.rationale == EndReason.HunterCaughtGhostInSameBody) {
-			_ghostRevealRolePrefab.transform.position += new Vector3 (0, 3, 0);
+			_ghostRevealRolePrefab.transform.position += _ghostRevealRolePrefab.transform.forward * 3;
 		}
 		_ghostRevealRolePrefab.SetActive (true);
 	}
