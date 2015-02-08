@@ -88,8 +88,6 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_GeneratedSkyboxReflection: {fileID: 0}
@@ -427,7 +425,6 @@ Light:
     m_Resolution: 3
     m_Strength: .225999996
     m_Bias: 0
-    m_NormalBias: 0
     m_Softness: 4
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
@@ -1035,7 +1032,6 @@ Light:
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
-    m_NormalBias: 0
     m_Softness: 4
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
@@ -1098,7 +1094,6 @@ Light:
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
-    m_NormalBias: 0
     m_Softness: 4
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
@@ -1224,7 +1219,6 @@ Light:
     m_Resolution: -1
     m_Strength: 1
     m_Bias: .0500000007
-    m_NormalBias: 0
     m_Softness: 4
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
@@ -1785,6 +1779,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
+      propertyPath: customProfiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1820,6 +1818,14 @@ Prefab:
     - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
       propertyPath: logDebugInfo
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
+      propertyPath: customProfiles.Array.data[0]
+      value: CustomInputProfiles.DebugKeyboardProfilePlayerOne
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
+      propertyPath: customProfiles.Array.data[1]
+      value: CustomInputProfiles.DebugKeyboardProfilePlayerTwo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d41a21087b64496986afb7d371e42df, type: 2}
