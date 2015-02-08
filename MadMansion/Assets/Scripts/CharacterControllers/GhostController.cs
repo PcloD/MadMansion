@@ -43,9 +43,12 @@ public class GhostController : MonoBehaviour
 		Cache ();
 	}
 
+	void Start () {
+		_ghostRevealRolePrefabStartPos = _ghostRevealRolePrefab.transform.localPosition;
+	}
+
 	void OnEnable ()
 	{
-		_ghostRevealRolePrefabStartPos = _ghostRevealRolePrefab.transform.localPosition;
 		Events.g.AddListener<PauseGameEvent> (PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.AddListener<EndGameEvent> (RevealRoleAtEnd);
