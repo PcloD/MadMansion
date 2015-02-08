@@ -28,17 +28,27 @@ public class PlayerInputManager : MonoBehaviour {
 
 	private PlayerSelectionStatus _selectionStatus = PlayerSelectionStatus.AssigningHunter;
 
+	void OnEnable ()
+	{
+		Events.g.AddListener<StartCharacterSelectionEvent>(BeginSelection);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<StartCharacterSelectionEvent>(BeginSelection);
+	}
+
 	void Awake () {
 		if (g == null) {
 			g = this;
-			InputManager.OnDeviceAttached += inputDevice => ResetControls();
-			InputManager.OnDeviceDetached += inputDevice => ResetControls();
 		} else {
 			Destroy(this);
 		}
 	}
 
-	void Start () {
+	void BeginSelection (StartCharacterSelectionEvent e) {
+		InputManager.OnDeviceAttached += inputDevice => ResetControls();
+		InputManager.OnDeviceDetached += inputDevice => ResetControls();
 		StartCoroutine(ManageAssignment());
 	}
 
@@ -53,7 +63,7 @@ public class PlayerInputManager : MonoBehaviour {
 
 
 	IEnumerator ManageAssignment () {
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0.5f);
 		ResetControls();
 		while (true) {
 			if (InputManager.ActiveDevice.AnyButton) {
