@@ -20,6 +20,8 @@ public class PlayTransition : MonoBehaviour {
 	RectTransform _leftControlsPanel;
 	[SerializeField]
 	RectTransform _rightControlsPanel;
+	[SerializeField]
+	RectTransform _creatorsPanel;
 
 	[SerializeField]
 	AnimationCurve _lightIntensityCurve;
@@ -55,6 +57,8 @@ public class PlayTransition : MonoBehaviour {
 		StartCoroutine(MovePanelByOffset (_leftControlsPanel, _panelTransitionDuration, new Vector2(1,0), _panelTransitionCurve));
 		// RightControlPanel onscreen
 		StartCoroutine(MovePanelByOffset (_rightControlsPanel, _panelTransitionDuration, new Vector2(-1,0), _panelTransitionCurve));
+
+		StartCoroutine(MovePanelByOffset (_creatorsPanel, _panelTransitionDuration, new Vector2(0,-1), _panelTransitionCurve));
 	}
 
 	private IEnumerator MovePanelByOffset (RectTransform panel, float timerDuration, Vector2 offset, AnimationCurve curve) {

@@ -35,7 +35,6 @@ public class GameFader : MonoBehaviour {
 		float alpha;
 		float timer = 0f;
 		while (timer < timerDuration) {
-			Debug.Log(timer);
 			timer += Time.deltaTime;
 			if (fadeIn) {
 				alpha = curve.Evaluate(timer/timerDuration);
