@@ -24,8 +24,8 @@ PlayerSettings:
   m_ActiveColorSpace: 1
   m_MTRendering: 1
   m_MobileMTRendering: 0
-  m_UseDX11: 1
   m_Stereoscopic3D: 0
+  m_GraphicsAPI: 1
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosAppInBackgroundBehavior: 0
@@ -43,7 +43,7 @@ PlayerSettings:
   captureSingleScreen: 0
   Override IPod Music: 0
   Prepare IOS For Recording: 0
-  submitAnalytics: 1
+  enableCloudIntegration: 1
   usePlayerLog: 1
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
@@ -186,7 +186,6 @@ PlayerSettings:
   ps4BackgroundImagePath: 
   ps4StartupImagePath: 
   ps4BGMPath: 
-  ps4ShareFilePath: 
   ps4NPtitleDatPath: 
   ps4RemotePlayKeyAssignment: -1
   ps4EnterButtonAssignment: 1
@@ -199,7 +198,6 @@ PlayerSettings:
   ps4pnPresence: 1
   ps4pnFriends: 1
   ps4pnGameCustomData: 1
-  playerPrefsSupport: 0
   monoEnv: 
   psp2Splashimage: {fileID: 0}
   psp2NPTrophyPackPath: 
@@ -372,12 +370,16 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   intPropertyNames:
+  - Metro::ScriptingBackend
+  - WP8::ScriptingBackend
   - WebGL::ScriptingBackend
   - WebGL::audioCompressionFormat
   - WebGL::exceptionSupport
   - WebGL::memorySize
   - iOS::Architecture
   - iOS::ScriptingBackend
+  Metro::ScriptingBackend: 2
+  WP8::ScriptingBackend: 2
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0
