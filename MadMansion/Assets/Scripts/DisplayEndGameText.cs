@@ -72,7 +72,7 @@ public class DisplayEndGameText : MonoBehaviour {
 	void Update () {
 		if (_gameOver && InputManager.ActiveDevice.Action2.WasPressed) {
 			// Restart game
-			Application.LoadLevel (Application.loadedLevel); // TODO: Make this nicer
+			Events.g.Raise(new RestartGameEvent());
 		}
 	}
 
