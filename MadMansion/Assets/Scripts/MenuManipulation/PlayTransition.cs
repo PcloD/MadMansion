@@ -34,13 +34,24 @@ public class PlayTransition : MonoBehaviour {
 	void Awake () {
 		_playButton = GetComponent<Button>();
 		_mainLight.intensity = _dimIntensity;
+	}
 
+	void Start () {
+		_leftControlsPanel.gameObject.SetActive(false);
+		_rightControlsPanel.gameObject.SetActive(false);
+		StartCoroutine(SetupOffscreenPanels());
+	}
+
+	private IEnumerator SetupOffscreenPanels () {
+		yield return new WaitForSeconds(0.1f);
 		Vector2 desPos = new Vector2(-0.5f,0);
 		Vector2 origAnchorPos = _leftControlsPanel.anchoredPosition;
 		_leftControlsPanel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _leftControlsPanel.rect.width, desPos.y * _leftControlsPanel.rect.height);
 		origAnchorPos = _rightControlsPanel.anchoredPosition;
 		desPos = new Vector2(0.5f,0);
 		_rightControlsPanel.anchoredPosition = origAnchorPos + new Vector2(desPos.x * _rightControlsPanel.rect.width, desPos.y * _rightControlsPanel.rect.height);
+		_leftControlsPanel.gameObject.SetActive(true);
+		_rightControlsPanel.gameObject.SetActive(true);
 	}
 
 	public void TransitionToPractice() {
