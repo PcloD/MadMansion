@@ -62,7 +62,7 @@ public class HauntManager : MonoBehaviour
 		Events.g.AddListener<PauseGameEvent> (PauseTimers);
 		Events.g.AddListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.AddListener<CatchEvent> (DisableInteractionOnCatch);
-		Events.g.AddListener<CatchEndEvent> (EnableInteractionAfterCatch);
+		Events.g.AddListener<CatchEffectEndEvent> (EnableInteractionAfterCatch);
 	}
 
 	void OnDisable ()
@@ -71,7 +71,7 @@ public class HauntManager : MonoBehaviour
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.RemoveListener<StartGameEvent> (BeginCharging);
 		Events.g.RemoveListener<CatchEvent> (DisableInteractionOnCatch);
-		Events.g.RemoveListener<CatchEndEvent> (EnableInteractionAfterCatch);
+		Events.g.RemoveListener<CatchEffectEndEvent> (EnableInteractionAfterCatch);
 	}
 
 	private void DisableInteractionOnCatch (CatchEvent e)
@@ -90,21 +90,20 @@ public class HauntManager : MonoBehaviour
 			}
 		}
 	}
-	private void EnableInteractionAfterCatch (CatchEndEvent e)
+	private void EnableInteractionAfterCatch (CatchEffectEndEvent e)
 	{
 		_catchingInProgress = false;
-		if (e.catchRight) {
-		} else {
-			if (!_hauntChargeTimer.IsRunning && _hauntChargeTimerPaused) {
-				_hauntChargeTimer.Start ();
-				_hauntChargeTimerPaused = false;
-			}
-			
-			if (!_hauntProgressTimer.IsRunning && _hauntProgressTimerPaused) {
-				_hauntProgressTimer.Start ();
-				_hauntProgressTimerPaused = false;
-			}
+
+		if (!_hauntChargeTimer.IsRunning && _hauntChargeTimerPaused) {
+			_hauntChargeTimer.Start ();
+			_hauntChargeTimerPaused = false;
 		}
+			
+		if (!_hauntProgressTimer.IsRunning && _hauntProgressTimerPaused) {
+			_hauntProgressTimer.Start ();
+			_hauntProgressTimerPaused = false;
+		}
+
 	}
 
 

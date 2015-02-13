@@ -100,7 +100,7 @@ public class CharacterMotor : MonoBehaviour
 		Events.g.AddListener<PossessionEvent> (RespondToPossession);
 
 		Events.g.AddListener<CatchEvent> (MarkCatchHappening);
-		Events.g.AddListener<CatchEndEvent> (MarkCatchFinished);
+		Events.g.AddListener<CatchEffectEndEvent> (MarkCatchFinished);
 
 	}
 
@@ -112,7 +112,7 @@ public class CharacterMotor : MonoBehaviour
 		Events.g.RemoveListener<PossessionEvent> (RespondToPossession);
 
 		Events.g.RemoveListener<CatchEvent> (MarkCatchHappening);
-		Events.g.RemoveListener<CatchEndEvent> (MarkCatchFinished);
+		Events.g.RemoveListener<CatchEffectEndEvent> (MarkCatchFinished);
 	}
 
 	private void MarkCatchHappening (CatchEvent e)
@@ -121,12 +121,11 @@ public class CharacterMotor : MonoBehaviour
 			_catchHappening = true;
 		}
 	}
-	private void MarkCatchFinished (CatchEndEvent e)
+	private void MarkCatchFinished (CatchEffectEndEvent e)
 	{
-		if (e.catchRight) {
-		} else {
-			_catchHappening = false;
-		}
+
+		_catchHappening = false;
+		
 				
 				
 	}

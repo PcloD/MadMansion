@@ -12,77 +12,79 @@ public class DDInputManager : MonoBehaviour
 	public bool enableXInput = false;
 	public bool useFixedUpdate = false;
 	public bool dontDestroyOnLoad = false;
-	public List<string> customProfiles = new List<string>();
+	public List<string> customProfiles = new List<string> ();
 
 	[SerializeField]
-	bool _manualDevicesEnabled = true;
+	bool
+		_manualDevicesEnabled = true;
 	[SerializeField]
-	bool _forceManualDevicesOff = false;
+	bool
+		_forceManualDevicesOff = false;
 	[SerializeField]
-	GameObject _keyboardDebugDisplay;
+	GameObject
+		_keyboardDebugDisplay;
 
-	private List<UnityInputDevice> _manualDevices = new List<UnityInputDevice>();
+	private List<UnityInputDevice> _manualDevices = new List<UnityInputDevice> ();
 
-	void OnValidate () {
+	void OnValidate ()
+	{
 		if (_keyboardDebugDisplay != null) {
-			_keyboardDebugDisplay.SetActive(!_forceManualDevicesOff);
+			_keyboardDebugDisplay.SetActive (!_forceManualDevicesOff);
 		}
 	}
 
-	void OnEnable()
+	void OnEnable ()
 	{
 		if (!_forceManualDevicesOff) {
-			Debug.LogError("Keyboard Debug Mode is On! Turn it off with 'forceManualDevicesOff' on " + gameObject.name);
+			Debug.LogError ("Keyboard Debug Mode is On! Turn it off with 'forceManualDevicesOff' on " + gameObject.name);
 		}
 
-		_keyboardDebugDisplay.SetActive(_manualDevicesEnabled && !_forceManualDevicesOff);
-		if (logDebugInfo)
-		{
-			Debug.Log( "InControl (version " + InputManager.Version + ")" );
+		_keyboardDebugDisplay.SetActive (_manualDevicesEnabled && !_forceManualDevicesOff);
+		if (logDebugInfo) {
+			Debug.Log ("InControl (version " + InputManager.Version + ")");
 			Logger.OnLogMessage += HandleOnLogMessage;
 		}
 
 		InputManager.InvertYAxis = invertYAxis;
 		InputManager.EnableXInput = enableXInput;
-		InputManager.SetupInternal();
+		InputManager.SetupInternal ();
 
-		foreach (var className in customProfiles)
-		{
-			var classType = Type.GetType( className );
+		foreach (var className in customProfiles) {
+			var classType = Type.GetType (className);
 			if (classType == null) {
-				Debug.LogError( "Cannot find class for custom profile: " + className );
+				Debug.LogError ("Cannot find class for custom profile: " + className);
 			} else if (_manualDevicesEnabled && !_forceManualDevicesOff) {
-				var customProfileInstance = Activator.CreateInstance( classType ) as UnityInputDeviceProfile;
-				UnityInputDevice device = new UnityInputDevice( customProfileInstance );
-				_manualDevices.Add(device);
-				InputManager.AttachDevice( device );
+				var customProfileInstance = Activator.CreateInstance (classType) as UnityInputDeviceProfile;
+				UnityInputDevice device = new UnityInputDevice (customProfileInstance);
+				_manualDevices.Add (device);
+				InputManager.AttachDevice (device);
 			}
 		}
 
-		if (dontDestroyOnLoad)
-		{
-			DontDestroyOnLoad( this );
+		if (dontDestroyOnLoad) {
+			DontDestroyOnLoad (this);
 		}
 	}
 
-	void ToggleManualDevicesEnabled () {
+	void ToggleManualDevicesEnabled ()
+	{
 		if (_manualDevicesEnabled || _forceManualDevicesOff) {
 			foreach (var device in _manualDevices) {
-				InputManager.DetachDevice( device );
+				InputManager.DetachDevice (device);
 			}
 		} else {
 			foreach (var device in _manualDevices) {
-				InputManager.AttachDevice( device );
+				InputManager.AttachDevice (device);
 			}
 		}
 		_manualDevicesEnabled = !_manualDevicesEnabled;
-		_keyboardDebugDisplay.SetActive(_manualDevicesEnabled && !_forceManualDevicesOff);
+		_keyboardDebugDisplay.SetActive (_manualDevicesEnabled && !_forceManualDevicesOff);
 	}
 
-	void OnDisable()
+	void OnDisable ()
 	{
-		_manualDevices.Clear();
-		InputManager.ResetInternal();
+		_manualDevices.Clear ();
+		InputManager.ResetInternal ();
 	}
 
 
@@ -105,59 +107,56 @@ public class DDInputManager : MonoBehaviour
 	#endif
 
 
-	void Update()
+	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.BackQuote)) {
-			ToggleManualDevicesEnabled();
+		if (Input.GetKeyDown (KeyCode.BackQuote)) {
+			ToggleManualDevicesEnabled ();
 		}
 
-		if (!useFixedUpdate || Mathf.Approximately( Time.timeScale, 0.0f ))
-		{
-			InputManager.UpdateInternal();
-		}
-	}
-
-
-	void FixedUpdate()
-	{
-		if (useFixedUpdate)
-		{
-			InputManager.UpdateInternal();
+		if (!useFixedUpdate || Mathf.Approximately (Time.timeScale, 0.0f)) {
+			InputManager.UpdateInternal ();
 		}
 	}
 
 
-	void OnApplicationFocus( bool focusState )
+	void FixedUpdate ()
 	{
-		InputManager.OnApplicationFocus( focusState );
+		if (useFixedUpdate) {
+			InputManager.UpdateInternal ();
+		}
 	}
 
 
-	void OnApplicationPause( bool pauseState )
+	void OnApplicationFocus (bool focusState)
 	{
-		InputManager.OnApplicationPause( pauseState );
+		InputManager.OnApplicationFocus (focusState);
 	}
 
 
-	void OnApplicationQuit()
+	void OnApplicationPause (bool pauseState)
 	{
-		InputManager.OnApplicationQuit();
+		InputManager.OnApplicationPause (pauseState);
 	}
 
 
-	void HandleOnLogMessage( LogMessage logMessage )
+	void OnApplicationQuit ()
 	{
-		switch (logMessage.type)
-		{
-			case LogMessageType.Info:
-				Debug.Log( logMessage.text );
-				break;
-			case LogMessageType.Warning:
-				Debug.LogWarning( logMessage.text );
-				break;
-			case LogMessageType.Error:
-				Debug.LogError( logMessage.text );
-				break;
+		InputManager.OnApplicationQuit ();
+	}
+
+
+	void HandleOnLogMessage (LogMessage logMessage)
+	{
+		switch (logMessage.type) {
+		case LogMessageType.Info:
+			Debug.Log (logMessage.text);
+			break;
+		case LogMessageType.Warning:
+			Debug.LogWarning (logMessage.text);
+			break;
+		case LogMessageType.Error:
+			Debug.LogError (logMessage.text);
+			break;
 		}
 	}
 }

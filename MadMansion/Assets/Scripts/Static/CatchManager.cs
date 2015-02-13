@@ -42,6 +42,7 @@ public class CatchManager : MonoBehaviour
 		Events.g.AddListener<ResumeGameEvent> (ResumeTimers);
 		Events.g.AddListener<CatchEvent> (StartCatching);
 		Events.g.AddListener<FinishCatchEvent> (FinalizeCatching);
+		Events.g.AddListener<CatchEffectEndEvent> (StopCatching);
 	}
 
 	void OnDisable ()
@@ -51,6 +52,7 @@ public class CatchManager : MonoBehaviour
 		Events.g.RemoveListener<StartGameEvent> (BeginCharging);
 		Events.g.RemoveListener<CatchEvent> (StartCatching);
 		Events.g.RemoveListener<FinishCatchEvent> (FinalizeCatching);
+		Events.g.RemoveListener<CatchEffectEndEvent> (StopCatching);
 	}
 
 	private void PauseTimers (PauseGameEvent e)
@@ -89,7 +91,7 @@ public class CatchManager : MonoBehaviour
 		}
 	}
 
-	private void StopCatching ()
+	private void StopCatching (CatchEffectEndEvent e)
 	{
 		TimeManager.g.StopBulletTime ();
 		_isCatching = false;
@@ -113,10 +115,11 @@ public class CatchManager : MonoBehaviour
 			}
 		} else {
 			//Events.g.Raise(new EndGameEvent(winner: Player.GhostPlayer, rationale: EndReason.HunterCaughtInnocent));
-			StopCatching ();
+			//StopCatching ();
 			Events.g.Raise (new CatchEndEvent (false));
 		}
 	}
+
 
 	private bool _isCatching = false;
 	public bool IsCatching {
