@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d3cd1728580bf483284cb6811678b9ee
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: Armature
     100002: Cone.001
@@ -17,6 +17,8 @@ ModelImporter:
     100022: spine
     100024: waist
     100026: waist.001
+    100028: Lady
+    100030: LadyArmature
     400000: Armature
     400002: Cone.001
     400004: hair
@@ -31,12 +33,16 @@ ModelImporter:
     400022: spine
     400024: waist
     400026: waist.001
+    400028: Lady
+    400030: LadyArmature
     4300000: Cone.001
+    4300002: Lady
     7400000: LadyArmature|jump
     7400002: LadyArmature|scared
     7400004: LadyArmature|walking
     9500000: //RootNode
     13700000: Cone.001
+    13700002: Lady
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,6 +52,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
+    pivotNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -55,7 +62,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: LadyArmature|jump
-      takeName: Armature|jump
+      takeName: LadyArmature|jump
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -79,37 +86,37 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Lady
         weight: 1
-      - path: Armature/spine
+      - path: LadyArmature
         weight: 1
-      - path: Armature/spine/waist
+      - path: LadyArmature/spine
         weight: 1
-      - path: Armature/spine/waist/head
+      - path: LadyArmature/spine/waist
         weight: 1
-      - path: Armature/spine/waist/head/hair
+      - path: LadyArmature/spine/waist/head
         weight: 1
-      - path: Armature/spine/waist/left shoulder
+      - path: LadyArmature/spine/waist/head/hair
         weight: 1
-      - path: Armature/spine/waist/left shoulder/left arm
+      - path: LadyArmature/spine/waist/left shoulder
         weight: 1
-      - path: Armature/spine/waist/left shoulder/left arm/left hand
+      - path: LadyArmature/spine/waist/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/waist/right shoulder
+      - path: LadyArmature/spine/waist/left shoulder/left arm/left hand
         weight: 1
-      - path: Armature/spine/waist/right shoulder/right arm
+      - path: LadyArmature/spine/waist/right shoulder
         weight: 1
-      - path: Armature/spine/waist/right shoulder/right arm/right hand
+      - path: LadyArmature/spine/waist/right shoulder/right arm
         weight: 1
-      - path: Armature/spine/waist/waist.001
+      - path: LadyArmature/spine/waist/right shoulder/right arm/right hand
         weight: 1
-      - path: Cone.001
+      - path: LadyArmature/spine/waist/waist.001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
       name: LadyArmature|scared
-      takeName: Armature|scared
+      takeName: LadyArmature|scared
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -133,37 +140,37 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Lady
         weight: 1
-      - path: Armature/spine
+      - path: LadyArmature
         weight: 1
-      - path: Armature/spine/waist
+      - path: LadyArmature/spine
         weight: 1
-      - path: Armature/spine/waist/head
+      - path: LadyArmature/spine/waist
         weight: 1
-      - path: Armature/spine/waist/head/hair
+      - path: LadyArmature/spine/waist/head
         weight: 1
-      - path: Armature/spine/waist/left shoulder
+      - path: LadyArmature/spine/waist/head/hair
         weight: 1
-      - path: Armature/spine/waist/left shoulder/left arm
+      - path: LadyArmature/spine/waist/left shoulder
         weight: 1
-      - path: Armature/spine/waist/left shoulder/left arm/left hand
+      - path: LadyArmature/spine/waist/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/waist/right shoulder
+      - path: LadyArmature/spine/waist/left shoulder/left arm/left hand
         weight: 1
-      - path: Armature/spine/waist/right shoulder/right arm
+      - path: LadyArmature/spine/waist/right shoulder
         weight: 1
-      - path: Armature/spine/waist/right shoulder/right arm/right hand
+      - path: LadyArmature/spine/waist/right shoulder/right arm
         weight: 1
-      - path: Armature/spine/waist/waist.001
+      - path: LadyArmature/spine/waist/right shoulder/right arm/right hand
         weight: 1
-      - path: Cone.001
+      - path: LadyArmature/spine/waist/waist.001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
       name: LadyArmature|walking
-      takeName: Armature|walking
+      takeName: LadyArmature|walking
       firstFrame: 0
       lastFrame: 89
       wrapMode: 0
@@ -187,31 +194,31 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Armature
+      - path: Lady
         weight: 1
-      - path: Armature/spine
+      - path: LadyArmature
         weight: 1
-      - path: Armature/spine/waist
+      - path: LadyArmature/spine
         weight: 1
-      - path: Armature/spine/waist/head
+      - path: LadyArmature/spine/waist
         weight: 1
-      - path: Armature/spine/waist/head/hair
+      - path: LadyArmature/spine/waist/head
         weight: 1
-      - path: Armature/spine/waist/left shoulder
+      - path: LadyArmature/spine/waist/head/hair
         weight: 1
-      - path: Armature/spine/waist/left shoulder/left arm
+      - path: LadyArmature/spine/waist/left shoulder
         weight: 1
-      - path: Armature/spine/waist/left shoulder/left arm/left hand
+      - path: LadyArmature/spine/waist/left shoulder/left arm
         weight: 1
-      - path: Armature/spine/waist/right shoulder
+      - path: LadyArmature/spine/waist/left shoulder/left arm/left hand
         weight: 1
-      - path: Armature/spine/waist/right shoulder/right arm
+      - path: LadyArmature/spine/waist/right shoulder
         weight: 1
-      - path: Armature/spine/waist/right shoulder/right arm/right hand
+      - path: LadyArmature/spine/waist/right shoulder/right arm
         weight: 1
-      - path: Armature/spine/waist/waist.001
+      - path: LadyArmature/spine/waist/right shoulder/right arm/right hand
         weight: 1
-      - path: Cone.001
+      - path: LadyArmature/spine/waist/waist.001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -226,11 +233,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -253,3 +262,4 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 

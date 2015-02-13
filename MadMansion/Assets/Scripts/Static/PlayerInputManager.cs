@@ -28,18 +28,28 @@ public class PlayerInputManager : MonoBehaviour {
 
 	private PlayerSelectionStatus _selectionStatus = PlayerSelectionStatus.AssigningHunter;
 
+	void OnEnable ()
+	{
+		Events.g.AddListener<StartCharacterSelectionEvent>(BeginSelection);
+	}
+
+	void OnDisable ()
+	{
+		Events.g.RemoveListener<StartCharacterSelectionEvent>(BeginSelection);
+	}
+
 	void Awake () {
 		if (g == null) {
 			g = this;
-			InputManager.OnDeviceAttached += inputDevice => ResetControls();
-			InputManager.OnDeviceDetached += inputDevice => ResetControls();
 		} else {
 			Destroy(this);
 		}
 	}
 
-	void Start () {
-		StartCoroutine(ManageAssignment());
+	void BeginSelection (StartCharacterSelectionEvent e) {
+		InputManager.OnDeviceAttached += inputDevice => ResetControls();
+		InputManager.OnDeviceDetached += inputDevice => ResetControls();
+		StartCoroutine(ManageAssignment(e.gameMode));
 	}
 
 	private void ResetControls () {
@@ -52,8 +62,8 @@ public class PlayerInputManager : MonoBehaviour {
 	}
 
 
-	IEnumerator ManageAssignment () {
-		yield return new WaitForSeconds(1.5f);
+	IEnumerator ManageAssignment (GameMode gameMode) {
+		yield return new WaitForSeconds(0.5f);
 		ResetControls();
 		while (true) {
 			if (InputManager.ActiveDevice.AnyButton) {
@@ -66,7 +76,7 @@ public class PlayerInputManager : MonoBehaviour {
 					case PlayerSelectionStatus.AllAssigned:
 						break;
 					case PlayerSelectionStatus.AssigningHunter:
-						Debug.Log("Assigning Hunter: " + currDevice.Name);
+						Debug.Log("Assigning Hunter: " + currDevice.Name); // TODO: Strip out debugs!
 						_hunterDevice = currDevice;
 						_selectionStatus = PlayerSelectionStatus.AssigningGhost;
 						_hunterAssignmentText.SetActive(false);
@@ -79,7 +89,7 @@ public class PlayerInputManager : MonoBehaviour {
 						_ghostAssignmentText.SetActive(false);
 						Events.g.Raise(new ResumeGameEvent());
 						if (_firstAssignment) {
-							Events.g.Raise(new StartGameEvent());
+							Events.g.Raise(new StartGameEvent(gameMode));
 							_firstAssignment = false;
 						}
 						break;

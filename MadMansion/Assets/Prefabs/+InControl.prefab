@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 11460702}
   m_Layer: 0
   m_Name: +InControl
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400000
+--- !u!114 &11460702
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,15 +36,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b5e8de77c5b4597ae7fbfb49a95e22, type: 3}
+  m_Script: {fileID: 11500000, guid: 6220454773496423ea258663782b2eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   logDebugInfo: 1
   invertYAxis: 0
-  enableXInput: 0
+  enableXInput: 1
   useFixedUpdate: 0
   dontDestroyOnLoad: 0
-  customProfiles: []
+  customProfiles:
+  - CustomInputProfiles.DebugKeyboardProfilePlayerOne
+  - CustomInputProfiles.DebugKeyboardProfilePlayerTwo
+  _manualDevicesEnabled: 1
+  _forceManualDevicesOff: 0
+  _keyboardDebugDisplay: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -56,4 +61,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
-  m_IsExploded: 1

@@ -18,6 +18,17 @@ public class HunterController : MonoBehaviour
 	private bool
 		_canAbortSmellPrematurely = false;
 
+
+	private bool _alwaysRevealed = false;
+	public bool AlwaysRevealed {
+		get {
+			return _alwaysRevealed;
+		}
+		set {
+			_alwaysRevealed = value;
+		}
+	}
+
 	private CharacterMotor _characterMotor;
 	private GhostSelectionMotor _ghostSelectionMotor;
 	private CurrRoomFinder _currRoomFinder;
@@ -26,12 +37,19 @@ public class HunterController : MonoBehaviour
 	private bool _catchFinalized = false;
 	private bool _catchRight = false;
 
+	[SerializeField]
+	private GameObject
+		_hunterRevealRolePrefab;
+
+
 	void OnEnable ()
 	{
 		Events.g.AddListener<PauseGameEvent> (PauseInteraction);
 		Events.g.AddListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.AddListener<FinishCatchEvent> (MarkCatchFinalized);
-		Events.g.AddListener<CatchEndEvent> (CatchEnd);
+		Events.g.AddListener<CatchEffectEndEvent> (CatchEnd);
+		Events.g.AddListener<EndGameEvent> (RevealRoleAtEnd);
+
 	}
 
 	void OnDisable ()
@@ -39,7 +57,10 @@ public class HunterController : MonoBehaviour
 		Events.g.RemoveListener<PauseGameEvent> (PauseInteraction);
 		Events.g.RemoveListener<ResumeGameEvent> (ResumeInteraction);
 		Events.g.RemoveListener<FinishCatchEvent> (MarkCatchFinalized);
-		Events.g.RemoveListener<CatchEndEvent> (CatchEnd);
+		Events.g.RemoveListener<CatchEffectEndEvent> (CatchEnd);
+
+		Events.g.RemoveListener<EndGameEvent> (RevealRoleAtEnd);
+		IsRevealed = false;
 	}
 
 	private void MarkCatchFinalized (FinishCatchEvent e)
@@ -47,16 +68,11 @@ public class HunterController : MonoBehaviour
 		_catchFinalized = true;
 	}
 
-	private void CatchEnd (CatchEndEvent e)
+	private void CatchEnd (CatchEffectEndEvent e)
 	{
 		_catchFinalized = false;
 		_isCatching = false;
-		if (e.catchRight) {
-			_catchRight = true;
-		} else {
-
-			_catchRight = false;
-		}
+	
 
 	}
 
@@ -79,14 +95,17 @@ public class HunterController : MonoBehaviour
 
 	void Update ()
 	{
+
+		if (_alwaysRevealed) {
+			IsRevealed = true;
+		}
+
 		if (_paused)
 			return;
-		if (_catchRight)
-			return;
+
 		if (_isCatching) {
 			HandleSelectionInput (PlayerInputManager.g.Hunter);
 		} else {
-
 			HandleStandardInput (PlayerInputManager.g.Hunter);
 		}
 	}
@@ -136,5 +155,16 @@ public class HunterController : MonoBehaviour
 		} else {
 			Events.g.Raise (new CatchEvent (false));
 		}
+	}
+
+	private bool IsRevealed {
+		set {
+			_hunterRevealRolePrefab.SetActive (value);
+		}
+	}
+
+	void RevealRoleAtEnd (EndGameEvent e)
+	{
+		IsRevealed = true;
 	}
 }

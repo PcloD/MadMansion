@@ -6,30 +6,30 @@ using InControl;
 
 namespace CustomInputProfiles
 {
-		// This custom profile is enabled by adding it to the Custom Profiles list
-		// on the InControlManager component, or you can attach it yourself like so:
-		// InputManager.AttachDevice( new UnityInputDevice( "KeyboardAndMouseProfile" ) );
-		// 
-		public class DebugKeyboardProfilePlayerTwo : UnityInputDeviceProfile
+	// This custom profile is enabled by adding it to the Custom Profiles list
+	// on the InControlManager component, or you can attach it yourself like so:
+	// InputManager.AttachDevice( new UnityInputDevice( "KeyboardAndMouseProfile" ) );
+	// 
+	public class DebugKeyboardProfilePlayerTwo : UnityInputDeviceProfile
+	{
+		public DebugKeyboardProfilePlayerTwo ()
 		{
-				public DebugKeyboardProfilePlayerTwo ()
-				{
-						Name = "Keyboard/Mouse";
-						Meta = "A keyboard and mouse combination profile appropriate for FPS.";
+			Name = "Keyboard/Mouse";
+			Meta = "A keyboard and mouse combination profile appropriate for FPS.";
 			
-						// This profile only works on desktops.
-						SupportedPlatforms = new[]
+			// This profile only works on desktops.
+			SupportedPlatforms = new[]
 			{
 				"Windows",
 				"Mac",
 				"Linux"
 			};
 			
-						Sensitivity = 1.0f;
-						LowerDeadZone = 0.0f;
-						UpperDeadZone = 1.0f;
+			Sensitivity = 1.0f;
+			LowerDeadZone = 0.0f;
+			UpperDeadZone = 1.0f;
 			
-						ButtonMappings = new[]
+			ButtonMappings = new[]
 			{
 				new InputControlMapping
 				{
@@ -51,9 +51,16 @@ namespace CustomInputProfiles
                     Target = InputControlType.Action4,
                     Source = KeyCodeButton( KeyCode.M )
                 },
+
+				new InputControlMapping
+				{
+					Handle = "Restart - Keyboard",
+					Target = InputControlType.Action2,
+					Source = KeyCodeButton( KeyCode.Space )
+				},
             };
             
-						AnalogMappings = new[]
+			AnalogMappings = new[]
 			{
 				new InputControlMapping
 				{
@@ -104,7 +111,7 @@ namespace CustomInputProfiles
 					Scale  = 0.1f
 				}
 			};
-				}
 		}
+	}
 }
 
