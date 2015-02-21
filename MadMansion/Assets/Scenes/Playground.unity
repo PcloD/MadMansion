@@ -1246,6 +1246,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.159120947
       objectReference: {fileID: 0}
+    - target: {fileID: 11400036, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
+      propertyPath: _practiceModeCharacters
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03ae3e417215c44d78513f1b94c3a881, type: 2}
   m_IsPrefabParent: 0
@@ -1297,7 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textForCatchWrong: {fileID: 1630329603}
   _timeCounterForCatchWrong: {fileID: 1310680102}
-  _waitingDuration: 10
+  _waitingDuration: 4
 --- !u!1 &1288425116
 GameObject:
   m_ObjectHideFlags: 0
